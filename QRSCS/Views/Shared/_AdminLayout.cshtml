@@ -1,0 +1,497 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FAVICONS ICON ============================================= -->
+    <link rel="icon" href="../error-404.html" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/adminassets/assets/images/favicon.png" />
+
+    <!-- PAGE TITLE HERE ============================================= -->
+    <title>@ViewBag.Title</title>
+
+    <!-- MOBILE SPECIFIC ============================================= -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- All PLUGINS CSS ============================================= -->
+    @*<link rel="stylesheet" type="text/css" href="~/Content/adminassets/assets/css/assets.css">*@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    @Styles.Render("~/bundles/css")
+
+    @* IDD StyleSheet *@
+    <link href="~/Content/IDDcss/IDD.css" rel="stylesheet" />
+
+
+    <style>
+        .ttr-header {
+            height: 70px;
+        }
+
+        .ttr-pinned-sidebar .ttr-sidebar {
+            top: 70px;
+        }
+
+        .ttr-toggle-sidebar {
+            height: 70px;
+        }
+
+            .ttr-toggle-sidebar i {
+                top: 24px;
+            }
+
+        .az {
+            width: 100%;
+            height: calc(1.5em + 0.75rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #6e707e;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #d1d3e2;
+            border-radius: 0.35rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+
+            .az:focus {
+                color: #6e707e;
+                background-color: #fff;
+                border-color: #bac8f3;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem rgb(78 115 223 / 25%);
+            }
+    </style>
+    <style>
+        /*Toggle*/ /*Toggle*/
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+        input:checked + .slider {
+            background-color: green;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #E74C3C;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+        input:checked + .slider {
+            background-color: green;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+    </style>
+
+</head>
+
+<body class="ttr-opened-sidebar ttr-pinned-sidebar">
+
+    <!-- header start -->
+    <header class="ttr-header">
+
+        <div class="ttr-header-wrapper">
+            <!--sidebar menu toggler start -->
+            <div class="ttr-toggle-sidebar ttr-material-button">
+                <i class="ti-close ttr-open-icon"></i>
+                <i class="ti-menu ttr-close-icon"></i>
+            </div>
+            <!--sidebar menu toggler end -->
+            <!--logo start -->
+            <div class="ttr-logo-box">
+                <div>
+                    <a href="index.html" class="ttr-logo">
+                        <img class="ttr-logo-mobile" alt="" src="~/Content/adminassets/assets/images/logo-mobile.png" width="30" height="30">
+                        <img class="ttr-logo-desktop" alt="" src="~/Content/adminassets/assets/images/logo.png" width="450" height="27">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ttr-header-right ttr-with-seperator">
+            <!-- header right menu start -->
+            <ul class="ttr-header-navigation">
+                <li>
+                    <a href="#" class="ttr-material-button ttr-submenu-toggle" style="height:70px;"><span class="nameandpic"><span class="ttr-user-avatar"><img alt="" src="@Url.Content(Session["UserImage"].ToString())" width="45" height="45"></span><span style="margin-top:12px !important; margin-left:10px !important;">@Session["Full_Name"]</span></span></a>
+                    <div class="ttr-header-submenu">
+                        <ul>
+                            <li>
+                                <a class="dropdown-item" href="">
+                                    @Html.ActionLink(" My Profile", "UpdateUser", "Admin", new { User_ID = Session["User_ID"] }, new { @id = "myprofileid", @class = "far fa-user" })
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </header>
+    <!-- header end -->
+    <!-- Left sidebar menu start -->
+    <div class="ttr-sidebar">
+        <div class="ttr-sidebar-wrapper ">
+            <!-- side menu logo start -->
+            <div class="ttr-sidebar-logo">
+                <a href="#"><img alt="" src="~/Content/adminassets/assets/images/logoblack.png" width="122" height="27"></a>
+                <div class="ttr-sidebar-toggle-button">
+                    <i class="ti-arrow-left"></i>
+                </div>
+            </div>
+            <!-- side menu logo end -->
+            <!-- sidebar menu start -->
+            <nav class="ttr-sidebar-navi">
+                <ul>
+                    <li>
+                        <a href="@Url.Action("Index", "Admin")" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-home"></i></span>
+                            <span class="ttr-label">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("CreateUser", "Admin")" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-book"></i></span>
+                            <span class="ttr-label">Create User</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ViewAllUser", "Admin")" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-email"></i></span>
+                            <span class="ttr-label">View All Users</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("ViewAllTeachers", "Admin")" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-email"></i></span>
+                            <span class="ttr-label">View All Teachers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                            <span class="ttr-label">Editor View</span>
+                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("NewAdmission", "Editor")" class="ttr-material-button"><span class="ttr-label">New Admission Form</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("CaseHistory", "Editor")" class="ttr-material-button"><span class="ttr-label">Case History Form</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("CreateTeacher","Teacher")" class="ttr-material-button"><span class="ttr-label">Create & Assign Teacher</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="list-view-calendar.html" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                            <span class="ttr-label">Hearing Impaired</span>
+                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                        </a>
+
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("SpeechCaseHistory", "Editor")" class="ttr-material-button"><span class="ttr-label">Speech Case History</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("AudiologyAssessment", "Editor")" class="ttr-material-button"><span class="ttr-label">Audiology Assessment</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("SpeechTherapyAssessment", "Editor")" class="ttr-material-button"><span class="ttr-label">Speech Therapy Assessment</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("HIResult", "Result")" class="ttr-material-button"><span class="ttr-label">HI Result</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Performance", "Editor")" class="ttr-material-button"><span class="ttr-label">Performance</span></a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="list-view-calendar.html" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                            <span class="ttr-label">Visually Impaired</span>
+                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("VIResult", "Result")" class="ttr-material-button"><span class="ttr-label">VI Result</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("VIPerformance", "Editor")" class="ttr-material-button"><span class="ttr-label">Performance</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="list-view-calendar.html" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                            <span class="ttr-label">IDD Disability</span>
+                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                        </a>
+
+                        <ul>
+
+                            <li>
+                                <a href="@Url.Action("OT", "IDD")" class="ttr-material-button"><span class="ttr-label">Occupational Therapy </span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("OT2", "IDD")" class="ttr-material-button"><span class="ttr-label">Occupational Therapy 2 </span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("PT", "IDD")" class="ttr-material-button"><span class="ttr-label">Physio Therapy </span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("PA", "IDD")" class="ttr-material-button"><span class="ttr-label">Psychological Assessment </span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("BT", "IDD")" class="ttr-material-button"><span class="ttr-label">Behavioral Therapy </span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("IQ", "IDD")" class="ttr-material-button"><span class="ttr-label">IQ Test </span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("IDDResult", "Result")" class="ttr-material-button"><span class="ttr-label">IDD Result</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Performance", "IDD")" class="ttr-material-button"><span class="ttr-label">Performance</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                            <span class="ttr-label">Update Section</span>
+                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("AllStudentView","UpdateSection")" class="ttr-material-button"><span class="ttr-label">All Students</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("HIView","UpdateSection")" class="ttr-material-button"><span class="ttr-label">All H.I Students</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("VIView", "UpdateSection")" class="ttr-material-button"><span class="ttr-label">All V.I Students</span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("IDDView", "UpdateSection")" class="ttr-material-button"><span class="ttr-label">All IDD Students</span></a>
+                            </li>
+
+
+
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="ttr-material-button">
+                            <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                            <span class="ttr-label">Individualized E-Plan</span>
+                            <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a href="@Url.Action("IEP", "IDD")" class="ttr-material-button"><span class="ttr-label">Individual E-Plan Form </span></a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("ViewAllIEP", "IDD")" class="ttr-material-button"><span class="ttr-label">View All IEP Form </span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    @*<li>
+                            <a href="#" class="ttr-material-button">
+                                <span class="ttr-icon"><i class="ti-calendar"></i></span>
+                                <span class="ttr-label">School View</span>
+                                <span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+                            </a>
+                            <ul>
+
+                                <li>
+                                    <a href="@Url.Action("AllSpeechTherapy", "SchoolView")" class="ttr-material-button"><span class="ttr-label">All Speech Therapy Assessment</span></a>
+                                </li>
+
+                            </ul>
+                        </li>*@
+                    <li class="ttr-seperate"></li>
+                </ul>
+                <!-- sidebar menu end -->
+            </nav>
+            <!-- sidebar menu end -->
+        </div>
+    </div>
+    <!-- Left sidebar menu end -->
+
+
+    <div>
+        <main role="main" class="ttr-wrapper">
+            <div class="container-fluid">
+
+                @RenderBody()
+            </div>
+        </main>
+    </div>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="@Url.Action("Logout","Admin")">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScripts -->
+    @* Dropdown *@
+    <script src="~/Content/adminassets/assets/vendors/JotForm/jquery.min.js"></script>
+    @*<script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
+        <script src="~/Content/adminassets/assets/vendors/owl-carousel/owl.carousel.js"></script*@
+    <script src="~/Content/adminassets/assets/js/admin.js"></script>
+    @* Card *@
+    <script src="~/Content/adminassets/assets/vendors/counter/counterup.min.js"></script>
+    <script src="~/Content/adminassets/assets/vendors/counter/waypoints-min.js"></script>
+    <script src="~/Content/adminassets/assets/js/functions.js"></script>
+    @* POP-UP *@
+    <script src="~/Content/adminassets/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+    @* Chart  *@
+    <script src="~/Content/adminassets/assets/vendors/chart/chart.min.js"></script>
+
+    @* pdf csv print *@
+    <script src="~/Content/assetstable/Printtable.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+
+
+
+
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            }
+        </script>
+    }
+</body>
+</html>

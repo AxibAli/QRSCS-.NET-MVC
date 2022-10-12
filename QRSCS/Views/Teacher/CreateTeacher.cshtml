@@ -1,0 +1,346 @@
+﻿@model QRSCS.Models.CreateTeacherModel
+@{
+    ViewBag.Title = "Create Teacher";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<!--Main container start -->
+
+<div class="container-fluid">
+    <div class="db-breadcrumb">
+        <h4 class="breadcrumb-title">Create & Assign Teacher</h4>
+        <ul class="db-breadcrumb-list">
+            <li><a href="#"><i class="fa fa-home"></i>Editor View</a></li>
+            <li>Create & Assign Teacher</li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 m-b30">
+            <div class="widget-box">
+                <div class="wc-title">
+                    <h4>Create Teacher</h4>
+                </div>
+                <div class="widget-inner">
+                    @*<form class="edit-profile m-b30">*@
+                    @using (Html.BeginForm("CreateTeacher", "Teacher", FormMethod.Post, new { @class = "edit-profile m-b30", enctype = "multipart/form-data" }))
+                    {
+                        <div class="">
+                            <div class="form-group row">
+                                <div class="col-sm-10  ml-auto">
+                                    <div class="width-box">
+                                        <div class="wc-title">
+                                            <h3>Teacher Details:</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 m-auto ">
+                                <div class="form-group row">
+                                    <div class="circle">
+                                        <!-- User Profile Image -->
+                                        <img class="profile-pic">
+
+                                        <!-- Default Image -->
+                                        <!-- <i class="fa fa-user fa-5x"></i> -->
+                                    </div>
+                                    <div class="p-image">
+                                        <i class="fa fa-camera upload-button"></i>
+                                        <input class="file-upload" type="file" name="ImageFile" accept="image/*" id="file" />
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Teacher Name</label>
+                                <div class="col-sm-7">
+                                    @*<input class="form-control" type="text" value="">*@
+                                    @Html.TextBoxFor(x => x.Teacher_Name, null, new { @class = "form-control", type = "text", value = "", placeholder = "Enter Teacher Name " })
+                                    @Html.ValidationMessageFor(x => x.Teacher_Name, null, new { style = "color:red" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Gender</label>
+                                <div class="col-sm-7">
+                                    @Html.DropDownListFor(x => x.Gender, new List<SelectListItem>
+                   { new SelectListItem() { Text = "Please Select" },
+                     new SelectListItem() { Text = "Male" },
+                     new SelectListItem() { Text = "Female" }
+                   }, new { @class = "form-control", id = "col-sm-2 col-form-label" })
+                                    @Html.ValidationMessageFor(x => x.Gender, null, new { style = "color:red" })
+                                    @*<select class="form-control" id="col-sm-2 col-form-label">
+                                            <option></option>
+                                            <option value="volvo">Male</option>
+                                            <option value="saab">Female</option>
+                                        </select>*@
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">NIC #</label>
+                                <div class="col-sm-7">
+                                    @*<input class="form-control" type="text" value="">*@
+                                    @Html.TextBoxFor(x => x.NIC, null, new { @Class = "form-control", placeholder = "NIC #" })
+                                    @Html.ValidationMessageFor(x => x.NIC, null, new { style = "color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Contact #</label>
+                                <div class="col-sm-7">
+                                    @*<input class="form-control" type="text" value="">*@
+                                    @Html.TextBoxFor(x => x.Contact, null, new { @Class = "form-control", placeholder = "Contact #" })
+                                    @Html.ValidationMessageFor(x => x.Contact, null, new { style = "color:red" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Date of Birth</label>
+                                <div class="col-sm-7">
+                                    @*<input class="form-control" type="Date" value="">*@
+                                    @Html.EditorFor(x => x.Date_of_Birth, new { htmlAttributes = new { @class = "form-control", @type = "date", } })
+                                    @Html.ValidationMessageFor(x => x.Date_of_Birth, null, new { style = "color:red" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-7">
+                                    @*<input class="form-control" type="text" value="">*@
+                                    @Html.TextBoxFor(x => x.Email, null, new { @Class = "form-control", placeholder = "Email" })
+                                    @Html.ValidationMessageFor(x => x.Email, null, new { style = "color:red" })
+                                </div>
+                            </div>
+
+                            <div class="seperator"></div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-10 ml-auto">
+                                    <h3>Address:</h3>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-sm-7">
+                                    @*<input class="form-control" type="text" value="">*@
+                                    @Html.TextBoxFor(x => x.Address, null, new { @Class = "form-control", placeholder = "Address" })
+                                    @Html.ValidationMessageFor(x => x.Address, null, new { style = "color:red" })
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">City</label>
+                                <div class="col-sm-7">
+                                    @*<input class="form-control" type="text" value="">*@
+                                    @Html.TextBoxFor(x => x.City, null, new { @Class = "form-control", placeholder = "City" })
+                                    @Html.ValidationMessageFor(x => x.City, null, new { style = "color:red" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">State</label>
+                                <div class="col-sm-7">
+                                    @*<input class="form-control" type="text" value="">*@
+                                    @Html.DropDownListFor(x => x.State, new List<SelectListItem>
+                  { new SelectListItem() { Text = "Please Select" },
+                    new SelectListItem() { Text = "Sindh" },
+                     new SelectListItem() { Text = "Punjab" },
+                      new SelectListItem() { Text = "Balochistan" },
+                       new SelectListItem() { Text = "Khyber Pakhtunkhwa" },
+                        new SelectListItem() { Text = "Gilgit Baltistan" },
+                  }, new { @Class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.State, null, new { style = "color:red" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+
+                        @*</form>*@
+                        <div class="row">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-7">
+                                <button type="submit" class="btn">Create Teacher</button>
+                                <!-- <button type="reset" class="btn-secondry">Cancel</button> -->
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12 m-b30">
+                    <div class="widget-box">
+                        <div class="wc-title">
+                            <h4>Assign Teacher</h4>
+                        </div>
+                        <div class="widget-inner">
+                            <form class="edit-profile m-b30">
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Teacher Id</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="number" value="">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <button type="reset" class="btn">Search</button>
+                                            <!-- <button type="reset" class="btn-secondry">Cancel</button> -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Teacher Name</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Gender</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" id="col-sm-2 col-form-label">
+                                            <option></option>
+                                            <option value="volvo">Male</option>
+                                            <option value="saab">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">NIC #</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Contact #</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" value="">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Class</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" id="col-sm-2 col-form-label">
+                                            <option></option>
+                                            <option value="volvo">1</option>
+                                            <option value="saab">2</option>
+                                            <option value="saab">3</option>
+                                            <option value="saab">4</option>
+                                            <option value="saab">5</option>
+                                            <option value="saab">6</option>
+                                            <option value="saab">7</option>
+                                            <option value="saab">8</option>
+                                            <option value="saab">9</option>
+                                            <option value="saab">10</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Section</label>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" id="col-sm-2 col-form-label">
+                                            <option></option>
+                                            <option value="volvo">A</option>
+                                            <option value="saab">B</option>
+                                            <option value="saab">C</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="seperator"></div>
+
+
+                                <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+
+                            </form>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                </div>
+                                <div class="col-sm-7">
+                                    <button type="reset" class="btn">Assign Teacher</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ttr-overlay"></div>
+
+            <!-- External JavaScripts -->
+            <script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
+            <script type="text/javascript">
+                        $(document).ready(function () {
+                            var readURL = function (input) {
+                                if (input.files && input.files[0]) {
+                                    var reader = new FileReader();
+
+                                    reader.onload = function (e) {
+                                        $('.profile-pic').attr('src', e.target.result);
+                                    }
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }
+                            function validate(file) {
+                                var ext = file.split(".");
+                                ext = ext[ext.length - 1].toLowerCase();
+                                var arrayExtensions = ["jpg", "jpeg", "png", "bmp", "gif"];
+
+                                if (arrayExtensions.lastIndexOf(ext) == -1) {
+                                    alert("This is not an allowed file type Please upload Picture");
+                                    $("#file").val("");
+                                }
+                            }
+                            //$('INPUT[type="file"]').change(function () {
+                            //    var ext = this.value.match(/\.(.+)$/)[1];
+                            //    switch (ext) {
+                            //        case 'jpeg':
+                            //        case 'jpg':
+                            //        case 'png':
+
+                            //        $('.upload-button').attr('disabled', false);
+                            //          break;
+                            //          default:
+                            //          alert('This is not an allowed file type Please upload jpg, jpeg, or png file.');
+                            //          this.value = '';
+                            //    }
+                            //});
+
+                            $("#file").change(function (e) {
+                                var file = this.files[0], img;
+                                if (Math.round(file.size / (1024 * 1024)) > 2) { // make it in MB so divide by 1024*1024
+                                    alert('Please select image size less than 2 MB');
+                                    this.value = '';
+                                }
+
+                            });
+
+                            $(".file-upload").on('change', function () {
+                                readURL(this);
+                            });
+
+                            $(".upload-button").on('click', function () {
+                                $(".file-upload").click();
+                            });
+                        });
+
+
+
+            </script>
+
+

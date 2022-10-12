@@ -1,0 +1,128 @@
+﻿@model QRSCS.Models.SpeechTherapyAssessmentModel
+@{
+    ViewBag.Title = "SpeechTherapyAssessment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .breadcrumb-title {
+        margin-right: 35px !important;
+    }
+</style>
+<link href="~/Content/adminassets/ProfileStyleSheet1.css" rel="stylesheet" />
+
+@using (Html.BeginForm("SpeechTherapyAssessment", "Editor", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    <div class="container-fluid">
+        <div class="db-breadcrumb">
+            <h4 class="breadcrumb-title">Speech Therapy Assessment</h4>
+            <ul class="db-breadcrumb-list">
+                <li><a href="#"><i class="fa fa-home"></i>Hearing Impaired Form</a></li>
+                <li>Speech Therapy Assessment </li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 m-b30">
+                <div class="widget-box">
+                    <div class="wc-title">
+                        <h4>Image Upload Assessment Form</h4>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="user-profile-image">
+                                    <input type="file" class="hidden" id="BrowseImage" accept="image/*" name="ImageFile" />
+                                    <img src="~/Content/adminassets/assets/images/per.png" class="img-responsive" id="UserImage" />
+                                    <p class="image-desc text-center">Allowed Image size: 512*512px </p>
+                                    <div class="upload-pic">
+                                        <img src="~/Content/adminassets/assets/images/570233.png" class="img-responsive" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <br />
+                                <label for="GR NO *">
+                                    GR NO *&emsp;&emsp;
+                                    @Html.TextBoxFor(x => x.GR_NO, null, new { @Class = "form-control", placeholder = "Enter Student GRNO Here" })
+                                    @Html.ValidationMessageFor(x => x.GR_NO, null, new { style = "color:red" })
+                                </label>
+                                <label for="First Name">
+                                    First Name&emsp;&emsp;
+                                    <input type="text" Class="form-control" , id="First Name" name="First Name" placeholder="">
+                                </label>
+                                <label for="Last Name">
+                                    Last Name&emsp;&emsp;
+                                    <input type="text" Class="form-control" , id="Last Name" name="Last Name" placeholder="">
+                                </label>
+                                <label for="Last Name">
+                                    Date&emsp;&emsp;
+                                    
+                                    @Html.EditorFor(x => x.Date_of_Assessment, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                    @Html.ValidationMessageFor(x => x.Date_of_Assessment, null, new { style = "color:red" })
+                                </label>
+
+                                <div class="form-group row">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <button type="submit" class="btn">Save changes</button>
+                                        <button type="reset" class="btn-secondry">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $('#UserImage').click(function () {
+            UploadClickEvent();
+
+        });
+
+        $('.upload-pic').click(function () {
+            UploadClickEvent();
+        });
+
+        function UploadClickEvent() {
+            $('#BrowseImage').trigger('click');
+        }
+
+
+        //select and upload window
+        $('#BrowseImage').change(function () {
+            var File = this.files;
+
+            if (File && File[0]) {
+                var reader = new FileReader();
+                reader.readAsDataURL(File[0]);
+
+                reader.onload = function (x) {
+                    var image = new Image;
+                    image.src = x.target.result;
+
+                    image.onload = function () {
+                        var width = this.width;
+                        var height = this.height;
+                        var type = File[0].type;
+                        if ((width >= "512" && height >= "512") && (type == "image/png" || type == "image/jpg" || type == "image/jpeg")) {
+                            $('#UserImage').attr('src', x.target.result);
+                            $('.image-desc ').css("color", "black");
+                        }
+                        else {
+                            $('.image-desc ').css("color", "red");
+                        }
+                        //alert("Width: " + width + ", Height: " + height + ", Type: " + type);
+                    }
+                }
+            }
+        });
+    </script>
+}

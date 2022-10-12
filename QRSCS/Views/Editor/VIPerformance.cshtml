@@ -1,0 +1,649 @@
+﻿@model QRSCS.Models.HIResultDTO
+@{
+    ViewBag.Title = "VIPerformance";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+
+    .menu {
+        display: flex;
+    }
+
+    .menu button {
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    .btn {
+        border-color: #f7b205;
+    }
+
+    .button_active {
+        color: white;
+    }
+
+    .content_inside {
+        display: none;
+        padding: 10px;
+    }
+
+    .content_inside_active {
+        display: block;
+    }
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src='https://cdn.plot.ly/plotly-2.11.1.min.js'></script>
+<link href="~/Content/adminassets/resultstyle.css" rel="stylesheet" />
+
+<h2 class="text-center" style="font-family:     Verdana, Segoe, sans-serif;">PERFORMANCE</h2>
+
+<div class="my-3">
+    <div class="container">
+        
+        <div class="menu">
+            <button class="btn btn-sm btn-primary mx-1" id="AcademicBtn" onclick="SaveId(this)">Academic</button>
+            <button class="btn btn-sm btn-primary mx-1" id="ResultBtn" onclick="SaveId(this)">Result</button>
+        </div>
+
+        <div class="content">
+            
+            <div class="content_inside content_inside_active">
+                <div class="content">
+                    <div class="audio_div">
+                        <h5>GR NO:</h5>
+                        <input id="Aca_GRNO" type="number" placeholder="GR_NO" style="width:25%" onchange="FetchAcademicData(document.getElementById('Aca_GRNO').value)" />
+                        <br />
+                        <h5>Student Name:</h5>
+                        <span id="Aca_St_Name" style="width:25%; margin-left: 25px;"></span>
+                        <br />
+                        <h5>Father Name:</h5>
+                        <span id="Aca_Father_Name" style="width:25%; margin-left: 25px;"></span>
+                        <br />
+                        <h5>Class:</h5>
+                        <span id="Aca_Class" style="width:25%; margin-left: 25px;"></span>
+                        <br />
+                    </div>
+                    <div>
+                        <h4 style="text-align:center; margin:20px;">ACADEMIC</h4>
+                    </div>
+                    <table class="table table-striped table-bordered table-sm" id="academic_table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">Class</th>
+                                <th scope="col" class="text-center">Percentage</th>
+                                <th scope="col" class="text-center">Year</th>
+                                <th scope="col" class="text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mytable"></tbody>
+                    </table>
+                    <div>
+                        @*<canvas id="barChart" style="width:100%;"></canvas>*@
+                        <div id="barChart" style="width:100%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content_inside">
+                <div class="wrapper">
+                    <div class="rec-prism">
+                        <div class="face face-left">
+                            <div class="content">
+                                <h2>PROGRESS REPORT</h2>
+                                <div class="resultDiv">
+                                    @Html.TextBoxFor(x => x.biMonthlyModel.GR_NO, null, new { id = "GR_NO", style = "height:40px; margin-right:10px", type = "number", placeholder = "GR_NO", onchange = "FetchData()", @*onclick= "GetInfo(document.getElementById('GR_NO').value)"*@ })
+                                    <input type="button" class="btn" style="width:25%; margin: 0" value="Clear" onclick="RemoveTag()">
+                                </div>
+                                <div class="BM_Result">
+                                    <h5 id="name">Name:</h5>
+                                    <span id="BM_St_Name" style=" margin-left: 25px;"></span><br />
+                                    <h5>Father Name:</h5>
+                                    <span id="BM_Father_Name" style="margin-left: 25px;"></span><br />
+                                    <h5>Disability:</h5>
+                                    <span id="BM_Disability" style="margin-left: 25px;"></span><br />
+                                    <h5>Class:</h5>
+                                    <span id="BM_Class" style="margin-left: 25px;"></span><br />
+                                </div>
+                                <table class="table table-striped table-bordered table-sm" id="result_table">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">S.NO.</th>
+                                            <th rowspan="2" class="twide">Subjects</th>
+                                            <th class="twide">1st <br> Bi-Monthly Test <br> Max-Marks:25</th>
+                                            <th class="twide">2nd <br> Bi-Monthly Test <br> Max-Marks:25</th>
+                                            <th class="twide">1st <br>Term Exam Test <br> Max-Marks:100</th>
+                                            <th class="twide">Grand<br>Total:150</th>
+                                            <th rowspan="2">40% Weightage of Total</th>
+                                            <th class="twide">3rd <br> Bi-Monthly Test <br> Max-Marks:25</th>
+                                            <th class="twide">4th <br> Bi-Monthly Test <br> Max-Marks:25</th>
+                                            <th class="twide">2nd <br>Term Exam Test <br> Max-Marks:100</th>
+                                            <th class="twide">Grand<br>Total:150</th>
+                                            <th rowspan="2">60% Weightage of Total</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Marks Obtained</th>
+                                            <th>Marks Obtained</th>
+                                            <th>Marks Obtained</th>
+                                            <th>Total Marks Obtained</th>
+                                            <th>Marks Obtained</th>
+                                            <th>Marks Obtained</th>
+                                            <th>Marks Obtained</th>
+                                            <th>Total Marks Obtained</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td class="tleft">English</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_English" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_English" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_English" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_English" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_English" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_English" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_English" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_English" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_English" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_English" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td class="tleft">Urdu</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Urdu" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Urdu" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Urdu" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Urdu" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Urdu" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Urdu" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Urdu" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Urdu" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Urdu" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Urdu" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td class="tleft">Maths</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Maths" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Maths" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Maths" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Maths" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Maths" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Maths" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Maths" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Maths" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Maths" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Maths" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td class="tleft">Science</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Science" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Science" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Science" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Science" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Science" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Science" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Science" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Science" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Science" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Science" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5.</td>
+                                            <td class="tleft">Social Studies</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Social_Studies" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Social_Studies" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Social_Studies" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Social_Studies" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Social_Studies" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Social_Studies" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Social_Studies" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Social_Studies" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Social_Studies" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Social_Studies" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6.</td>
+                                            <td class="tleft">Islamiat</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Islamiat" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Islamiat" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Islamiat" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Islamiat" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Islamiat" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Islamiat" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Islamiat" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Islamiat" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Islamiat" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Islamiat" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7.</td>
+                                            <td class="tleft">Computer</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Computer" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Computer" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Computer" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Computer" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Computer" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Computer" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Computer" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Computer" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Computer" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Computer" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8.</td>
+                                            <td class="tleft">Vocational / Pre Vocational</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Vocational" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Vocational" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Vocational" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Vocational" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Vocational" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Vocational" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Vocational" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Vocational" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Vocational" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Vocational" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>9.</td>
+                                            <td class="tleft">Mobility</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Mobility" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Mobility" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Mobility" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Mobility" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Mobility" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Mobility" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Mobility" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Mobility" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Mobility" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Mobility" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10.</td>
+                                            <td class="tleft">Concepts</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Concepts" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Concepts" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Concepts" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Concepts" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Concepts" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Concepts" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Concepts" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Concepts" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Concepts" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Concepts" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11.</td>
+                                            <td class="tleft">Sports</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Sports" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Sports" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Sports" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Sports" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Sports" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Sports" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Sports" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Sports" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Sports" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Sports" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td>12.</td>
+                                            <td class="tleft">Sindhi</td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Sindhi" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Sindhi" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Sindhi" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Sindhi" })</td>
+                                            <td>@Html.Label(" ", new { id = "FourtyPT_Sindhi" })</td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Sindhi" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Sindhi" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Sindhi" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Sindhi" })</td>
+                                            <td>@Html.Label(" ", new { id = "SixtyPT_Sindhi" })</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><strong>Total</strong></td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Total" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Total" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Total" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Total" })</td>
+                                            <td></td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Total" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Total" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Total" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Total" })</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><strong>Percentage</strong></td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Percentage" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Percentage" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Percentage" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Percentage" })</td>
+                                            <td></td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Percentage" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Percentage" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Percentage" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Percentage" })</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><strong>Grade</strong></td>
+                                            <td>@Html.Label(" ", new { id = "FBM_Grade" })</td>
+                                            <td>@Html.Label(" ", new { id = "SBM_Grade" })</td>
+                                            <td>@Html.Label(" ", new { id = "FT_Grade" })</td>
+                                            <td>@Html.Label(" ", new { id = "FGT_Grade" })</td>
+                                            <td></td>
+                                            <td>@Html.Label(" ", new { id = "TBM_Grade" })</td>
+                                            <td>@Html.Label(" ", new { id = "FthBM_Grade" })</td>
+                                            <td>@Html.Label(" ", new { id = "ST_Grade" })</td>
+                                            <td>@Html.Label(" ", new { id = "SGT_Grade" })</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div id="content">
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+     function GetInfo(id) {
+        console.log(id);
+        $.get("/Result/GetInfo?GRNO="+id, function (response) {
+            console.log(response)
+
+            document.getElementById("BM_St_Name").innerHTML = response.Name;
+            document.getElementById("BM_Father_Name").innerHTML = response.Father_Name;
+            document.getElementById("BM_Class").innerHTML = response.Class;
+            document.getElementById("BM_Disability").innerHTML = response.Disability;
+        });
+    }
+
+    let button = document.querySelectorAll('.menu button');
+    let content_inside = document.querySelectorAll('.content_inside');
+
+    Array.from(button).forEach(function (buttonArray, i) {
+        buttonArray.addEventListener('click', function () {
+
+            Array.from(button).forEach(buttonAll => buttonAll.classList.remove('button_active'));
+
+            Array.from(content_inside).forEach(content_insideAll => content_insideAll.classList.remove('content_inside_active'));
+
+            button[i].classList.add('button_active');
+
+            content_inside[i].classList.add('content_inside_active');
+        });
+    });
+
+    function SaveId(data) {
+        localStorage.setItem("TabId", data.id)
+        console.log(localStorage.getItem("TabId"))
+    }
+
+    function FetchAcademicData(id) {
+        if (id == '') return alert("Enter the GRNO!!!")
+        $.get("/Academic/GetAcademic?GRNO=" + id,
+            function (data, status) {
+                debugger
+                console.log(data)
+
+                document.getElementById("Aca_St_Name").innerHTML = data[0].Name;
+                document.getElementById("Aca_Father_Name").innerHTML = data[0].FatherName;
+                document.getElementById("Aca_Class").innerHTML = data[0].Class;
+
+                var table = document.getElementById('academic_table');
+                var st_class = [];
+                var percentage = [];
+                var year = [];
+                var status = [];
+                for (var i = 0; i < data.length; i++) {
+                    var row = `<tr>
+                                    <td>${data[i].CurrentClass}</td>
+                                    <td>${data[i].Presentage}</td>
+                                    <td>${data[i].Year}</td>
+                                    <td>${data[i].Result}</td>
+                              </tr>`
+                    table.innerHTML += row;
+                    st_class.push(data[i].CurrentClass);
+                    percentage.push(data[i].Presentage);
+                    year.push(data[i].Year);
+                    status.push(data[i].Result);
+                }
+
+                var xValue = year;
+
+                var yValue = percentage;
+
+                var trace1 = {
+                    x: xValue,
+                    y: yValue,
+                    type: 'bar',
+                    text: yValue.map(String),
+                    textposition: 'auto',
+                    marker: {
+                        color: 'rgb(158,202,225)',
+                        opacity: 0.6,
+                        line: {
+                            color: 'rgb(8,48,107)',
+                            width: 0.8
+                        }
+                    }
+                };
+
+                var data = [trace1];
+
+                var layout = {
+                    title: 'Academic',
+                    barmode: 'stack',
+                    xaxis: {
+                        title: 'Years',
+                    },
+                    yaxis: {
+                        title: 'Percentage',
+                        showline: false,
+                        range: [0, 100]
+                    }
+                };
+
+                Plotly.newPlot('barChart', data, layout);
+
+            });
+    }
+
+
+    function RemoveTag() {
+        var answer = document.getElementsByTagName("label").length
+        console.log(answer)
+        for (let i = 0; i < answer; i++) {
+            document.getElementsByTagName("label")[i].innerText = ""
+        }
+    }
+
+    function FetchData() {
+        var id = document.getElementById('GR_NO').value;
+        if (id == '') return alert("Enter the GRNO!!!")
+        RemoveTag();
+        $.post("/Result/GetHIResult/",
+            {
+                GR_NO: id
+            },
+            function (data, status) {
+                //console.log(data.Test_Type)
+                ////if (data.Test_Type == )
+                //const TestType = [];
+                //for (let i = 0; i < data.length; i++) {
+                //    TestType.push(data[i].Test_Type);
+                //}
+                console.log(data)
+
+                document.getElementById("FBM_English").innerText = data["FirstBTM_English"];
+                document.getElementById("FBM_Urdu").innerText = data["FirstBTM_Urdu"];
+                document.getElementById("FBM_Maths").innerText = data["FirstBTM_Maths"];
+                document.getElementById("FBM_Science").innerText = data["FirstBTM_Science"];
+                document.getElementById("FBM_Social_Studies").innerText = data["FirstBTM_Social_Studies"];
+                document.getElementById("FBM_Islamiat").innerText = data["FirstBTM_Islamiat"];
+                document.getElementById("FBM_Computer").innerText = data["FirstBTM_Computer"];
+                document.getElementById("FBM_Vocational").innerText = data["FirstBTM_Speech"];
+                document.getElementById("FBM_Mobility").innerText = data["FirstBTM_Language"];
+                document.getElementById("FBM_Concepts").innerText = data["FirstBTM_Concepts"];
+                document.getElementById("FBM_Sports").innerText = data["FirstBTM_Art_and_Drawing"];
+                document.getElementById("FBM_Sindhi").innerText = data["FirstBTM_Sindhi"];
+                document.getElementById("FBM_Total").innerText = data["FirstBTM_Obtained_Total"];
+                document.getElementById("FBM_Percentage").innerText = data["FirstBTM_Percentage"];
+                document.getElementById("FBM_Grade").innerText = data["FirstBTM_Grade"];
+
+                document.getElementById("SBM_English").innerText = data["SecondBTM_English"];
+                document.getElementById("SBM_Urdu").innerText = data["SecondBTM_Urdu"];
+                document.getElementById("SBM_Maths").innerText = data["SecondBTM_Maths"];
+                document.getElementById("SBM_Science").innerText = data["SecondBTM_Science"];
+                document.getElementById("SBM_Social_Studies").innerText = data["SecondBTM_Social_Studies"];
+                document.getElementById("SBM_Islamiat").innerText = data["SecondBTM_Islamiat"];
+                document.getElementById("SBM_Computer").innerText = data["SecondBTM_Computer"];
+                document.getElementById("SBM_Vocational").innerText = data["SecondBTM_Speech"];
+                document.getElementById("SBM_Mobility").innerText = data["SecondBTM_Language"];
+                document.getElementById("SBM_Concepts").innerText = data["SecondBTM_Concepts"];
+                document.getElementById("SBM_Sports").innerText = data["SecondBTM_Art_and_Drawing"];
+                document.getElementById("SBM_Sindhi").innerText = data["SecondBTM_Sindhi"];
+                document.getElementById("SBM_Total").innerText = data["SecondBTM_Obtained_Total"];
+                document.getElementById("SBM_Percentage").innerText = data["SecondBTM_Percentage"];
+                document.getElementById("SBM_Grade").innerText = data["SecondBTM_Grade"];
+
+                document.getElementById("TBM_English").innerText = data["ThirdBTM_English"];
+                document.getElementById("TBM_Urdu").innerText = data["ThirdBTM_Urdu"];
+                document.getElementById("TBM_Maths").innerText = data["ThirdBTM_Maths"];
+                document.getElementById("TBM_Science").innerText = data["ThirdBTM_Science"];
+                document.getElementById("TBM_Social_Studies").innerText = data["ThirdBTM_Social_Studies"];
+                document.getElementById("TBM_Islamiat").innerText = data["ThirdBTM_Islamiat"];
+                document.getElementById("TBM_Computer").innerText = data["ThirdBTM_Computer"];
+                document.getElementById("TBM_Vocational").innerText = data["ThirdBTM_Speech"];
+                document.getElementById("TBM_Mobility").innerText = data["ThirdBTM_Language"];
+                document.getElementById("TBM_Concepts").innerText = data["ThirdBTM_Concepts"];
+                document.getElementById("TBM_Sports").innerText = data["ThirdBTM_Art_and_Drawing"];
+                document.getElementById("TBM_Sindhi").innerText = data["ThirdBTM_Sindhi"];
+                document.getElementById("TBM_Total").innerText = data["ThirdBTM_Obtained_Total"];
+                document.getElementById("TBM_Percentage").innerText = data["ThirdBTM_Percentage"];
+                document.getElementById("TBM_Grade").innerText = data["ThirdBTM_Grade"];
+
+                document.getElementById("FthBM_English").innerText = data["FourthBTM_English"];
+                document.getElementById("FthBM_Urdu").innerText = data["FourthBTM_Urdu"];
+                document.getElementById("FthBM_Maths").innerText = data["FourthBTM_Maths"];
+                document.getElementById("FthBM_Science").innerText = data["FourthBTM_Science"];
+                document.getElementById("FthBM_Social_Studies").innerText = data["FourthBTM_Social_Studies"];
+                document.getElementById("FthBM_Islamiat").innerText = data["FourthBTM_Islamiat"];
+                document.getElementById("FthBM_Computer").innerText = data["FourthBTM_Computer"];
+                document.getElementById("FthBM_Vocational").innerText = data["FourthBTM_Speech"];
+                document.getElementById("FthBM_Mobility").innerText = data["FourthBTM_Language"];
+                document.getElementById("FthBM_Concepts").innerText = data["FourthBTM_Concepts"];
+                document.getElementById("FthBM_Sports").innerText = data["FourthBTM_Art_and_Drawing"];
+                document.getElementById("FthBM_Sindhi").innerText = data["FourthBTM_Sindhi"];
+                document.getElementById("FthBM_Total").innerText = data["FourthBTM_Obtained_Total"];
+                document.getElementById("FthBM_Percentage").innerText = data["FourthBTM_Percentage"];
+                document.getElementById("FthBM_Grade").innerText = data["FourthBTM_Grade"];
+
+                document.getElementById("FT_English").innerText = data["FirstTerm_English"];
+                document.getElementById("FT_Urdu").innerText = data["FirstTerm_Urdu"];
+                document.getElementById("FT_Maths").innerText = data["FirstTerm_Maths"];
+                document.getElementById("FT_Science").innerText = data["FirstTerm_Science"];
+                document.getElementById("FT_Social_Studies").innerText = data["FirstTerm_Social_Studies"];
+                document.getElementById("FT_Islamiat").innerText = data["FirstTerm_Islamiat"];
+                document.getElementById("FT_Computer").innerText = data["FirstTerm_Computer"];
+                document.getElementById("FT_Vocational").innerText = data["FirstTerm_Speech"];
+                document.getElementById("FT_Mobility").innerText = data["FirstTerm_Language"];
+                document.getElementById("FT_Concepts").innerText = data["FirstTerm_Concepts"];
+                document.getElementById("FT_Sports").innerText = data["FirstTerm_Art_and_Drawing"];
+                document.getElementById("FT_Sindhi").innerText = data["FirstTerm_Sindhi"];
+                document.getElementById("FT_Total").innerText = data["FirstTerm_Total"];
+                document.getElementById("FT_Percentage").innerText = data["FirstTerm_Percentage"];
+                document.getElementById("FT_Grade").innerText = data["FirstTerm_Grade"];
+
+                document.getElementById("ST_English").innerText = data["SecondTerm_English"];
+                document.getElementById("ST_Urdu").innerText = data["SecondTerm_Urdu"];
+                document.getElementById("ST_Maths").innerText = data["SecondTerm_Maths"];
+                document.getElementById("ST_Science").innerText = data["SecondTerm_Science"];
+                document.getElementById("ST_Social_Studies").innerText = data["SecondTerm_Social_Studies"];
+                document.getElementById("ST_Islamiat").innerText = data["SecondTerm_Islamiat"];
+                document.getElementById("ST_Computer").innerText = data["SecondTerm_Computer"];
+                document.getElementById("ST_Vocational").innerText = data["SecondTerm_Speech"];
+                document.getElementById("ST_Mobility").innerText = data["SecondTerm_Language"];
+                document.getElementById("ST_Concepts").innerText = data["SecondTerm_Concepts"];
+                document.getElementById("ST_Sports").innerText = data["SecondTerm_Art_and_Drawing"];
+                document.getElementById("ST_Sindhi").innerText = data["SecondTerm_Sindhi"];
+                document.getElementById("ST_Total").innerText = data["SecondTerm_Total"];
+                document.getElementById("ST_Percentage").innerText = data["SecondTerm_Percentage"];
+                document.getElementById("ST_Grade").innerText = data["SecondTerm_Grade"];
+
+                document.getElementById("FGT_English").innerText = data["FirstGT_English"];
+                document.getElementById("FGT_Urdu").innerText = data["FirstGT_Urdu"];
+                document.getElementById("FGT_Maths").innerText = data["FirstGT_Maths"];
+                document.getElementById("FGT_Science").innerText = data["FirstGT_Science"];
+                document.getElementById("FGT_Social_Studies").innerText = data["FirstGT_Social_Studies"];
+                document.getElementById("FGT_Islamiat").innerText = data["FirstGT_Islamiat"];
+                document.getElementById("FGT_Computer").innerText = data["FirstGT_Computer"];
+                document.getElementById("FGT_Vocational").innerText = data["FirstGT_Speech"];
+                document.getElementById("FGT_Mobility").innerText = data["FirstGT_Language"];
+                document.getElementById("FGT_Concepts").innerText = data["FirstGT_Concepts"];
+                document.getElementById("FGT_Sports").innerText = data["FirstGT_Art_and_Drawing"];
+                document.getElementById("FGT_Sindhi").innerText = data["FirstGT_Sindhi"];
+                document.getElementById("FGT_Total").innerText = data["FirstGT_Total"];
+                document.getElementById("FGT_Percentage").innerText = data["FirstGT_Percentage"];
+                document.getElementById("FGT_Grade").innerText = data["FirstGT_Grade"];
+
+                document.getElementById("SGT_English").innerText = data["SecondGT_English"];
+                document.getElementById("SGT_Urdu").innerText = data["SecondGT_Urdu"];
+                document.getElementById("SGT_Maths").innerText = data["SecondGT_Maths"];
+                document.getElementById("SGT_Science").innerText = data["SecondGT_Science"];
+                document.getElementById("SGT_Social_Studies").innerText = data["SecondGT_Social_Studies"];
+                document.getElementById("SGT_Islamiat").innerText = data["SecondGT_Islamiat"];
+                document.getElementById("SGT_Computer").innerText = data["SecondGT_Computer"];
+                document.getElementById("SGT_Vocational").innerText = data["SecondGT_Speech"];
+                document.getElementById("SGT_Mobility").innerText = data["SecondGT_Language"];
+                document.getElementById("SGT_Concepts").innerText = data["SecondGT_Concepts"];
+                document.getElementById("SGT_Sports").innerText = data["SecondGT_Art_and_Drawing"];
+                document.getElementById("SGT_Sindhi").innerText = data["SecondGT_Sindhi"];
+                document.getElementById("SGT_Total").innerText = data["SecondGT_Total"];
+                document.getElementById("SGT_Percentage").innerText = data["SecondGT_Percentage"];
+                document.getElementById("SGT_Grade").innerText = data["SecondGT_Grade"];
+
+                document.getElementById("FourtyPT_English").innerText = data["FourtyPT_English"];
+                document.getElementById("FourtyPT_Urdu").innerText = data["FourtyPT_Urdu"];
+                document.getElementById("FourtyPT_Maths").innerText = data["FourtyPT_Maths"];
+                document.getElementById("FourtyPT_Science").innerText = data["FourtyPT_Science"];
+                document.getElementById("FourtyPT_Social_Studies").innerText = data["FourtyPT_Social_Studies"];
+                document.getElementById("FourtyPT_Islamiat").innerText = data["FourtyPT_Islamiat"];
+                document.getElementById("FourtyPT_Computer").innerText = data["FourtyPT_Computer"];
+                document.getElementById("FourtyPT_Vocational").innerText = data["FourtyPT_Speech"];
+                document.getElementById("FourtyPT_Mobility").innerText = data["FourtyPT_Language"];
+                document.getElementById("FourtyPT_Concepts").innerText = data["FourtyPT_Concepts"];
+                document.getElementById("FourtyPT_Sports").innerText = data["FourtyPT_Art_and_Drawing"];
+                document.getElementById("FourtyPT_Sindhi").innerText = data["FourtyPT_Sindhi"];
+
+                document.getElementById("SixtyPT_English").innerText = data["SixtyPT_English"];
+                document.getElementById("SixtyPT_Urdu").innerText = data["SixtyPT_Urdu"];
+                document.getElementById("SixtyPT_Maths").innerText = data["SixtyPT_Maths"];
+                document.getElementById("SixtyPT_Science").innerText = data["SixtyPT_Science"];
+                document.getElementById("SixtyPT_Social_Studies").innerText = data["SixtyPT_Social_Studies"];
+                document.getElementById("SixtyPT_Islamiat").innerText = data["SixtyPT_Islamiat"];
+                document.getElementById("SixtyPT_Computer").innerText = data["SixtyPT_Computer"];
+                document.getElementById("SixtyPT_Vocational").innerText = data["SixtyPT_Speech"];
+                document.getElementById("SixtyPT_Mobility").innerText = data["SixtyPT_Language"];
+                document.getElementById("SixtyPT_Concepts").innerText = data["SixtyPT_Concepts"];
+                document.getElementById("SixtyPT_Sports").innerText = data["SixtyPT_Art_and_Drawing"];
+                document.getElementById("SixtyPT_Sindhi").innerText = data["SixtyPT_Sindhi"];
+
+            });
+    }
+
+</script>

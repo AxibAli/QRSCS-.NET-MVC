@@ -1,0 +1,116 @@
+﻿@model List<QRSCS.Models.CreateUserModel>
+@{
+    ViewBag.Title = "View All User";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="db-breadcrumb">
+        <h4 class="breadcrumb-title">Users</h4>
+        <ul class="db-breadcrumb-list">
+            <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+            <li>View all Users</li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <!-- Your Profile Views Chart -->
+        <div class="col-lg-12 m-b30">
+            <div class="widget-box">
+                <div class="wc-title">
+                    <h4>List Views Users</h4>
+                </div>
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>User ID</th>
+                                        <th>Full Name</th>
+                                        <th>Father Name</th>
+                                        <th>NIC</th>
+                                        <th>Gender</th>
+                                        <th>IsActive</th>
+                                        <th>Modify</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="text-center">
+                                            <td>@item.User_ID</td>
+                                            <td>@item.Full_Name</td>
+                                            <td>@item.Father_Name</td>
+                                            <td>@item.NIC</td>
+                                            <td>@item.Gender</td>
+                                            <td class="text-center">
+
+                                                @{
+                                                    var stat = string.Empty;
+                                                    if (@item.IsActive == true)
+                                                    {
+                                                        stat = "checked";
+                                                    }
+                                                    else
+                                                    {
+                                                        stat = "";
+                                                    }
+                                                    <label class="switch">
+                                                        <input type="checkbox" id="switchId-@item.User_ID" onchange="UpdateStatus(this,  @item.User_ID)" @stat>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                }
+
+                                            </td>
+                                            <td>@Html.ActionLink("Update", "UpdateUser", "Admin", new { User_ID = @item.User_ID }, new { @class = "btn " })</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Your Profile Views Chart END-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ttr-overlay"></div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="~/Content/assetstable/vendor/jquery/jquery.min.js"></script>
+<script src="~/Content/assetstable/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="~/Content/assetstable/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Content/assetstable/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Table Search Bar -->
+<script src="~/Content/assetstable/js/datatables-demo.js"></script>
+
+
+<script>
+    function UpdateStatus(data, userId) {
+        var id = data.id;
+        var status = document.getElementById(id).checked
+
+        $.post("/Admin/UpdateUserStatus",
+            {
+                Status: status,
+                UserId: userId
+            },
+            function (data) {
+                if (data == true) {
+
+                }
+                else {
+                    document.getElementById(id).checked = status;
+                    alert("Error Updating")
+                }
+                console.log(status)
+            });
+    }
+</script>

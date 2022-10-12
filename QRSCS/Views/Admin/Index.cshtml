@@ -1,0 +1,383 @@
+﻿
+@model QRSCS.Models.DashboardModel
+
+
+@{
+    ViewBag.Title = "Dashboard-Quaid E Azam Rangers Special Children School";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="db-breadcrumb">
+    <h4 class="breadcrumb-title">Dashboard</h4>
+    <ul class="db-breadcrumb-list">
+        <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+        <li>Dashboard</li>
+    </ul>
+</div>
+
+<!-- Card -->
+<div>
+    <div class="row">
+        <!--TOTAL ADMINS -->
+        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg1">
+                <div class="wc-item">
+                    <h4 class="wc-title">
+                        All USERS COUNT
+                    </h4>
+                    <span class="wc-des">
+                        Web App Handlers
+                    </span>
+                    <span class="wc-stats">
+                        <span class="counter">@Model.total_users</span>
+                    </span>
+                    <div class="progress wc-progress">
+                        <div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="wc-progress-bx">
+                        <span class="wc-change">
+                            TOTAL ADMINS
+                        </span>
+                        <span class="wc-number ml-auto">
+                            @Model.total_users
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--TOTAL STUDENTS -->
+        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg2">
+                <div class="wc-item">
+                    <h4 class="wc-title">
+                        STUDNETS COUNT
+                    </h4>
+                    <span class="wc-des">
+                        HI-VI-IDD
+                    </span>
+                    <span class="wc-stats counter">
+                        @Model.total_students
+                    </span>
+                    <div class="progress wc-progress">
+                        <div class="progress-bar" role="progressbar" style="width: 88%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="wc-progress-bx">
+                        <span class="wc-change">
+                            TOTAL STUDENTS
+                        </span>
+                        <span class="wc-number ml-auto">
+                            @Model.total_students
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--TOTAL TEACHERS -->
+        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg3">
+                <div class="wc-item">
+                    <h4 class="wc-title">
+                        TEACHERS COUNT
+                    </h4>
+                    <span class="wc-des">
+                        School Faculty
+                    </span>
+                    <span class="wc-stats counter">
+                        @Model.total_teachers
+                    </span>
+                    <div class="progress wc-progress">
+                        <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="wc-progress-bx">
+                        <span class="wc-change">
+                            TOTAL TEACHERS
+                        </span>
+                        <span class="wc-number ml-auto">
+                            @Model.total_teachers
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--TOTAL IEP -->
+        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg4">
+                <div class="wc-item">
+                    <h4 class="wc-title">
+                        IE Plan COUNT
+                    </h4>
+                    <span class="wc-des">
+                        Education Plan
+                    </span>
+                    <span class="wc-stats counter">
+                        @Model.total_IEP
+                    </span>
+                    <div class="progress wc-progress">
+                        <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="wc-progress-bx">
+                        <span class="wc-change">
+                            TOTAL EDUCATION PLANS
+                        </span>
+                        <span class="wc-number ml-auto">
+                            @Model.total_IEP
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--TOTAL HI -->
+        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg4">
+                <div class="wc-item">
+                    <h4 class="wc-title">
+                        HI STUDENTS
+                    </h4>
+                    <span class="wc-des">
+                        Hearing Impaired
+                    </span>
+                    <span class="wc-stats counter">
+                        @Model.total_histudents
+                    </span>
+                    <div class="progress wc-progress">
+                        <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="wc-progress-bx">
+                        <span class="wc-change">
+                            TOTAL HI-DISABLED
+                        </span>
+                        <span class="wc-number ml-auto">
+                            @Model.total_histudents
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--TOTAL VI -->
+        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg3">
+                <div class="wc-item">
+                    <h4 class="wc-title">
+                        VI STUDENTS
+                    </h4>
+                    <span class="wc-des">
+                        Visual Impaired
+                    </span>
+                    <span class="wc-stats counter">
+                        @Model.total_vistudents
+                    </span>
+                    <div class="progress wc-progress">
+                        <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="wc-progress-bx">
+                        <span class="wc-change">
+                            TOTAL VI-DISABLED
+                        </span>
+                        <span class="wc-number ml-auto">
+                            @Model.total_vistudents
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--TOTAL IDD -->
+        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg2">
+                <div class="wc-item">
+                    <h4 class="wc-title">
+                        IDD STUDENTS
+                    </h4>
+                    <span class="wc-des">
+                        ID Disability
+                    </span>
+                    <span class="wc-stats counter">
+                        @Model.total_iddstudents
+                    </span>
+                    <div class="progress wc-progress">
+                        <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="wc-progress-bx">
+                        <span class="wc-change">
+                            TOTAL IDD-DISABLED
+                        </span>
+                        <span class="wc-number ml-auto">
+                            @Model.total_iddstudents
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--TOTAL ADMINS -->
+        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+            <div class="widget-card widget-bg1">
+                <div class="wc-item">
+                    <h4 class="wc-title">
+                        DEACTIVATED USERS COUNT
+                    </h4>
+                    <span class="wc-des">
+                        Deactivated Admins
+                    </span>
+                    <span class="wc-stats">
+                        <span class="counter">@Model.total_deactivated_users</span>
+                    </span>
+                    <div class="progress wc-progress">
+                        <div class="progress-bar" role="progressbar" style="width: 78%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="wc-progress-bx">
+                        <span class="wc-change">
+                            TOTAL DEACTIVATED ADMINS
+                        </span>
+                        <span class="wc-number ml-auto">
+                            @Model.total_deactivated_users
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="db-breadcrumb">
+    <h4 class="breadcrumb-title">Charts</h4>
+</div>
+
+<!-- DONUT CHART 01 -->
+<div class="card card-danger" style="display:inline-block; width:33%;">
+    <div class="card-header">
+        <h4 class="card-title" style="text-align: center">Users & Admins </h4>
+        <meta name="viewport" content="width=device-width" />
+    </div>
+    <div class="card-body">
+        <div style="text-align: center">
+            <canvas id="Doughnutcanvas"></canvas>
+        </div>
+        <!-- /.card-body -->
+    </div>
+</div>
+
+<!-- BAR CHART -->
+<div class="card card-danger" style="display:inline-block; width:33%;">
+    <div class="card-header">
+        <h4 class="card-title" style="text-align: center">Bars According To Disability</h4>
+        <meta name="viewport" content="width=device-width" />
+    </div>
+    <div class="card-body">
+        <div style="text-align: center">
+            <canvas id="barcanvas"></canvas>
+        </div>
+        <!-- /.card-body -->
+    </div>
+</div>
+
+<!-- DONUT CHART 02 -->
+<div class="card card-danger" style="display:inline-block; width:33%;">
+    <div class="card-header">
+        <h4 class="card-title" style="text-align: center">Disability Comparison</h4>
+        <meta name="viewport" content="width=device-width" />
+    </div>
+    <div class="card-body">
+        <div style="text-align: center">
+            <canvas id="Doughnutcanvas2"></canvas>
+        </div>
+        <!-- /.card-body -->
+    </div>
+</div>
+
+<script>
+    //First DonutChart
+    var donut =
+        {
+            labels: ["ALL-USERS", "ALL-TEACHERS"],
+            datasets: [{
+                backgroundColor: [
+                    "#42188a",
+                    "#ec3261",
+                ],
+                borderWidth: 2,
+                data: [@Model.total_users,@Model.total_teachers]
+            }]
+        };
+    //Second DonutChart
+    var donut2 =
+    {
+        labels: ["HI-STUDENTS", "VI-STUDENTS", "IDD-STUDENTS"],
+        datasets: [{
+            backgroundColor: [
+                "#275efd",
+                "#2596be",
+                "#063970",
+            ],
+            borderWidth: 2,
+            data: [@Model.total_histudents,@Model.total_vistudents,@Model.total_iddstudents]
+        }]
+    };
+    //Bar Chart
+    var bar =
+    {
+        labels: ["HI-DISABLED", "VI-DISABLED", "ID-DISABLED"],
+        datasets: [{
+            label: 'Disability Ratio',
+            backgroundColor: [
+                "#80391e",
+                "#4d0000",
+                "#004d4d",
+            ],
+            borderWidth: 2,
+            data: [@Model.total_histudents,@Model.total_vistudents,@Model.total_iddstudents]
+
+        }]
+    };
+
+
+    window.onload = function () {
+        //First DonutChart
+        var ctx1 = document.getElementById("Doughnutcanvas").getContext("2d");
+        window.myBar = new Chart(ctx1,
+            {
+                type: 'doughnut',
+                data: donut,
+                options:
+                    {
+                        title:
+                        {
+                            display: true,
+                        },
+                        responsive: true,
+                        maintainAspectRatio: true
+                    }
+            });
+        //Second DonutChart
+        var ctx2 = document.getElementById("Doughnutcanvas2").getContext("2d");
+        window.myBar = new Chart(ctx2,
+            {
+                type: 'doughnut',
+                data: donut2,
+                options:
+                    {
+                        title:
+                        {
+                            display: true,
+                        },
+                        responsive: true,
+                        maintainAspectRatio: true
+                    }
+            });
+        //Bar Chart
+        var barchart = document.getElementById("barcanvas").getContext("2d");
+        window.myBar = new Chart(barchart,
+            {
+                type: 'bar',
+                data: bar,
+                options: {
+                    title:
+                    {
+                        display: true,
+                    },
+                    responsive: true,
+                    maintainAspectRatio: true
+                }
+            });
+    }
+</script>

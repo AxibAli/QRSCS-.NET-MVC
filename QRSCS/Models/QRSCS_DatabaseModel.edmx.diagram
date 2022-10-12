@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f6f76cdd623647499fe6d11353c86b1a" Name="Diagram1" ZoomLevel="94">
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Audiology_Assessment" Width="1.5" PointX="5.25" PointY="47.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Behavioral_Observation" Width="1.5" PointX="7.5" PointY="52" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Case_History" Width="1.5" PointX="5.25" PointY="75.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Conclusion" Width="1.5" PointX="7.5" PointY="73.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Create_Teacher" Width="1.625" PointX="3.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Development_History" Width="1.5" PointX="7.5" PointY="76" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Developmental_History" Width="1.5" PointX="7.5" PointY="19.125" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Education_History" Width="1.5" PointX="7.5" PointY="81.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Expressive_Langauage" Width="1.5" PointX="7.5" PointY="33.625" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Family_History" Width="1.5" PointX="7.5" PointY="67.125" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.General_Information" Width="1.5" PointX="9.125" PointY="24.125" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Medical_History" Width="1.5" PointX="7.5" PointY="96.375" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.New_Admission" Width="2" PointX="0.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Particulars_of_Sibling" Width="1.5" PointX="7.5" PointY="93.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Psycho_Social_Factors" Width="1.5" PointX="7.5" PointY="84.75" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Receptive_langauge" Width="1.5" PointX="7.5" PointY="30.125" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Recommendation" Width="1.5" PointX="7.5" PointY="87.875" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Speach_and_Langauge" Width="1.5" PointX="7.5" PointY="27.625" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Speach_Case_History" Width="1.5" PointX="5.25" PointY="27.375" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Audiology__GR_NO__2645B050" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Behaviora__CaseH__4F7CD00D" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Case_Hist__GR_NO__29572725" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Conclusio__CaseH__5441852A" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Developme__CaseH__37A5467C" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Education__CaseH__45F365D3" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Family_Hi__CaseH__2E1BDC42" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Medical_H__CaseH__412EB0B6" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Particula__CaseH__32E0915F" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Psycho_So__CaseH__4AB81AF0" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Recommend__CaseH__59063A47" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Developme__Speac__7A672E12" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Expressiv__Speac__75A278F5" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__General_I__Speac__6754599E" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Speach_Ca__GR_NO__628FA481" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Receptive__Speac__70DDC3D8" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Speach_an__Speac__6C190EBB" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.AttentionalProcessing_OT2" Width="1.5" PointX="7.5" PointY="142.375" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.AuditoryProcessing_OT2" Width="1.5" PointX="7.5" PointY="147.25" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Avoiding_OT2" Width="1.5" PointX="7.5" PointY="131.75" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.BodyPositionProcessing_OT2" Width="1.5" PointX="7.5" PointY="177" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.ConductProcessing_OT2" Width="1.5" PointX="7.5" PointY="151.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.HistoryPregnancy_PT" Width="1.5" PointX="7.5" PointY="204.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Milestone_PT" Width="1.5" PointX="7.5" PointY="197.625" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.MovementProcessing_OT2" Width="1.5" PointX="7.5" PointY="138.125" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.OccupationalTherapy1" Width="1.625" PointX="2.5" PointY="201.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.OccupationalTherapy2" Width="1.5" PointX="5.25" PointY="151" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.OralSensoryProcessing_OT2" Width="1.5" PointX="7.5" PointY="156" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.OT1_Page1" Width="1.5" PointX="0.625" PointY="204.75" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.OT1_Page2" Width="1.5" PointX="2.375" PointY="204.75" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.OT1_Page3" Width="1.5" PointX="4" PointY="204.75" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.PhysicalAssessment_PT" Width="3.25" PointX="7.5" PointY="194.125" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.PresentLevel_IEP" Width="1.5" PointX="7.5" PointY="103.625" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Registration_OT2" Width="1.5" PointX="7.5" PointY="125" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Seeking_OT2" Width="1.5" PointX="7.5" PointY="165.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Sensitivity_OT2" Width="1.5" PointX="7.5" PointY="181.375" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.SocialEmotionalProcessing_OT2" Width="1.5" PointX="7.5" PointY="171.625" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.SpecialInstructional_IEP" Width="1.5" PointX="7.5" PointY="117.375" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.TestDone_PT" Width="1.5" PointX="7.5" PointY="202.25" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.TouchProcessing_OT2" Width="1.5" PointX="7.5" PointY="160.625" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.TreatmentPlan_PT" Width="1.5" PointX="7.5" PointY="191.25" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.VisualProcessing_OT2" Width="1.5" PointX="7.5" PointY="120.875" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Attention__OT2_I__73852659" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__AuditoryP__OT2_I__5CA1C101" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Avoiding___OT2_I__793DFFAF" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__BodyPosit__OT2_I__681373AD" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__ConductPr__OT2_I__6DCC4D03" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__MovementP__OT2_I__65370702" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Occupatio__GR_NO__29221CFB" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Occupatio__GR_NO__59C55456" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__OT1_Page1__OT1_I__2BFE89A6" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__OT1_Page2__OT1_I__2EDAF651" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__OT1_Page3__OT1_I__31B762FC" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__OralSenso__OT2_I__6AEFE058" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Registrat__OT2_I__7EF6D905" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Seeking_O__OT2_I__76619304" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Sensitivi__OT2_I__7C1A6C5A" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__SocialEmo__OT2_I__70A8B9AE" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__TouchProc__OT2_I__625A9A57" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__VisualPro__OT2_I__5F7E2DAC" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.MidTerm_Result" Width="1.5" PointX="5.25" PointY="38.75" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Result" Width="1.5" PointX="5.25" PointY="54.25" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__MidTerm_R__GR_NO__4CC05EF3" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Result__GR_NO__5090EFD7" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.MedicalInformation_PT" Width="1.5" PointX="7.5" PointY="44.125" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Physiotherapy" Width="1.5" PointX="5.25" PointY="60.625" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__HistoryPr__PT_ID__489AC854" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__MedicalIn__PT_ID__11D4A34F" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Milestone__PT_ID__4E53A1AA" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Physiothe__GR_NO__45BE5BA9" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__PhysicalA__PT_ID__51300E55" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__TestDone___PT_ID__56E8E7AB" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Treatment__PT_ID__540C7B00" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Speech_Therapy_Assessment" Width="1.5" PointX="5.25" PointY="32.625" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.User" Width="2" PointX="0.5" PointY="0.5" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Create_Te__User___04E4BC85" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__New_Admis__User___4BAC3F29" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Speech_Th__GR_NO__7F2BE32F" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Post_Natal" Width="1.5" PointX="5.75" PointY="208" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Post_Nata__CaseH__4A4E069C" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Week1_BT" Width="1.5" PointX="7.625" PointY="208" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Week2_BT" Width="1.5" PointX="9.375" PointY="208" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Week3_BT" Width="1.5" PointX="11.125" PointY="208" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Week4_BT" Width="1.5" PointX="13.125" PointY="208" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.IEP_Page3" Width="1.5" PointX="14" PointY="0.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Student_Current_Class" Width="1.5" PointX="11.75" PointY="9.375" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Student_Current_Status" Width="1.5" PointX="4.875" PointY="12" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Student_C__GR_NO__4AA30C57" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Student_C__GR_NO__4D7F7902" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.BehavioralTherapy" Width="1.5" PointX="3.375" PointY="8.5" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.DevelopmentTeam_IEP" Width="1.5" PointX="8.125" PointY="4.625" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.IntelligenceQuotient" Width="1.5" PointX="3.375" PointY="67" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.MeetingInformation_IEP" Width="1.5" PointX="8.125" PointY="39.625" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.PsychologicalAssessment" Width="1.5" PointX="3.375" PointY="16" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.SupplementaryAids_IEP" Width="1.5" PointX="8.125" PointY="10.5" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Behaviora__GR_NO__08D548FA" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Behaviora__GR_NO__33008CF0" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Week1_BT__BT_ID__3F3159AB" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Week2_BT__BT_ID__420DC656" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Week3_BT__BT_ID__44EA3301" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Week4_BT__BT_ID__47C69FAC" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Intellige__GR_NO__1446FBA6" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Intellige__GR_NO__536D5C82" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Psycholog__GR_NO__23893F36" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Psycholog__GR_NO__3E723F9C" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.IEPlan" Width="1.5" PointX="3.25" PointY="20.75" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Developme__IEPla__6EE06CCD" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__IEP_Page3__IEP_I__505BE5AD" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__IEPlan__GR_No__1352D76D" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__IEPlan__GR_No__65C116E7" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__MeetingIn__IEPla__6C040022" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__PresentLe__IEPla__21A0F6C4" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__PresentLe__IEPla__6B79F03D" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__SpecialIn__IEPla__2B2A60FE" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__SpecialIn__IEPla__6E565CE8" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__Supplemen__IEPla__72B0FDB1" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.IDD_Result" Width="1.5" PointX="3.25" PointY="80.125" />
+        <EntityTypeShape EntityType="QRSCS_DatabaseModel.Student_Result_Status" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="QRSCS_DatabaseModel.FK__IDD_Resul__GR_NO__31A25463" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

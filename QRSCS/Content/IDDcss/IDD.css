@@ -1,0 +1,30 @@
+﻿
+fieldset {
+    display: none;
+}
+
+#first {
+    display: block;
+}
+
+input[type=submit], input[type=button] {
+    width: 120px;
+    margin: 15px 25px;
+    padding: 5px;
+    height: 40px;
+    background-color: #2e69ff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+}
+
+.prevbut {
+    background-color: #e5e7f2 !important;
+    color: black !important;
+}
+
+    .prevbut:hover {
+        background-color: #b8b8b8 !important;
+    }
+
