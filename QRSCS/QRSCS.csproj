@@ -561,7 +561,11 @@
     <Content Include="Content\assetstable\vendor\fontawesome-free\css\v4-shims.min.css" />
     <Content Include="Content\assetstable\vendor\fontawesome-free\LICENSE.txt" />
     <Content Include="Content\assetstable\vendor\jquery\jquery.min.js" />
-    <Content Include="Content\IDDcss\IDD.css" />
+    <Content Include="Content\CustomStyleSheet\IEP.css" />
+    <Content Include="Content\CustomStyleSheet\IQ.css" />
+    <Content Include="Content\CustomStyleSheet\Sidebar.css" />
+    <Content Include="Content\CustomStyleSheet\ToggleSwitch.css" />
+    <Content Include="Content\CustomStyleSheet\IDD.css" />
     <Content Include="Content\loginassets\css\app.css" />
     <Content Include="Content\loginassets\css\bckg.jpeg" />
     <Content Include="Content\loginassets\css\style.css" />
@@ -670,6 +674,7 @@
     <Folder Include="Content\assetstable\vendor\fontawesome-free\sprites\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\svgs\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\webfonts\" />
+    <Folder Include="Content\CustomJavaScripts\" />
     <Folder Include="ProjectData\" />
   </ItemGroup>
   <ItemGroup>

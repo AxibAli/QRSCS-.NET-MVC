@@ -1,12 +1,11 @@
 ﻿@model QRSCS.Models.PhysiotherapyModelDTO
 @{
-    /**/
-
     ViewBag.Title = "PT Form";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<link type="text/css" rel="stylesheet" href="~/Content/adminassets/css/style.css">
+@*<link type="text/css" rel="stylesheet" href="~/Content/adminassets/css/style.css">*@
+
 <script src="~/Scripts/jquery-3.6.0.js"></script>
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
 
@@ -195,12 +194,12 @@
                                             <label class="custom-control-label" for="Autistic">Autistic</label>
                                         </div>
                                         <div class="custom-control custom-checkbox ">
-                                            @Html.CheckBoxFor(x => x.physiotherapyModel.Muscular_Dystrophy, new { @class = "custom-control-input", id = "Muscular Systrophy" })
-                                            <label class="custom-control-label" for="Muscular_Dystrophy">Muscular Dystrophy</label>
+                                            @Html.CheckBoxFor(x => x.physiotherapyModel.Muscular_Dystrophy, new { @class = "custom-control-input", id = "Muscular Dystrophy" })
+                                            <label class="custom-control-label" for="Muscular Dystrophy">Muscular Dystrophy</label>
                                         </div>
                                         <div class="custom-control custom-checkbox ">
                                             @Html.CheckBoxFor(x => x.physiotherapyModel.Physical_Disability, new { @class = "custom-control-input", id = "Physical Disability" })
-                                            <label class="custom-control-label" for="Physical_Disability">Physical Disability</label>
+                                            <label class="custom-control-label" for="Physical Disability">Physical Disability</label>
                                         </div>
                                     </div>
                                     <ul class="form-section page-section">

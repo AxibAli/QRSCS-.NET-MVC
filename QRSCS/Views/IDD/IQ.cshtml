@@ -4,10 +4,14 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<link type="text/css" rel="stylesheet" href="~/Content/adminassets/css/style.css">
+@*<link type="text/css" rel="stylesheet" href="~/Content/adminassets/css/style.css">*@
+
+<link href="~/Content/CustomStyleSheet/IQ.css" rel="stylesheet" />
+
 <script src="~/Scripts/jquery-3.6.0.js"></script>
 <script src="~/Scripts/jquery-3.6.0.min.js"></script>
-<style>
+
+@*<style>
     /* Customize the label (the container) */
     .container {
         display: block;
@@ -86,7 +90,8 @@
         width: 25px;
         background-color: #eee;
     }
-</style>
+</style>*@
+
 <div class="container-fluid">
     <div class="db-breadcrumb">
         <h4 class="breadcrumb-title">Intelligence Quotient </h4>
@@ -253,8 +258,6 @@
                                                     </div>
                                                 </div>
                                             </li>
-
-
                                         </ul>
 
 
@@ -279,10 +282,9 @@
                                                     </label>
 
 
-                                                    <label class="container">
-                                                        Socialization
-                                                        @Html.CheckBoxFor(x => x.intelligenceQuotient.Socialization, new { @class = "custom-control-input", id = "Communication" })
-                                                        <span class="checkmark"></span>
+                                                    <label class="custom-control custom-checkbox ">
+                                                        @Html.CheckBoxFor(x => x.intelligenceQuotient.Socialization, new { @class = "custom-control-input", id = "Socialization" })
+                                                        <label class="custom-control-label" for="Socialization">Socialization</label>
                                                     </label>
 
                                                     <label class="container">

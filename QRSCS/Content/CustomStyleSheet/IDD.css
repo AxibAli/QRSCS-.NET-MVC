@@ -28,3 +28,28 @@ input[type=submit], input[type=button] {
         background-color: #b8b8b8 !important;
     }
 
+.menu {
+    display: flex;
+}
+
+    .menu button {
+        margin: 10px;
+        cursor: pointer;
+    }
+
+.btn {
+    border-color: #f7b205;
+}
+
+.button_active {
+    color: white;
+}
+
+.content_inside {
+    display: none;
+    padding: 10px;
+}
+
+.content_inside_active {
+    display: block;
+}

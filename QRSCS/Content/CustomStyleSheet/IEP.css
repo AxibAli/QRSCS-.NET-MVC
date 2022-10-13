@@ -1,0 +1,140 @@
+﻿/*IEP FORM STYLE*/
+
+.addSection {
+    background-color: #f7b205;
+    width: 120px;
+    margin: 15px 25px;
+    padding: 5px;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+}
+
+    .addSection:hover {
+        background-color: #4c1864;
+        color: white;
+    }
+
+body {
+    padding: 20px;
+}
+
+.col-3 label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.main-container {
+    /*padding-left: 50px;*/
+    overflow-x: auto;
+}
+
+.form-container {
+    /*margin: 30px;*/
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* STYING THE TABLE */
+.col {
+    padding: 10px;
+}
+
+.col-1 input[type="text"],
+.col-2 input[type="text"],
+.col-3 input[type="text"],
+.col-4 input[type="date"],
+.col-5 input[type="date"],
+.col-6 input[type="date"] {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    width: auto !important;
+}
+
+.col-2 input[type="checkbox"] {
+    margin: 8px;
+    height: 14px;
+    width: auto !important;
+}
+
+.col-3 input[type="checkbox"] {
+    margin: 8px;
+    height: 14px;
+    width: auto !important;
+}
+
+.col-2 input[type="text"],
+.col-3 input[type="text"] {
+    border-bottom: 1px solid #000 !important;
+    margin-top: 10px;
+    width: auto !important;
+}
+
+/* STYING THE COLLAPSIBLE */
+
+.collapsible {
+    display: none;
+}
+
+.wrap-collabsible {
+    margin: 1.2rem 0;
+}
+
+.lbl-toggle {
+    display: block;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    padding: 1rem;
+    color: #fff;
+    background-color: rgb(84, 84, 84);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.25s ease-out;
+}
+
+    .lbl-toggle:hover {
+        background-color: rgb(50, 50, 50);
+    }
+
+    .lbl-toggle::before {
+        content: ' ';
+        display: inline-block;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 5px solid currentColor;
+        vertical-align: middle;
+        margin-right: .7rem;
+        transform: translateY(-2px);
+        transition: transform .2s ease-out;
+    }
+
+.toggle:checked + .lbl-toggle::before {
+    transform: rotate(90deg) translateX(-3px);
+}
+
+.collapsible-content {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked + .lbl-toggle + .collapsible-content {
+    max-height: fit-content;
+}
+
+.toggle:checked + .lbl-toggle {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.collapsible-content .content-inner {
+    background-color: rgb(251, 251, 251);
+    border-bottom: 1px solid rgb(84, 84, 84);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding: .5rem 1rem;
+}
