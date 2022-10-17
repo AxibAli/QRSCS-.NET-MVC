@@ -7,6 +7,9 @@ using QRSCS.Models;
 using QRSCS.Manager;
 using QRSCS.Filters;
 using System.IO;
+using System.Security.Cryptography;
+using System.Data.Entity;
+using System.Web.UI.WebControls;
 
 namespace QRSCS.Controllers
 {
@@ -45,7 +48,7 @@ namespace QRSCS.Controllers
                     if (t_id > 0)
                     {
                         TempData["Message"] = "Teacher Created Successfuly and Teacher ID is " + t_id;
-                        return View();
+                        return RedirectToAction("CreateTeacher","Teacher" );
                     }
 
                     else
@@ -60,5 +63,60 @@ namespace QRSCS.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public ActionResult UpdatesTeacher(CreateTeacherModel teacher)
+        {
+
+            using (QRSCS_DatabaseEntities db = new QRSCS_DatabaseEntities())
+            {
+                var request = db.Create_Teacher.Where(x => x.Teacher_ID == teacher.Teacher_ID).FirstOrDefault();
+               
+                if (request != null)
+                {
+                   
+                    
+                    request.Teacher_Name = teacher.Teacher_Name;
+                    request.NIC = teacher.NIC;
+                    request.Gender = teacher.Gender;
+                    request.Date_of_Birth = teacher.Date_of_Birth;
+                    request.Contact = teacher.Contact;
+                    request.Address = teacher.Address;
+                    request.City = teacher.City;
+                    request.Update_By = Convert.ToString(Session["User_ID"]);
+                    request.Email = teacher.Email;
+                    request.State = teacher.State;
+                    request.Update_Date = DateTime.Now;
+                    db.SaveChanges();
+
+                }
+            }
+                
+            
+            return RedirectToAction("CreateTeacher", "Teacher");
+        }
+
+
+
+        public ActionResult UpdatesTeacherPic(HttpPostedFileBase datas,int id)
+        {
+
+            if (datas != null)
+            {
+                using (QRSCS_DatabaseEntities db = new QRSCS_DatabaseEntities())
+                {
+                    var request = db.Create_Teacher.Where(x => x.Teacher_ID == id).FirstOrDefault();
+                    string Filename = Path.GetFileNameWithoutExtension(datas.FileName);
+                    string Extension = Path.GetExtension(datas.FileName);
+                    Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
+                    request.Teacher_Picture = "~/ProjectData/" + Filename;
+                    Filename = Path.Combine(Server.MapPath("~/ProjectData/"), Filename);
+                    datas.SaveAs(Filename);
+                    db.SaveChanges();
+
+                }
+            }
+                return RedirectToAction("CreateTeacher", "Teacher");
+        }
+
     }
 }

@@ -126,5 +126,23 @@ namespace QRSCS.Manager
         }
     }
 
-}
+        public bool DeleteTeacher(int uid)
+        {
+            using (QRSCS_DatabaseEntities db = new QRSCS_DatabaseEntities())
+            {
+                var Data = db.Create_Teacher.FirstOrDefault(x => x.Teacher_ID == uid);
+                if (Data != null)
+                {
+                    db.Create_Teacher.Remove(Data);
+                    db.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+    }
 }

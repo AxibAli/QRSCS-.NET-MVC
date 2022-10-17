@@ -26,7 +26,17 @@
     <link href="~/Content/CustomStyleSheet/Sidebar.css" rel="stylesheet" />
     <link href="~/Content/CustomStyleSheet/IEP.css" rel="stylesheet" />
 
+    <style>
+        #prof:active {
+            background-color: white;
+            color: black;
+        }
 
+        #prof {
+            height: 41px !important;
+            padding: 10px 15px !important;
+        }
+    </style>
 </head>
 
 <body class="ttr-opened-sidebar ttr-pinned-sidebar">
@@ -56,13 +66,14 @@
             <!-- header right menu start -->
             <ul class="ttr-header-navigation">
                 <li>
-                    <a href="#" class="ttr-material-button ttr-submenu-toggle" style="height:70px;"><span class="nameandpic"><span class="ttr-user-avatar"><img alt="" src="@Url.Content(Session["UserImage"].ToString())" width="45" height="45"></span><span style="margin-top:12px !important; margin-left:10px !important;">@Session["Full_Name"]</span></span></a>
+                    <a href="#" class="ttr-material-button ttr-submenu-toggle" style="height:70px;"><span class="nameandpic"><span class="ttr-user-avatar"><img alt="" src="@Url.Content(Session["UserImage"].ToString())" style="width : 100%; height:100%; "></span><span style="margin-top:12px !important; margin-left:10px !important;">@Session["Full_Name"]</span></span></a>
                     <div class="ttr-header-submenu">
                         <ul>
                             <li>
-                                <a class="dropdown-item" href="">
-                                    @Html.ActionLink(" My Profile", "UpdateUser", "Admin", new { User_ID = Session["User_ID"] }, new { @id = "myprofileid", @class = "far fa-user" })
-                                </a>
+                                <button id="prof" value="@Session["User_ID"]" class="dropdown-item" data-toggle="modal">
+                                    <i class="fas far fa-user"></i>
+                                    My Profile
+                                </button>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -78,7 +89,6 @@
 
     </header>
     <!-- header end -->
-
     <!-- Left sidebar menu start -->
     <div class="ttr-sidebar">
         <div class="ttr-sidebar-wrapper ">
@@ -284,6 +294,136 @@
         </main>
     </div>
 
+    <!-- Profile Modal-->
+    <div class="modal fade" id="MyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle"></h5>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="col-sm-4 m-auto ">
+                        <div class="form-group row">
+                            <div class="circle">
+                                <!-- User Profile Image -->
+                                <img id="pics" class="profile-pic" src="" style="width : 100%; height:100%; ">
+
+                                <!-- Default Image -->
+                                <!-- <i class="fa fa-user fa-5x"></i> -->
+                            </div>
+                            <div class="p-image">
+                                <i class="fa fa-camera upload-button"></i>
+                                <input class="file-upload" type="file" name="ImageFile" accept="image/*" id="file" />
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Full_Name">Full Name:</label>
+                        <input type="text" id="Full_Name">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Father_Name">Father Name:</label>
+                        <input type="text" id="Father_Name">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="NIC">NIC#:</label>
+                        <input type="text" id="NIC">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Gen">Gender:</label>
+
+                        <select name="Gender" id="Gen" style="width:100% ;height:40px">
+
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Date_of_Birth">Date of Birth:</label>
+                        <input type="date" id="Date_of_Birth">
+
+                    </div>
+
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Contact">Contact:</label>
+                        <input type="text" id="Contact">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Rank">Rank:</label>
+                        <input type="text" id="Rank">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Designation">Designation:</label>
+
+                        <select name="Designation" id="Designation" style="width: 100%; height: 40px">
+
+                            <option value="Admin">Admin</option>
+
+                        </select>
+                    </div>
+
+                    <Center><h5>Address:</h5></Center>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Address">Address:</label>
+                        <input type="text" id="Address">
+
+                    </div>
+
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="City">City:</label>
+                        <input type="text" id="City">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="State">State:</label>
+
+                        <select name="State" id="State" style="width: 100%; height: 40px">
+
+                            <option value="Sindh">
+                                Sindh
+                            </option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Balochistan">Balochistan</option>
+                            <option value="KP">KP</option>
+                            <option value="GB">GB</option>
+                        </select>
+                    </div>
+
+                    <center><h5>Create Username and Password:</h5></center>
+
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="username">User Name</label>
+
+                        <input type="text" id="username">
+
+                    </div>
+                    <div class="form-group row" style="padding-right: 20px !important; padding-left: 20px !important">
+                        <label for="Passwprd">Password</label>
+
+                        <input type="text" id="Password" />
+
+                    </div>
+                    <div class="form-group row" style="padding-left: 20px">
+                        <button id="saverecord" type="submit" class="btn">Update changes</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -324,7 +464,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
 
+    @* My Profile Modal Scripts *@
+     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/adminassets/js/profile.js"></script>
 
+
+
+    @* Script For Image Fetch *@
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            var readURL = function (input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.profile-pic').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+
+            $(".file-upload").on('change', function () {
+                readURL(this);
+            });
+
+            $(".upload-button").on('click', function () {
+                $(".file-upload").click();
+            });
+        });
+    </script>
 
 
     @if (TempData["Message"] != null)

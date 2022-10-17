@@ -8,6 +8,8 @@ using QRSCS.Manager;
 using QRSCS.Filters;
 using System.IO;
 using QRSCS_Database.QRSCS.Manager;
+using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace QRSCS_Database
 {
@@ -112,6 +114,44 @@ namespace QRSCS_Database
             List<CreateTeacherModel> User = obj.selectTeacher();
             return View(User);
         }
+        public JsonResult GetStudentList()
+        {
+            CreateTeacherManager obj = new CreateTeacherManager();
+           
+            List<CreateTeacherModel> teacList = obj.selectTeacher().Select(x => new CreateTeacherModel
+            {
+
+                Teacher_ID = x.Teacher_ID,
+                Teacher_Name = x.Teacher_Name,
+                Date_of_Birth = Convert.ToDateTime(x.Date_of_Birth),
+                NIC = x.NIC,
+                Gender = x.Gender
+            }).ToList();
+            
+            return Json(teacList, JsonRequestBehavior.AllowGet);
+
+            
+        }
+        [HttpGet]
+
+        public void DeleteTeacher(int Teacher_ID)
+        {
+            CreateTeacherManager obj = new CreateTeacherManager();
+            obj.DeleteTeacher(Teacher_ID);
+        }
+        public JsonResult UpdateeTeachers(int Teacher_ID)
+        {
+            Debug.WriteLine("hello i am herer");
+            CreateTeacherManager obj = new CreateTeacherManager();
+            CreateTeacherModel user = obj.GetTeacher(Teacher_ID);
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(user, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
+           
+        }
 
         [HttpGet]
         public ActionResult UpdateUser(int User_ID)
@@ -189,6 +229,56 @@ namespace QRSCS_Database
         {
             Session.Clear();
             return RedirectToAction("Login", "Login");
+        }
+
+        //MyProfile_Modal
+        public JsonResult UpdateUserProfile(int User_ID)
+        {
+            CreateUserManager obj = new CreateUserManager();
+            CreateUserModel user = obj.GetUser(User_ID);
+
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(user, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public void SaveDataInDatabase(CreateUserModel user)
+        {   CreateUserManager obj = new CreateUserManager();
+            user.Updated_By = Convert.ToString(Session["User_ID"]);
+            user.Update_Date = DateTime.Now;
+            obj.UpdateUser(user);
+        }
+        public void saveimg(HttpPostedFileBase datas) { 
+            if (datas != null){
+                try
+                {
+                    string Filename = Path.GetFileNameWithoutExtension(datas.FileName);
+                    string Extension = Path.GetExtension(datas.FileName);
+                    Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
+                    CreateUserManager obj = new CreateUserManager();
+                    CreateUserModel user = obj.GetUser((int)Session["User_ID"]);
+                    user.Picture = "~/ProjectData/" + Filename;
+                    Session["UserImage"] = "/ProjectData/" + Filename;
+                    Filename = Path.Combine(Server.MapPath("~/ProjectData/"), Filename);
+                    datas.SaveAs(Filename);
+                    //HttpPostedFileBase ImageFile = user.Picture;
+                    Debug.WriteLine(user.UserName);
+                    bool check = obj.UpdateUser(user);
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        
+          
+
+
         }
 
     }
