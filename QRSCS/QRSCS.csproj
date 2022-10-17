@@ -523,9 +523,11 @@
     <Content Include="Content\adminassets\js\calendarview.js" />
     <Content Include="Content\adminassets\js\jotform.js" />
     <Content Include="Content\adminassets\js\location.js" />
+    <Content Include="Content\adminassets\js\profile.js" />
     <Content Include="Content\adminassets\js\protoplus-ui-form.js" />
     <Content Include="Content\adminassets\js\protoplus.js" />
     <Content Include="Content\adminassets\js\prototype.js" />
+    <Content Include="Content\adminassets\js\updateuserdate.js" />
     <Content Include="Content\adminassets\js\vendor\flashcanvas.js" />
     <Content Include="Content\adminassets\js\vendor\flashcanvas.swf" />
     <Content Include="Content\adminassets\js\vendor\jotform.signaturepad.js" />
@@ -572,6 +574,7 @@
     <Content Include="Content\loginassets\img\dummy\favicon.ico" />
     <Content Include="Content\loginassets\img\dummy\logo.png" />
     <Content Include="Content\loginassets\js\jscript.js" />
+    <Content Include="Content\teacherassets\teachermodal.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\adminassets\assets\vendors\fontawesome\fonts\fontawesome-webfont3e6e.eot" />
@@ -608,6 +611,7 @@
     <Content Include="Content\adminassets\assets\vendors\themify\fonts\themify9f24.woff" />
     <Content Include="Content\adminassets\assets\vendors\themify\fonts\themifyd41d.eot" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
     <Content Include="Scripts\jquery-3.6.0.slim.js" />
