@@ -57,7 +57,7 @@
                                 </label>
                                 <label for="Last Name">
                                     Date&emsp;&emsp;
-                                    
+
                                     @Html.EditorFor(x => x.Date_of_Assessment, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                                     @Html.ValidationMessageFor(x => x.Date_of_Assessment, null, new { style = "color:red" })
                                 </label>
@@ -80,6 +80,7 @@
 
 
     <script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
+    @*<script src="~/Content/javascripts/SpeechTherapyAssessment.js"></script>*@
     <script type="text/javascript">
 
         $('#UserImage').click(function () {
