@@ -1,0 +1,9 @@
+﻿#prof:active {
+    background-color: white;
+    color: black;
+}
+
+#prof {
+    height: 41px !important;
+    padding: 10px 15px !important;
+}
