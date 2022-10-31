@@ -53,7 +53,7 @@ namespace QRSCS.Controllers
                 int otid = otm.AddOccupationalTherapy1(occupationalTherapy1ModelDTO);
                 if (otid > 0)
                 {
-                    TempData["Message"] = "Student Occupational Therapy Added Successfuly & OT ID is " + otid;
+                    TempData["Message"] = "Student Occupational Therapy Added Successfuly and OT ID is " + otid;
                 }
                 else
                 {
@@ -82,7 +82,7 @@ namespace QRSCS.Controllers
                 int otid = otm2.AddOccupationalTherapy2(occupationalTherapy2ModelDTO);
                 if (otid > 0)
                 {
-                    TempData["Message"] = "Student Occupational Therapy 2 Added Successfuly & OT2 ID is " + otid;
+                    TempData["Message"] = "Student Occupational Therapy 2 Added Successfuly and OT2 ID is " + otid;
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace QRSCS.Controllers
                 int ptid = pt.AddPhysiotherapy(PhysiotherapyModelDTO);
                 if (ptid > 0)
                 {
-                    TempData["Message"] = "Student Physiotherapy Added Successfuly & PT ID is " + ptid;
+                    TempData["Message"] = "Student Physiotherapy Added Successfuly and PT ID is " + ptid;
                 }
                 else
                 {
@@ -139,7 +139,7 @@ namespace QRSCS.Controllers
                 int btid = btm.AddBehavioraltherapy(behavioralTherapyModelDTO);
                 if (btid > 0)
                 {
-                    TempData["Message"] = "Student Behavioral Therapy Added Successfuly & BT ID is " + btid;
+                    TempData["Message"] = "Student Behavioral Therapy Added Successfuly and BT ID is " + btid;
                 }
                 else
                 {
@@ -167,7 +167,7 @@ namespace QRSCS.Controllers
                 int paid = pa.AddPsychologicalAssessment(PsychologicalAssessment);
                 if (paid > 0)
                 {
-                    TempData["Message"] = "Student Psychological Assessment Added Successfuly & PA ID is " + paid;
+                    TempData["Message"] = "Student Psychological Assessment Added Successfuly and PA ID is " + paid;
                 }
                 else
                 {
@@ -196,7 +196,7 @@ namespace QRSCS.Controllers
                 int iqid = iq.AddIntelligenceQuotient(intelligenceQuotientModelDTO);
                 if (iqid > 0)
                 {
-                    TempData["Message"] = "Student IQ Test Added Successfuly & IQ ID is " + iqid;
+                    TempData["Message"] = "Student IQ Test Added Successfuly and IQ ID is " + iqid;
                 }
                 else
                 {
