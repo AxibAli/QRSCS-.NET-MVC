@@ -388,7 +388,7 @@
                         @Html.TextBoxFor(x => x.finalResultModel.Result_Date, null, new { type = "date" })
                     </div>
                     <div>
-                        <input type="button" value="SUBMIT" onclick="submitFTResult(document.getElementById('finalResultModel_GR_NO').value)" />
+                        <input type="button" value="SUBMIT" onclick="submitFTResult( $('#finalTerm_GR_NO').val())" />
                     </div>
                 </div>
             </div>

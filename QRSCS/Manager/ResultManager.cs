@@ -323,11 +323,13 @@ namespace QRSCS.Manager
                     DateTime myDateTime = DateTime.Now;
                     string Currentyear = myDateTime.Year.ToString();
                     string year = Currentyear;
-
+                    //midTerm_Result.
                     year = (data.Count() == 0) ? "0" : DateTime.Parse(data[lastIndex].Result_Date.ToString()).Year.ToString();
 
                     if (data.Count() == 0)
                     {
+                        midTerm_Result.New_Admission = "fsfsdf";
+                        midTerm_Result.MidTerm_Result_ID = 6;
                         db.MidTerm_Result.Add(midTerm_Result);
                         int a = db.SaveChanges();
                         if (a > 0)
