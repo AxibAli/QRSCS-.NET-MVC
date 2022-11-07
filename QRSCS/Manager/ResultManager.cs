@@ -310,7 +310,7 @@ namespace QRSCS.Manager
                     midTerm_Result.Grand_Sindhi = grand.Grand_Sindhi + finalResultModel.Sindhi;
 
                     midTerm_Result.Grand_Total = grand.Grand_Total;
-                    var percentage = Convert.ToDecimal(grand.Grand_Total + finalResultModel.Obtained_Total);
+                    var percentage = Convert.ToDecimal(grand.Grand_Total /*+ finalResultModel.Obtained_Total*/);
                     percentage = Convert.ToDecimal(percentage / 1800);
                     percentage = Math.Floor(percentage * 100);
                     grand.Grand_Percentage = (int)percentage;
@@ -328,8 +328,8 @@ namespace QRSCS.Manager
 
                     if (data.Count() == 0)
                     {
-                        midTerm_Result.New_Admission = "fsfsdf";
-                        midTerm_Result.MidTerm_Result_ID = 6;
+                    //    midTerm_Result.New_Admission = "fsfsdf";
+                       // midTerm_Result.MidTerm_Result_ID = 6;
                         db.MidTerm_Result.Add(midTerm_Result);
                         int a = db.SaveChanges();
                         if (a > 0)
