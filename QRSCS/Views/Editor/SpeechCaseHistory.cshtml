@@ -124,11 +124,11 @@
                 <div id="cid_5" class="form-input-wide jf-required" data-layout="full">
                     <div data-wrapper-react="true">
                         <span class="form-sub-label-container" style="vertical-align:top" data-input-type="first">
-                            <input type="text" id="first_5" name="q5_generalInformation5[first]" class="form-textbox validate[required], Alphabetic, minCharLimit" data-defaultvalue="" autoComplete="section-input_5 given-name" maxLength="30" data-minlength="" size="10" value="" data-component="first" aria-labelledby="label_5 sublabel_5_first" required="" />
+                            <input type="text" id="first_5" name="q5_generalInformation5[first]" class="form-textbox validate[required], Alphabetic, minCharLimit" data-defaultvalue="" autoComplete="section-input_5 given-name" maxLength="30" data-minlength="" size="10" value="" data-component="first" aria-labelledby="label_5 sublabel_5_first" readonly="readonly"  />
                             <label class="form-sub-label" for="first_5" id="sublabel_5_first" style="min-height:13px" aria-hidden="false"> Child's Name </label>
                         </span>
                         <span class="form-sub-label-container" style="vertical-align:top" data-input-type="last">
-                            <input type="text" id="last_5" name="q5_generalInformation5[last]" class="form-textbox validate[required], Numeric, minNumLimit" data-defaultvalue="" autoComplete="section-input_5 family-name" size="15" maxLength="2" data-minlength="" value="" data-component="last" aria-labelledby="label_5 sublabel_5_last" required="" />
+                            <input type="text" id="last_5" name="q5_generalInformation5[last]" class="form-textbox validate[required], Numeric, minNumLimit" data-defaultvalue="" autoComplete="section-input_5 family-name" size="15" maxLength="2" data-minlength="" value="" data-component="last" aria-labelledby="label_5 sublabel_5_last" readonly="readonly" />
                             <label class="form-sub-label" for="last_5" id="sublabel_5_last" style="min-height:13px" aria-hidden="false"> Father Name </label>
                         </span>
                     </div>
@@ -241,9 +241,8 @@
                     </span>
                 </label>
                 <div id="cid_22" class="form-input-wide jf-required" data-layout="full">
-                    @Html.TextAreaFor(x => x.SpeechAndLanguage.Speech_Text, new { id = "input_22", @class = "form-textarea validate[required, AlphaNumeric]", name = "q22_pleaseSubscribe", style = "width:630px;height:160px", datacomponent = "textarea", required = "", arialabelledby = "label_22" })
-                    @Html.ValidationMessageFor(x => x.SpeechAndLanguage.Speech_Text, null, new { style = "color:red" })
-
+                    @*@Html.TextAreaFor(x => x.SpeechAndLanguage.Speech_Text, new { id = "input_22", @class = "form-textarea validate[AlphaNumeric]", name = "q22_pleaseSubscribe", style = "width:630px;height:160px", datacomponent = "textarea", required = "", arialabelledby = "label_22" })*@
+                   
 
                     @*<textarea id="input_22" class="form-textarea validate[required, AlphaNumeric]" name="q22_pleaseSubscribe" style="width:630px;height:160px" data-component="textarea" required="" aria-labelledby="label_22"></textarea>*@
                 </div>
