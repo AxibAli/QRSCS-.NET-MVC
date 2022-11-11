@@ -310,7 +310,7 @@ namespace QRSCS.Manager
                     midTerm_Result.Grand_Sindhi = grand.Grand_Sindhi + finalResultModel.Sindhi;
 
                     midTerm_Result.Grand_Total = grand.Grand_Total;
-                    var percentage = Convert.ToDecimal(grand.Grand_Total + finalResultModel.Obtained_Total);
+                    var percentage = Convert.ToDecimal(grand.Grand_Total /*+ finalResultModel.Obtained_Total*/);
                     percentage = Convert.ToDecimal(percentage / 1800);
                     percentage = Math.Floor(percentage * 100);
                     grand.Grand_Percentage = (int)percentage;
@@ -323,11 +323,13 @@ namespace QRSCS.Manager
                     DateTime myDateTime = DateTime.Now;
                     string Currentyear = myDateTime.Year.ToString();
                     string year = Currentyear;
-
+                    //midTerm_Result.
                     year = (data.Count() == 0) ? "0" : DateTime.Parse(data[lastIndex].Result_Date.ToString()).Year.ToString();
 
                     if (data.Count() == 0)
                     {
+                    //    midTerm_Result.New_Admission = "fsfsdf";
+                       // midTerm_Result.MidTerm_Result_ID = 6;
                         db.MidTerm_Result.Add(midTerm_Result);
                         int a = db.SaveChanges();
                         if (a > 0)
@@ -427,7 +429,7 @@ namespace QRSCS.Manager
                 var ThirdBTM = db.Results.Where(u => u.Test_Type == "3rd Bi-Monthly" && u.GR_NO == GR_NO).OrderByDescending(x => x.Result_Date).FirstOrDefault();
                 var FourthBTM = db.Results.Where(u => u.Test_Type == "4th Bi-Monthly" && u.GR_NO == GR_NO).OrderByDescending(x => x.Result_Date).FirstOrDefault();
                 var FirstMT = db.MidTerm_Result.Where(u => u.Term_Type == "1st Term" && u.GR_NO == GR_NO).OrderByDescending(x => x.Result_Date).FirstOrDefault();
-                var SecondMT = db.MidTerm_Result.Where(u => u.Term_Type == "2st Term" && u.GR_NO == GR_NO).OrderByDescending(x => x.Result_Date).FirstOrDefault();
+                var SecondMT = db.MidTerm_Result.Where(u => u.Term_Type == "2nd Term" && u.GR_NO == GR_NO).OrderByDescending(x => x.Result_Date).FirstOrDefault();
 
                 if (FirstBTM != null)
                 {
@@ -518,18 +520,18 @@ namespace QRSCS.Manager
                     result.FirstTerm_Grade = FirstMT.Grade;
                     result.FirstTerm_Percentage = FirstMT.Percentage;
                     result.FirstTerm_Total = FirstMT.Obtained_Total;
-                    result.FirstGT_English = FirstMT.Grand_English.Value + result.FirstBTM_English + result.SecondBTM_English;
-                    result.FirstGT_Art_and_Drawing = FirstMT.Grand_Art_and_Drawing.Value + result.FirstBTM_Art_and_Drawing + result.SecondBTM_Art_and_Drawing;
-                    result.FirstGT_Concepts = FirstMT.Grand_Concepts.Value + result.FirstBTM_Concepts + result.SecondBTM_Concepts;
-                    result.FirstGT_Computer = FirstMT.Grand_Computer.Value + result.FirstBTM_Computer + result.SecondBTM_Computer;
-                    result.FirstGT_Islamiat = FirstMT.Grand_Islamiat.Value + result.FirstBTM_Islamiat + result.SecondBTM_Islamiat;
-                    result.FirstGT_Language = FirstMT.Grand_Language.Value + result.FirstBTM_Language + result.SecondBTM_Language;
-                    result.FirstGT_Maths = FirstMT.Grand_Maths.Value + result.FirstBTM_Maths + result.SecondBTM_Maths;
-                    result.FirstGT_Social_Studies = FirstMT.Grand_Social_Studies.Value + result.FirstBTM_Social_Studies + result.SecondBTM_Social_Studies;
-                    result.FirstGT_Speech = FirstMT.Grand_Speech.Value + result.FirstBTM_Speech + result.SecondBTM_Speech;
-                    result.FirstGT_Urdu = FirstMT.Grand_Urdu.Value + result.FirstBTM_Urdu + result.SecondBTM_Urdu;
-                    result.FirstGT_Sindhi = FirstMT.Grand_Sindhi.Value + result.FirstBTM_Sindhi + result.SecondBTM_Sindhi;
-                    result.FirstGT_Science = FirstMT.Grand_Science.Value + result.FirstBTM_Science + result.SecondBTM_Science;
+                    result.FirstGT_English = FirstMT.Grand_English.Value /*+ result.FirstBTM_English + result.SecondBTM_English*/;
+                    result.FirstGT_Art_and_Drawing = FirstMT.Grand_Art_and_Drawing.Value /*+ result.FirstBTM_Art_and_Drawing + result.SecondBTM_Art_and_Drawing*/;
+                    result.FirstGT_Concepts = FirstMT.Grand_Concepts.Value /*+ result.FirstBTM_Concepts + result.SecondBTM_Concepts*/;
+                    result.FirstGT_Computer = FirstMT.Grand_Computer.Value /*+ result.FirstBTM_Computer + result.SecondBTM_Computer*/;
+                    result.FirstGT_Islamiat = FirstMT.Grand_Islamiat.Value /*+ result.FirstBTM_Islamiat + result.SecondBTM_Islamiat*/;
+                    result.FirstGT_Language = FirstMT.Grand_Language.Value /*+ result.FirstBTM_Language + result.SecondBTM_Language*/;
+                    result.FirstGT_Maths = FirstMT.Grand_Maths.Value /*+ result.FirstBTM_Maths + result.SecondBTM_Maths*/;
+                    result.FirstGT_Social_Studies = FirstMT.Grand_Social_Studies.Value /*+ result.FirstBTM_Social_Studies + result.SecondBTM_Social_Studies*/;
+                    result.FirstGT_Speech = FirstMT.Grand_Speech.Value /*+ result.FirstBTM_Speech + result.SecondBTM_Speech*/;
+                    result.FirstGT_Urdu = FirstMT.Grand_Urdu.Value /*+ result.FirstBTM_Urdu + result.SecondBTM_Urdu*/;
+                    result.FirstGT_Sindhi = FirstMT.Grand_Sindhi.Value /*+ result.FirstBTM_Sindhi + result.SecondBTM_Sindhi*/;
+                    result.FirstGT_Science = FirstMT.Grand_Science.Value /*+ result.FirstBTM_Science + result.SecondBTM_Science*/;
                     result.FirstGT_Total = FirstMT.Obtained_Total + result.FirstBTM_Obtained_Total + result.SecondBTM_Obtained_Total;
                     result.FirstGT_Percentage = (int)percentageCalc(result.FirstGT_Total);
                     result.FirstGT_Grade = CheckGrade(result.FirstGT_Percentage);
@@ -564,21 +566,22 @@ namespace QRSCS.Manager
                     result.SecondTerm_Grade = SecondMT.Grade;
                     result.SecondTerm_Percentage = SecondMT.Percentage;
                     result.SecondTerm_Total = SecondMT.Obtained_Total;
-                    result.SecondGT_English = SecondMT.Grand_English.Value + result.ThirdBTM_English + result.FourthBTM_English;
-                    result.SecondGT_Art_and_Drawing = SecondMT.Grand_Art_and_Drawing.Value + result.ThirdBTM_Art_and_Drawing + result.FourthBTM_Art_and_Drawing;
-                    result.SecondGT_Concepts = SecondMT.Grand_Concepts.Value + result.ThirdBTM_Concepts + result.FourthBTM_Concepts;
-                    result.SecondGT_Computer = SecondMT.Grand_Computer.Value + result.ThirdBTM_Computer + result.FourthBTM_Computer;
-                    result.SecondGT_Islamiat = SecondMT.Grand_Islamiat.Value + result.ThirdBTM_Islamiat + result.FourthBTM_Islamiat;
-                    result.SecondGT_Language = SecondMT.Grand_Language.Value + result.ThirdBTM_Language + result.FourthBTM_Language;
-                    result.SecondGT_Maths = SecondMT.Grand_Maths.Value + result.ThirdBTM_Maths + result.FourthBTM_Maths;
-                    result.SecondGT_Social_Studies = SecondMT.Grand_Social_Studies.Value + result.ThirdBTM_Social_Studies + result.FourthBTM_Social_Studies;
-                    result.SecondGT_Speech = SecondMT.Grand_Speech.Value + result.ThirdBTM_Speech + result.FourthBTM_Speech;
-                    result.SecondGT_Urdu = SecondMT.Grand_Urdu.Value + result.ThirdBTM_Urdu + result.FourthBTM_Urdu;
-                    result.SecondGT_Sindhi = SecondMT.Grand_Sindhi.Value + result.ThirdBTM_Sindhi + result.FourthBTM_Sindhi;
-                    result.SecondGT_Science = SecondMT.Grand_Science.Value + result.ThirdBTM_Science + result.FourthBTM_Science;
-                    result.SecondGT_Grade = CheckGrade(result.SecondGT_Percentage);
+                    result.SecondGT_English = SecondMT.Grand_English.Value /*+ result.ThirdBTM_English + result.FourthBTM_English*/;
+                    result.SecondGT_Art_and_Drawing = SecondMT.Grand_Art_and_Drawing.Value /*+ result.ThirdBTM_Art_and_Drawing + result.FourthBTM_Art_and_Drawing*/;
+                    result.SecondGT_Concepts = SecondMT.Grand_Concepts.Value /*+ result.ThirdBTM_Concepts + result.FourthBTM_Concepts*/;
+                    result.SecondGT_Computer = SecondMT.Grand_Computer.Value /*+ result.ThirdBTM_Computer + result.FourthBTM_Computer*/;
+                    result.SecondGT_Islamiat = SecondMT.Grand_Islamiat.Value /*+ result.ThirdBTM_Islamiat + result.FourthBTM_Islamiat*/;
+                    result.SecondGT_Language = SecondMT.Grand_Language.Value /*+ result.ThirdBTM_Language + result.FourthBTM_Language*/;
+                    result.SecondGT_Maths = SecondMT.Grand_Maths.Value /*+ result.ThirdBTM_Maths + result.FourthBTM_Maths*/;
+                    result.SecondGT_Social_Studies = SecondMT.Grand_Social_Studies.Value /*+ result.ThirdBTM_Social_Studies + result.FourthBTM_Social_Studies*/;
+                    result.SecondGT_Speech = SecondMT.Grand_Speech.Value /*+ result.ThirdBTM_Speech + result.FourthBTM_Speech*/;
+                    result.SecondGT_Urdu = SecondMT.Grand_Urdu.Value /*+ result.ThirdBTM_Urdu + result.FourthBTM_Urdu*/;
+                    result.SecondGT_Sindhi = SecondMT.Grand_Sindhi.Value /*+ result.ThirdBTM_Sindhi + result.FourthBTM_Sindhi*/;
+                    result.SecondGT_Science = SecondMT.Grand_Science.Value /*+ result.ThirdBTM_Science + result.FourthBTM_Science*/;
                     result.SecondGT_Total = SecondMT.Obtained_Total + result.ThirdBTM_Obtained_Total + result.FourthBTM_Obtained_Total;
-                    result.SecondGT_Percentage = (int)percentageCalc(result.SecondGT_Total); ;
+                    result.SecondGT_Percentage = (int)percentageCalc(result.SecondGT_Total);
+                    result.SecondGT_Grade = CheckGrade(result.SecondGT_Percentage);
+                    //result.SecondGT_Percentage = (int)percentageCalc(result.SecondGT_Total); 
                     result.SixtyPT_English = Convert.ToInt32(Sixty_Percent_Weightage(result.SecondGT_English));
                     result.SixtyPT_Art_and_Drawing = Convert.ToInt32(Sixty_Percent_Weightage(result.SecondGT_Art_and_Drawing));
                     result.SixtyPT_Concepts = Convert.ToInt32(Sixty_Percent_Weightage(result.SecondGT_Concepts));

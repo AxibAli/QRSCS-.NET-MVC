@@ -112,5 +112,10 @@ namespace QRSCS.Models
         public virtual ICollection<IEPlan> IEPlans1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IDD_Result> IDD_Result { get; set; }
+
+        public static implicit operator New_Admission(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

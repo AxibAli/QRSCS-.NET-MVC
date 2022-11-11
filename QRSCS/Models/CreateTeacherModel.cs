@@ -23,16 +23,12 @@ namespace QRSCS.Models
 
 
 
-        [Required]
-        [MaxLength(14, ErrorMessage = "Enter a valid NIC of 14 Digits")]
-        [MinLength(14, ErrorMessage = "Enter a valid NIC of 14 Digits")]
+        
         public string NIC { get; set; }
 
 
 
-        [Required]
-        [MaxLength(11, ErrorMessage = "Enter a valid Contact Format: 03##-#######")]
-        [MinLength(11, ErrorMessage = "Enter a valid contact Format: 03##-#######")]
+        
         public string Contact { get; set; }
 
 
