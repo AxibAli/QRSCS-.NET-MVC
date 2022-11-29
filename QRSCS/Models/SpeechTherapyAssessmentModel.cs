@@ -18,5 +18,13 @@ namespace QRSCS.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date_of_Assessment { get; set; }
+
+        public string Full_Name { get; set; }
+        public int Marks { get; set; }
+
+        public int std_class { get; set; }
+
+
+
     }
 }

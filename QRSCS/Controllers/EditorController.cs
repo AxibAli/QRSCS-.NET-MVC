@@ -8,6 +8,12 @@ using QRSCS.Manager;
 using System.IO;
 using QRSCS.Filters;
 using Microsoft.VisualBasic;
+using System.Security.Cryptography;
+using System.Diagnostics;
+using System.Text;
+using System.Reflection;
+using Microsoft.ML;
+using Microsoft.ML.Transforms.TimeSeries;
 
 namespace QRSCS.Controllers
 {
@@ -27,7 +33,30 @@ namespace QRSCS.Controllers
             ViewBag.Message = "";
             return View();
         }
+        public ActionResult abcd(int uid)
+        {
+            SpeechTherapyAssessmentModel User = null;
+            using (QRSCS_DatabaseEntities db = new QRSCS_DatabaseEntities())
+            {
+                Debug.WriteLine(db.Speech_Therapy_Assessment.Count());
+                var request = db.Speech_Therapy_Assessment.Where(x => x.GR_NO == uid).Select(x => x.Marks).ToList();
+                List<int> av = new List<int>();
+                Debug.WriteLine(request);
 
+                User = null;
+               
+                string joined = string.Join(",", request.Select(n => n.ToString()).ToArray());
+               
+                byte[] bytes = Encoding.ASCII.GetBytes(joined);
+
+                 
+
+                var builder = new StringBuilder();
+              
+                return File(bytes, "text/csv", "Employeelnfo.csv");
+            }
+            
+        }
         [HttpPost]
         public JsonResult GetUserByID(string GR_NO)
         {
@@ -98,7 +127,33 @@ namespace QRSCS.Controllers
         {
             return View();
         }
-        [HttpPost]
+        
+
+
+        //public ActionResult exec()
+        //{
+        //    MLContext mLContext = new MLContext();
+        //    var dataview = mLContext.Data.LoadFromTextFile<AI_Model>("C:\\Users\\daniy\\Desktop\\qrscs\\QRSCS-.NET-MVC\\QRSCS\\Employeelnfo.csv", ',',true);
+
+        //    var pipeline = mLContext.Forecasting.ForecastBySsa(
+        //        outputColumnName: nameof(Result_Model.ForecastedMarks),
+        //        inputColumnName: nameof(AI_Model.marks_of_std),
+        //        confidenceLevel: 0.95F,
+        //        confidenceLowerBoundColumn: nameof(Result_Model.LowerMarks),
+        //        confidenceUpperBoundColumn: nameof(Result_Model.UpperMarks),
+        //        windowSize: 365,
+        //    seriesLength: 365 * 3,
+        //    trainSize: 365 * 3,
+        //    horizon: 7);
+        //    var model = pipeline.Fit(dataview);
+        //    var forecastEngine = model.CreateTimeSeriesEngine<AI_Model, Result_Model>(mLContext);
+        //    var result =  forecastEngine.Predict();
+        //    Console.WriteLine(result);
+        //    forecastEngine.CheckPoint(mLContext,"marlsmodel.zip");
+
+        //    return RedirectToAction("AllStudentView", "UpdateSection");
+
+        //}
         public ActionResult SpeechTherapyAssessment(SpeechTherapyAssessmentModel student, HttpPostedFileBase ImageFile)
 
         {
@@ -122,23 +177,23 @@ namespace QRSCS.Controllers
 
                     int staid = obj.AddSpeechTherapyAssessment(student);
 
-                    if (staid == 1)
-                    {
-                        TempData["Message"] = "Successfully Saved";
-                        return View();
-                    }
-                    else if (staid == -1)
-                    {
-                        TempData["Message"] = "No Record Found";
-                    }
-                    else if (staid == 2)
-                    {
-                        TempData["Message"] = "Successfully Updated";
-                    }
-                    else
-                    {
-                        TempData["Message"] = "Not saved";
-                    }
+                    //if (staid == 1)
+                    //{
+                    //    TempData["Message"] = "Successfully Saved";
+                    //    return View();
+                    //}
+                    //else if (staid == -1)
+                    //{
+                    //    TempData["Message"] = "No Record Found";
+                    //}
+                    //else if (staid == 2)
+                    //{
+                    //    TempData["Message"] = "Successfully Updated";
+                    //}
+                    //else
+                    //{
+                    //    TempData["Message"] = "Not saved";
+                    //}
                 }
             }
 

@@ -12,7 +12,7 @@ namespace QRSCS.Manager
     public class SpeechTherapyAssessmentManager
     {
 
-        int SAid = 0;
+        int idid = -9;
         public int AddSpeechTherapyAssessment(SpeechTherapyAssessmentModel staid)
         {
             using (QRSCS_DatabaseEntities db = new QRSCS_DatabaseEntities())
@@ -20,13 +20,16 @@ namespace QRSCS.Manager
                 Speech_Therapy_Assessment tbluser = new Speech_Therapy_Assessment();
                 tbluser.GR_NO = staid.GR_NO;
                 tbluser.Speech_Test_Image = staid.Speech_Test_Image;
+                tbluser.Full_Name = staid.Full_Name;
+                tbluser.Marks = staid.Marks;
+                tbluser.std_class = staid.std_class;
                 db.Speech_Therapy_Assessment.Add(tbluser);
                 tbluser.Date = staid.Date_of_Assessment;
-                db.SaveChanges();
+                int idid = db.SaveChanges();
 
-                SAid = tbluser.Speech_Therapy_Assessment_ID;
+                int SAid = tbluser.Speech_Therapy_Assessment_ID;
             }
-            return SAid;
+            return idid;
         }
         public List<SpeechTherapyAssessmentModel> selectStudentSpeechAssessment()
         {

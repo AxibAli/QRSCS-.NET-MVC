@@ -2,6 +2,18 @@
 @{ ViewBag.Title = "Performance";
     Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
 <style>
+    #sp_td{
+        width:10px !important;
+    }
+    #table_pred {
+
+        border-collapse: collapse !important;
+    }
+    #table_pred td {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
     .menu {
         display: flex;
     }
@@ -27,6 +39,7 @@
     .content_inside_active {
         display: block;
     }
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src='https://cdn.plot.ly/plotly-2.11.1.min.js'></script>
@@ -40,8 +53,10 @@
             <button class="btn btn-sm btn-primary mx-1 " id="AudiologyBtn" onclick="SaveId(this)">Audiology</button>
             <button class="btn btn-sm btn-primary mx-1" id="AcademicBtn" onclick="SaveId(this)">Academic</button>
             <button class="btn btn-sm btn-primary mx-1" id="ResultBtn" onclick="SaveId(this)">Result</button>
-        </div>
+            <button class="btn btn-sm btn-primary mx-1" id="prediction">Predictions</button>
 
+        </div>
+        <input type="button" value="Create" onclick="location.href='@Url.Action("exec", "Editor")'" />
         <div class="content">
             <div class="content_inside content_inside_active">
                 <div class="content">
@@ -419,7 +434,76 @@
                     </div>
                 </div>
             </div>
+
+            <div class="content_inside">
+                <div class="content">
+                    <div class="audio_div">
+                        <div class="BM_GRNO">
+                            @*<input type="number" placeholder="GR_NO" style="width:100px; float:right; margin-bottom:10px; height:100%"/>*@
+                            @Html.TextBoxFor(x => x.biMonthlyModel.GR_NO, null, new { type = "number", placeholder = "GR_NO", style = "width:25%; height:30px; margin:10px 0;", onchange = "GetInfo(document.getElementById('biMonthlyModel_GR_NO').value)" })
+                        </div>
+                        <div class="BM_Result">
+                            <h5 id="name">Name:</h5>
+                            <span id="BM_St_Name1" style=" margin-left: 25px;"></span><br />
+                            <h5>Father Name:</h5>
+                            <span id="BM_Father_Name1" style="margin-left: 25px;"></span><br />
+                            <h5>Class:</h5>
+                            <span id="BM_Class1" style="margin-left: 25px;"></span><br />
+                            <h5>Disability:</h5>
+                            <span id="BM_Disability1" style="margin-left: 25px;"></span><br />
+                        </div>
+                        <h5 id="headi" style="margin-left:1px;visibility:hidden">Select What to Predict?</h5>
+                        <div id="selection_div" class="form-group row" style="margin-left:1px;visibility:hidden">
+
+
+                            <select name="prediction_on" id="prediction_on" style="border:none;width: 30%; height: 40px;padding-left:10px">
+                                <option value="Select">
+                                    --Select--
+                                </option>
+                                <option value="HI Result">
+                                    HI_Result
+                                </option>
+                                <option value="Speech_Therapy_Assesment">Speech Therapy Assesment</option>
+                                <option value="Audiology_Assesment">Audiology Assesment</option>
+
+                            </select>
+                        </div>
+
+                        <button onclick="func_create_csv($('#BM_St_Name1').val())" class="btn btn-sm btn-primary mx-1" id="creat_csv_btn" type="submit" style="visibility:hidden">
+                            Create CSV
+                        </button>
+                        <center>
+
+
+                            <button onclick="func_start_pred()" class="btn btn-sm btn-primary mx-1" id="start_prediction" type="submit" style="visibility:hidden">
+                                Start Prediction
+                            </button>
+                        </center>
+                    </div>
+
+                    <div>
+                        <h4 id="abab" style="text-align:center; margin:20px;">Prediction</h4>
+                    </div>
+                    <table class="table table-striped table-bordered table-sm abci" id="audio_tab" style="visibility:hidden">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">Student Name</th>
+                                <th scope="col" class="text-center">Father Name</th>
+                                <th scope="col" class="text-center">Class</th>
+                                <th scope="col" class="text-center">Marks Prediction</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="mytable"></tbody>
+                    </table>
+                    <div>
+                        @*<canvas id="myChart" style="width:100%;"></canvas>*@
+                        <div id="myChart" style="width:100%;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 
 
@@ -454,7 +538,9 @@
         localStorage.setItem("TabId", data.id)
         console.log(localStorage.getItem("TabId"))
     }
-
+    $('select').on('change', function () {
+        document.getElementById('creat_csv_btn').style.visibility = 'visible';
+    });
     function GetSpeech(id) {
         debugger
         $.post("/Editor/GetSpeechPerformance/",
@@ -575,7 +661,22 @@
 
 
     }
-
+    function func_create_csv(id) {
+        
+        $.post("/Editor/abcd/?uid=" + $('#BM_Class1').text(),
+            {
+                GR_NO: id
+            },
+            function (data, status) {
+                alert("CSV File Created");
+                document.getElementById('creat_csv_btn').style.visibility = 'hidden';
+                document.getElementById('selection_div').style.visibility = 'hidden';
+                document.getElementById('headi').style.visibility = 'hidden';
+                document.getElementById('start_prediction').style.visibility = 'visible';
+                
+            }
+        );
+    }
     function GetAudiology(id) {
         $.post("/Editor/GetAudiologyPerformance/",
             {
@@ -723,6 +824,12 @@
             });
     }
 
+    function func_start_pred() {
+        
+        document.getElementById("audio_tab").style.visibility = "visible";
+        document.getElementById("abab").style.visibility = "visible";
+    }
+
     function FetchAcademicData(id) {
         if (id == '') return alert("Enter the GRNO!!!")
         $.get("/Academic/GetAcademic?GRNO=" + id,
@@ -792,7 +899,19 @@
 
             });
     }
-
+    function GetInfo(id) {
+        console.log(id);
+        $.get("/Result/GetInfo?GRNO=" + id, function (response) {
+            console.log(response)
+            $("#BM_St_Name1").text(response.Name);
+            $("#BM_Father_Name1").text(response.Father_Name);
+            $("#BM_Class1").text(response.Class);
+            $("#BM_Disability1").text(response.Disability);
+            $("#selection_div").show();
+            document.getElementById('selection_div').style.visibility = 'visible';
+            document.getElementById('headi').style.visibility = 'visible';
+        });
+    }
     function RemoveTag() {
         var answer = document.getElementsByTagName("label").length
         console.log(answer)
