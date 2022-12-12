@@ -2,18 +2,22 @@
 @{ ViewBag.Title = "Performance";
     Layout = "~/Views/Shared/_AdminLayout.cshtml"; }
 <style>
-    #sp_td{
-        width:10px !important;
+    html {
+        scroll-behavior: smooth;
     }
-    #table_pred {
+    #sp_td {
+        width: 10px !important;
+    }
 
+    #table_pred {
         border-collapse: collapse !important;
     }
-    #table_pred td {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
+
+        #table_pred td {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
     .menu {
         display: flex;
     }
@@ -39,10 +43,14 @@
     .content_inside_active {
         display: block;
     }
-
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <script src='https://cdn.plot.ly/plotly-2.11.1.min.js'></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<script type="text/javascript">
+    var jQuery_1_11_1 = $.noConflict(true);
+</script>
 <link href="~/Content/adminassets/resultstyle.css" rel="stylesheet" />
 <h2 class="text-center" style="font-family:Verdana, Segoe, sans-serif;">PERFORMANCE</h2>
 
@@ -56,7 +64,6 @@
             <button class="btn btn-sm btn-primary mx-1" id="prediction">Predictions</button>
 
         </div>
-        <input type="button" value="Create" onclick="location.href='@Url.Action("exec", "Editor")'" />
         <div class="content">
             <div class="content_inside content_inside_active">
                 <div class="content">
@@ -452,8 +459,13 @@
                             <h5>Disability:</h5>
                             <span id="BM_Disability1" style="margin-left: 25px;"></span><br />
                         </div>
-                        <h5 id="headi" style="margin-left:1px;visibility:hidden">Select What to Predict?</h5>
-                        <div id="selection_div" class="form-group row" style="margin-left:1px;visibility:hidden">
+
+                        @*<button onclick="desplay_result($('#BM_St_Name1').val())" class="btn btn-sm btn-primary mx-1" id="creat_csv_btn" type="submit" style="display:none">
+                                Create CSV
+                            </button>*@
+                        <h5 id="headi" style="margin-left:1px;display:none">Select What to Predict?</h5>
+
+                        <div id="selection_div" class="form-group row" style="margin-left:1px;display:none">
 
 
                             <select name="prediction_on" id="prediction_on" style="border:none;width: 30%; height: 40px;padding-left:10px">
@@ -469,20 +481,25 @@
                             </select>
                         </div>
 
-                        <button onclick="func_create_csv($('#BM_St_Name1').val())" class="btn btn-sm btn-primary mx-1" id="creat_csv_btn" type="submit" style="visibility:hidden">
+                        <button onclick="func_create_csv($('#BM_St_Name1').val())" class="btn btn-sm btn-primary mx-1" id="creat_csv_btn" type="submit" style="display:none">
                             Create CSV
                         </button>
+
                         <center>
 
 
-                            <button onclick="func_start_pred()" class="btn btn-sm btn-primary mx-1" id="start_prediction" type="submit" style="visibility:hidden">
+                            <button onclick="func_start_pred()" class="btn btn-sm btn-primary mx-1" id="start_prediction" type="submit" style="display:none">
                                 Start Prediction
+                            </button>
+                            <a id="scroll_anch" href="#chartContainer"></a>
+                            <button  onclick="desplay_result().scrollIntoView();" class="btn btn-sm btn-primary mx-1" id="desplay_re" type="submit" style="display:none">
+                                Display Result
                             </button>
                         </center>
                     </div>
 
                     <div>
-                        <h4 id="abab" style="text-align:center; margin:20px;">Prediction</h4>
+                        <h4 id="abab" style="text-align:center;display:none; margin:20px;">Prediction</h4>
                     </div>
                     <table class="table table-striped table-bordered table-sm abci" id="audio_tab" style="visibility:hidden">
                         <thead>
@@ -500,6 +517,11 @@
                         @*<canvas id="myChart" style="width:100%;"></canvas>*@
                         <div id="myChart" style="width:100%;"></div>
                     </div>
+                    <center>
+                        <div id="chartContainer" style="height: 350px; max-width: 920px; margin: 0px auto;"></div>
+                    </center>
+                    
+
                 </div>
             </div>
         </div>
@@ -539,7 +561,7 @@
         console.log(localStorage.getItem("TabId"))
     }
     $('select').on('change', function () {
-        document.getElementById('creat_csv_btn').style.visibility = 'visible';
+        document.getElementById('creat_csv_btn').style.display = 'initial';
     });
     function GetSpeech(id) {
         debugger
@@ -662,20 +684,75 @@
 
     }
     function func_create_csv(id) {
-        
-        $.post("/Editor/abcd/?uid=" + $('#BM_Class1').text(),
+
+        $.post("/Editor/CSV_FILE_FOR_STA/?uid=" + $('#BM_Class1').text(),
             {
                 GR_NO: id
             },
             function (data, status) {
                 alert("CSV File Created");
-                document.getElementById('creat_csv_btn').style.visibility = 'hidden';
-                document.getElementById('selection_div').style.visibility = 'hidden';
-                document.getElementById('headi').style.visibility = 'hidden';
-                document.getElementById('start_prediction').style.visibility = 'visible';
-                
+                document.getElementById('creat_csv_btn').style.display = 'none';
+                //document.getElementById('selection_div').style.display = 'none';
+                //document.getElementById('headi').style.display = 'none';
+                document.getElementById('start_prediction').style.display = 'initial';
+
             }
         );
+    }
+    function desplay_result(id) {
+        $.post("/Editor/csv_to_json/?uid=" + $('#BM_Class1').text(),
+
+            function (data) {
+                var dataPoints = [];
+
+                var options = {
+                    animationEnabled: true,
+                    theme: "light2",
+                    title: {
+                        text: "Student Marks Record"
+                    },
+                    axisX: {
+                        valueFormatString: "DD MMM YYYY",
+                    },
+                    axisY: {
+                        title: "Marks",
+                        titleFontSize: 24
+                    },
+                    data: [{
+                        type: "spline",
+                        yValueFormatString: "#,###.## Marks",
+                        dataPoints: dataPoints
+                    }]
+                };
+                data = JSON.parse(data);
+
+                for (var i = 0; i < data.length; i++) {
+                    var x = data[i].Date;
+                    x = x.split("T");
+                    if (i + 1 == data.length) {
+                        dataPoints.push({
+                            x: new Date(x),
+                            y: data[i].Marks,
+                            color: "red",
+                            indexLabel: "Predicted Marks",
+                            
+                        });
+                    }
+                    else {
+                        dataPoints.push({
+                            x: new Date(x),
+                            y: data[i].Marks
+                        });
+                    }
+
+                }
+                jQuery_1_11_1("#chartContainer").CanvasJSChart(options);
+                document.getElementById('desplay_re').style.display = 'none';
+                $('#scroll_anch')[0].click();
+            }
+        );
+        //document.getElementById("audio_tab").style.visibility = "visible";
+        document.getElementById("abab").style.display = "inital";
     }
     function GetAudiology(id) {
         $.post("/Editor/GetAudiologyPerformance/",
@@ -825,9 +902,17 @@
     }
 
     function func_start_pred() {
-        
-        document.getElementById("audio_tab").style.visibility = "visible";
-        document.getElementById("abab").style.visibility = "visible";
+        $.post("/Editor/exec/?uid=" + $('#BM_Class1').text(),
+
+            function (data, status) {
+                alert("Processing Done!");
+                document.getElementById('start_prediction').style.display = 'none';
+                document.getElementById('desplay_re').style.display = 'initial';
+
+            }
+        );
+        //document.getElementById("audio_tab").style.visibility = "visible";
+        document.getElementById("abab").style.display = "inital";
     }
 
     function FetchAcademicData(id) {
@@ -909,9 +994,10 @@
             $("#BM_Disability1").text(response.Disability);
             $("#selection_div").show();
             document.getElementById('selection_div').style.visibility = 'visible';
-            document.getElementById('headi').style.visibility = 'visible';
+            document.getElementById('headi').style.display = 'initial';
         });
     }
+
     function RemoveTag() {
         var answer = document.getElementsByTagName("label").length
         console.log(answer)
@@ -1093,5 +1179,7 @@
 
             });
     }
+
+
 
 </script>

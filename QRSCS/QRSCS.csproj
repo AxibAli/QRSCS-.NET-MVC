@@ -484,10 +484,14 @@
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SpeechAssessmentDTO.cs" />
+    <Compile Include="Models\speechth.cs" />
     <Compile Include="Models\SpeechTherapyAssessmentModel.cs" />
+    <Compile Include="Models\Speech_Therapy_AI_Model.cs" />
     <Compile Include="Models\Speech_Therapy_Assessment.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Speech_Therapy_Forecast.cs" />
+    <Compile Include="Models\STP_data.cs" />
     <Compile Include="Models\Student_Current_Class.cs">
       <DependentUpon>QRSCS_DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -716,7 +720,6 @@
     <Content Include="Content\adminassets\assets\vendors\themify\fonts\themify9f24.ttf" />
     <Content Include="Content\adminassets\assets\vendors\themify\fonts\themify9f24.woff" />
     <Content Include="Content\adminassets\assets\vendors\themify\fonts\themifyd41d.eot" />
-    <Content Include="Employeelnfo.csv" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
@@ -785,6 +788,7 @@
     <Folder Include="Content\assetstable\vendor\fontawesome-free\sprites\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\svgs\" />
     <Folder Include="Content\assetstable\vendor\fontawesome-free\webfonts\" />
+    <Folder Include="Content\CSV_for_AI_Model\" />
     <Folder Include="ProjectData\" />
   </ItemGroup>
   <ItemGroup>
@@ -804,6 +808,25 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
