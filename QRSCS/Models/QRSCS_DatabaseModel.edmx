@@ -581,7 +581,7 @@
           <Property Name="Sindhi" Type="int" Nullable="false" />
           <Property Name="Obtained_Total" Type="int" Nullable="false" />
           <Property Name="Percentage" Type="int" Nullable="false" />
-          <Property Name="Grade" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Grade" Type="nvarchar" MaxLength="2" />
           <Property Name="Result_Date" Type="date" Nullable="false" />
           <Property Name="Grand_English" Type="int" />
           <Property Name="Grand_Urdu" Type="int" />
@@ -597,7 +597,7 @@
           <Property Name="Grand_Sindhi" Type="int" />
           <Property Name="Grand_Total" Type="int" />
           <Property Name="Grand_Percentage" Type="int" />
-          <Property Name="Grand_Grade" Type="varchar" MaxLength="1" />
+          <Property Name="Grand_Grade" Type="varchar" MaxLength="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Milestone_PT">
           <Key>
@@ -997,7 +997,7 @@
           <Property Name="Sindhi" Type="int" Nullable="false" />
           <Property Name="Obtained_Total" Type="int" Nullable="false" />
           <Property Name="Percentage" Type="int" Nullable="false" />
-          <Property Name="Grade" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="Grade" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="Result_Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Seeking_OT2">
@@ -1116,6 +1116,7 @@
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Full_Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Marks" Type="int" />
+          <Property Name="std_class" Type="int" />
         </EntityType>
         <EntityType Name="Student_Current_Class">
           <Key>
@@ -1832,7 +1833,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__IDD_Resul__GR_NO__31A25463">
+        <Association Name="FK__IDD_Resul__GR_NO__338A9CD5">
           <End Role="New_Admission" Type="Self.New_Admission" Multiplicity="1" />
           <End Role="IDD_Result" Type="Self.IDD_Result" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2948,7 +2949,7 @@
             <End Role="Physiotherapy" EntitySet="Physiotherapy" />
             <End Role="HistoryPregnancy_PT" EntitySet="HistoryPregnancy_PT" />
           </AssociationSet>
-          <AssociationSet Name="FK__IDD_Resul__GR_NO__31A25463" Association="Self.FK__IDD_Resul__GR_NO__31A25463">
+          <AssociationSet Name="FK__IDD_Resul__GR_NO__338A9CD5" Association="Self.FK__IDD_Resul__GR_NO__338A9CD5">
             <End Role="New_Admission" EntitySet="New_Admission" />
             <End Role="IDD_Result" EntitySet="IDD_Result" />
           </AssociationSet>
@@ -4954,7 +4955,7 @@
           <Property Name="Sindhi" Type="Int32" Nullable="false" />
           <Property Name="Obtained_Total" Type="Int32" Nullable="false" />
           <Property Name="Percentage" Type="Int32" Nullable="false" />
-          <Property Name="Grade" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Grade" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="Result_Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Grand_English" Type="Int32" />
           <Property Name="Grand_Urdu" Type="Int32" />
@@ -4970,7 +4971,7 @@
           <Property Name="Grand_Sindhi" Type="Int32" />
           <Property Name="Grand_Total" Type="Int32" />
           <Property Name="Grand_Percentage" Type="Int32" />
-          <Property Name="Grand_Grade" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Grand_Grade" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="New_Admission" Relationship="QRSCS_DatabaseModel.FK__MidTerm_R__GR_NO__4CC05EF3" FromRole="MidTerm_Result" ToRole="New_Admission" />
         </EntityType>
         <EntityType Name="Result">
@@ -4994,7 +4995,7 @@
           <Property Name="Sindhi" Type="Int32" Nullable="false" />
           <Property Name="Obtained_Total" Type="Int32" Nullable="false" />
           <Property Name="Percentage" Type="Int32" Nullable="false" />
-          <Property Name="Grade" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Grade" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="Result_Date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="New_Admission" Relationship="QRSCS_DatabaseModel.FK__Result__GR_NO__5090EFD7" FromRole="Result" ToRole="New_Admission" />
         </EntityType>
@@ -5157,6 +5158,7 @@
           <Property Name="Marks" Type="Int32" />
           <Property Name="Full_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="New_Admission" Relationship="QRSCS_DatabaseModel.FK__Speech_Th__GR_NO__7F2BE32F" FromRole="Speech_Therapy_Assessment" ToRole="New_Admission" />
+          <Property Name="std_class" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -6981,6 +6983,7 @@
           <EntitySetMapping Name="Speech_Therapy_Assessment">
             <EntityTypeMapping TypeName="QRSCS_DatabaseModel.Speech_Therapy_Assessment">
               <MappingFragment StoreEntitySet="Speech_Therapy_Assessment">
+                <ScalarProperty Name="std_class" ColumnName="std_class" />
                 <ScalarProperty Name="Full_Name" ColumnName="Full_Name" />
                 <ScalarProperty Name="Marks" ColumnName="Marks" />
                 <ScalarProperty Name="Date" ColumnName="Date" />

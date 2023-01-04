@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using QRSCS.Common.BiMonthlyResult;
+﻿using QRSCS.Common.BiMonthlyResult;
 using QRSCS.Common.FinalResult;
 using QRSCS.Filters;
 using QRSCS.Manager;
 using QRSCS.Models;
+using System;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace QRSCS.Controllers
 {
@@ -114,5 +112,5 @@ namespace QRSCS.Controllers
         public string Term_Type { get; set; }
     }
 
-    
+
 }

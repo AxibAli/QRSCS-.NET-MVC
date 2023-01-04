@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f6f76cdd623647499fe6d11353c86b1a" Name="Diagram1" ZoomLevel="94">
+      <Diagram DiagramId="f6f76cdd623647499fe6d11353c86b1a" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="QRSCS_DatabaseModel.Audiology_Assessment" Width="1.5" PointX="5.25" PointY="47.5" />
         <EntityTypeShape EntityType="QRSCS_DatabaseModel.Behavioral_Observation" Width="1.5" PointX="7.5" PointY="52" />
         <EntityTypeShape EntityType="QRSCS_DatabaseModel.Case_History" Width="1.5" PointX="5.25" PointY="75.5" />

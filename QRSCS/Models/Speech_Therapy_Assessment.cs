@@ -20,6 +20,7 @@ namespace QRSCS.Models
         public System.DateTime Date { get; set; }
         public Nullable<int> Marks { get; set; }
         public string Full_Name { get; set; }
+        public Nullable<int> std_class { get; set; }
     
         public virtual New_Admission New_Admission { get; set; }
     }
