@@ -37,21 +37,21 @@ namespace QRSCS_Database
         {
             if (ModelState.IsValid)
             {
-                if (ImageFile == null)
-                {
-                    TempData["Message"] = "Upload User Picture !";
-                    return View();
-                }
-                else
-                {
-                    if (Path.GetExtension(ImageFile.FileName) == ".jpg" || Path.GetExtension(ImageFile.FileName) == ".jpeg" || Path.GetExtension(ImageFile.FileName) == ".png")
-                    {
-                        string Filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-                        string Extension = Path.GetExtension(ImageFile.FileName);
-                        Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
-                        Users.Picture = "~/ProjectData/" + Filename;
-                        Filename = Path.Combine(Server.MapPath("~/ProjectData/"), Filename);
-                        ImageFile.SaveAs(Filename);
+                //if (ImageFile == null)
+                //{
+                //    TempData["Message"] = "Upload User Picture !";
+                //    return View();
+                //}
+                //else
+                //{
+                    //if (Path.GetExtension(ImageFile.FileName) == ".jpg" || Path.GetExtension(ImageFile.FileName) == ".jpeg" || Path.GetExtension(ImageFile.FileName) == ".png")
+                    //{
+                        //string Filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                        //string Extension = Path.GetExtension(ImageFile.FileName);
+                        //Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
+                        Users.Picture = "~/ProjectData/3dd6567f64dd48883893dbbbf43b3341215531832.JPG";
+                        //Filename = Path.Combine(Server.MapPath("~/ProjectData/"), Filename);
+                        //ImageFile.SaveAs(Filename);
 
                         CreateUserManager obj = new CreateUserManager();
                         Users.Created_By = Convert.ToString(Session["User_ID"]);
@@ -67,13 +67,13 @@ namespace QRSCS_Database
                         {
                             TempData["Message"] = "User Not Created !";
                         }
-                    }
-                    else
-                    {
-                        TempData["Message"] = "This is not Image file!";
-                    }
+                    //}
+                    //else
+                    //{
+                    //    TempData["Message"] = "This is not Image file!";
+                    //}
 
-                }
+                //}
             }
             else
             {

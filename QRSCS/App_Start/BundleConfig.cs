@@ -8,7 +8,23 @@ namespace QRSCS
 
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/bundles/css").Include(
+
+            //javascript Files
+            bundles.Add(new ScriptBundle("~/bundles/MyJs").Include(
+
+           "~/Content/adminassets/assets/vendors/JotForm/jquery.min.js",
+           "~/Content/adminassets/assets/js/jquery.min.js",
+           "~/Content/adminassets/assets/vendors/owl-carousel/owl.carousel.js",
+           "~/Content/adminassets/assets/js/admin.js",
+           "~/Content/adminassets/assets/vendors/counter/counterup.min.js",
+           "~/Content/adminassets/assets/vendors/counter/waypoints-min.js",
+           "~/Content/adminassets/assets/js/functions.js",
+           "~/Content/adminassets/assets/vendors/bootstrap/js/bootstrap.min.js",
+           "~/Content/adminassets/assets/vendors/chart/chart.min.js"
+             ));
+
+            //Style Files
+            bundles.Add(new StyleBundle("~/bundles/MyCss").Include(
 
             "~/Content/adminassets/assets/css/assets.css",
             "~/Content/adminassets/assets/css/typography.css",
@@ -26,17 +42,7 @@ namespace QRSCS
                         ));
 
 
-            // javascript files
-            bundles.Add(new StyleBundle("~/bundles/js").Include(
-           "~/Content/adminassets/assets/vendors/bootstrap/js/bootstrap.min.js",
-           "~/Content/adminassets/assets/vendors/JotForm/jquery.min.js",
-           "~/Content/adminassets/assets/js/jquery.min.js",
-           "~/Content/adminassets/assets/vendors/owl-carousel/owl.carousel.js",
-           "~/Content/adminassets/assets/js/admin.js",
-           "~/Content/adminassets/assets/vendors/counter/counterup.min.js",
-           "~/Content/adminassets/assets/js/functions.js",
-           "~/Content/adminassets/assets/vendors/chart/chart.min.js"
-             ));
+
 
         }
     }

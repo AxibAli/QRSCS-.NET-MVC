@@ -666,6 +666,8 @@
     <Content Include="Content\CustomJavaScripts\ViewAllIEP.js" />
     <Content Include="Content\CustomJavaScripts\ViewAllUser.js" />
     <Content Include="Content\CustomJavaScripts\VIResult.js" />
+    <Content Include="Content\Js\AudiologyAssessmentJavaScript.js" />
+    <Content Include="Content\Js\bootstrapicon.css" />
     <Content Include="Content\loginassets\css\app.css" />
     <Content Include="Content\loginassets\css\bckg.jpeg" />
     <Content Include="Content\loginassets\css\style.css" />

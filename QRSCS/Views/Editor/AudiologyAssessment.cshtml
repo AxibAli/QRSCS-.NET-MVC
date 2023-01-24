@@ -3,7 +3,9 @@
     ViewBag.Title = "Audiology Assessment";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script src="~/Content/Js/AudiologyAssessmentJavaScript.js"></script>
+
 <style>
     .form-control {
         border-radius: 0px !important;
@@ -440,7 +442,7 @@
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify({ LeftEarAirUnmaskedFrequecy: AU_l_freq, LeftEarAirUnmaskedHearingLevel: AU_l_hl, LeftEarBoneMaskedFrequecy: BM_l_freq, LeftEarBoneMaskedHearingLevel: BM_l_hl, RightEarAirUnmaskedFrequecy: AU_r_freq, RightEarAirUnmaskedHearingLevel: AU_r_hl, RightEarBoneMaskedFrequecy: BM_r_freq, RightEarBoneMaskedHearingLevel: BM_r_hl, GrNo: id })
             };
-            fetch('http://localhost:51376/editor/audiologyassessment', requestoptions)
+            fetch('/editor/audiologyassessment', requestoptions)
                 .then(response => response.json())
                 .then(json => {
                     alert(json)

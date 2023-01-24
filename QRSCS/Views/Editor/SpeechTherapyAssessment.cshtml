@@ -4,17 +4,17 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <style>
-    .user-profile-image{
-        overflow:hidden!important ;
+    .user-profile-image {
+        overflow: hidden !important;
     }
+
     .breadcrumb-title {
         margin-right: 35px !important;
     }
 </style>
 <link href="~/Content/adminassets/ProfileStyleSheet1.css" rel="stylesheet" />
 
-@*@using (Html.BeginForm("SpeechTherapyAssessment", "Editor", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))*@
-@*{  *@
+
 <div class="container-fluid">
     <div class="db-breadcrumb">
         <h4 class="breadcrumb-title">Speech Therapy Assessment</h4>
@@ -23,70 +23,72 @@
             <li>Speech Therapy Assessment </li>
         </ul>
     </div>
+    @*@using (Html.BeginForm("SpeechTherapyAssessment", "Editor", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {*@
+        <div class="row">
+            <div class="col-lg-12 m-b30">
+                <div class="widget-box">
+                    <div class="wc-title">
+                        <h4>Image Upload Assessment Form</h4>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="user-profile-image">
+                                    <center>
+                                        <input type="file" class="hidden" id="BrowseImage" accept="image/*" name="ImageFile" />
+                                        <img src="~/Content/adminassets/assets/images/per.png" class="img-responsive" id="UserImage" />
+                                        <p class="image-desc text-center">Allowed Image size: 512*512px </p>
 
-    <div class="row">
-        <div class="col-lg-12 m-b30">
-            <div class="widget-box">
-                <div class="wc-title">
-                    <h4>Image Upload Assessment Form</h4>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6" >
-                            <div class="user-profile-image">
-                                <center>
-                                    <input type="file" class="hidden" id="BrowseImage" accept="image/*" name="ImageFile" />
-                                    <img src="~/Content/adminassets/assets/images/per.png" class="img-responsive" id="UserImage" />
-                                    <p class="image-desc text-center">Allowed Image size: 512*512px </p>
-                                    
-                                    <div class="upload-pic" >
-                                        <img src="~/Content/adminassets/assets/images/570233.png" />
+                                        <div class="upload-pic">
+                                            <img src="~/Content/adminassets/assets/images/570233.png" />
+                                        </div>
+                                    </center>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <br />
+                                <label for="GR NO *">
+                                    GR NO *&emsp;&emsp;
+                                    @Html.TextBoxFor(x => x.GR_NO, null, new { @Class = "form-control", id = "gr_", placeholder = "Enter Student GRNO Here", onchange = "GetInfo(document.getElementById('gr_').value)" })
+                                    @Html.ValidationMessageFor(x => x.GR_NO, null, new { style = "color:red" })
+                                </label>
+                                <label for="Full Name">
+                                    Full Name&emsp;&emsp;
+                                    @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control", id = "full_", placeholder = "Enter Student GRNO Here" })
+                                    @Html.ValidationMessageFor(x => x.GR_NO, null, new { style = "color:red" })
+                                </label>
+                                <label for="Class">
+                                    Class&emsp;&emsp;
+                                    <input type="text" Class="form-control" , id="class_" name="Class" placeholder="">
+                                </label>
+
+                                @*<label for="Last Name">
+                                        Last Name&emsp;&emsp;
+                                        <input type="text" Class="form-control" , id="Last Name" name="Last Name" placeholder="">
+                                    </label>*@
+                                <label for="Date">
+                                    Date&emsp;&emsp;
+
+                                    @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "form-control", id = "datee", @type = "date" } })
+                                    @Html.ValidationMessageFor(x => x.Date, null, new { style = "color:red" })
+                                </label>
+                                <label for="Marks">
+                                    Marks&emsp;&emsp;
+
+                                    @Html.EditorFor(x => x.Marks, new { htmlAttributes = new { @class = "form-control", id = "marks", @type = "number" } })
+                                    @Html.ValidationMessageFor(x => x.Marks, null, new { style = "color:red" })
+                                </label>
+
+                                <div class="form-group row">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <button type="submit" class="btn" onclick="GetInfopost()">Save changes</button>
+                                        <button type="reset" class="btn-secondry">Cancel</button>
                                     </div>
-                                </center>
-                                
-                            </div>
-                        </div>
-
-                        <div class="col-md-6" >
-                            <br />
-                            <label for="GR NO *">
-                                GR NO *&emsp;&emsp;
-                                @Html.TextBoxFor(x => x.GR_NO, null, new { @Class = "form-control", id = "gr_", placeholder = "Enter Student GRNO Here", onchange = "GetInfo(document.getElementById('gr_').value)" })
-                                @Html.ValidationMessageFor(x => x.GR_NO, null, new { style = "color:red" })
-                            </label>
-                            <label for="Full Name">
-                                Full Name&emsp;&emsp;
-                                @Html.TextBoxFor(x => x.Full_Name, null, new { @Class = "form-control", id = "full_", placeholder = "Enter Student GRNO Here" })
-                                @Html.ValidationMessageFor(x => x.GR_NO, null, new { style = "color:red" })
-                            </label>
-                            <label for="Class">
-                                Class&emsp;&emsp;
-                                <input type="text" Class="form-control" , id="class_" name="Class" placeholder="">
-                            </label>
-
-                            @*<label for="Last Name">
-            Last Name&emsp;&emsp;
-            <input type="text" Class="form-control" , id="Last Name" name="Last Name" placeholder="">
-        </label>*@
-                            <label for="Date">
-                                Date&emsp;&emsp;
-
-                                @Html.EditorFor(x => x.Date, new { htmlAttributes = new { @class = "form-control",id="datee", @type = "date" } })
-                                @Html.ValidationMessageFor(x => x.Date, null, new { style = "color:red" })
-                            </label>
-                            <label for="Marks">
-                                Marks&emsp;&emsp;
-
-                                @Html.EditorFor(x => x.Marks, new { htmlAttributes = new { @class = "form-control",id="marks", @type = "number" } })
-                                @Html.ValidationMessageFor(x => x.Marks, null, new { style = "color:red" })
-                            </label>
-
-                            <div class="form-group row">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-7">
-                                    <button type="submit" class="btn" onclick="GetInfopost()">Save changes</button>
-                                    <button type="reset" class="btn-secondry">Cancel</button>
                                 </div>
                             </div>
                         </div>
@@ -94,9 +96,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    @*}*@
 </div>
-
 
 <script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
 @*<script src="~/Content/javascripts/SpeechTherapyAssessment.js"></script>*@
@@ -109,8 +110,8 @@
             $("#class_").val(response.Class);
             //document.getElementById("full_").innerHTML = response.Name;
             //document.getElementById("class_").innerHTML = response.Father_Name;
-            
-           
+
+
         });
     }
     function GetInfopost() {
@@ -122,7 +123,7 @@
         Db.append("ImageFile", img);
         var a = $("#datee").val();
         var ab = a.split("T");
-        
+
         Db.append("Full_Name", $("#full_").val());
         Db.append("Date_of_Assessment", ab[0]);
         Db.append("Marks", $("#marks").val());
@@ -130,14 +131,14 @@
         $.ajax({
             url: 'SpeechTherapyAssessment/Editor',
             type: "Post",
-           
+
             data: Db,
             contentType: false,
             processData: false,
             enctype: 'multipart/form-data',
             cache: false,
             success: function (data) {
-               alert("Successfully Added")
+                alert("Successfully Added")
             }
         });
     }
@@ -184,4 +185,4 @@
         }
     });
 </script>
-}
+

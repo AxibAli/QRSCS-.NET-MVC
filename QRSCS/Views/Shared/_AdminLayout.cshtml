@@ -15,10 +15,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- All PLUGINS CSS ============================================= -->
+    @*<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />*@
+    <link href="~/Content/Js/bootstrapicon.css" rel="stylesheet" />
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-
-    @Styles.Render("~/bundles/css")
+    @Styles.Render("~/bundles/MyCss")
+   
 
     @* Custom StyleSheet *@
     <link href="~/Content/CustomStyleSheet/IDD.css" rel="stylesheet" />
@@ -27,18 +30,18 @@
     <link href="~/Content/CustomStyleSheet/IEP.css" rel="stylesheet" />
 
 
-    <link href="~/Content/CustomStyleSheet/AdminLayout.css" rel="stylesheet"/>
+    <link href="~/Content/CustomStyleSheet/AdminLayout.css" rel="stylesheet" />
     @*<style>
-        #prof:active {
-            background-color: white;
-            color: black;
-        }
+            #prof:active {
+                background-color: white;
+                color: black;
+            }
 
-        #prof {
-            height: 41px !important;
-            padding: 10px 15px !important;
-        }
-    </style>*@
+            #prof {
+                height: 41px !important;
+                padding: 10px 15px !important;
+            }
+        </style>*@
 </head>
 
 <body class="ttr-opened-sidebar ttr-pinned-sidebar">
@@ -447,19 +450,21 @@
     </div>
 
     <!-- External JavaScripts -->
+    @Scripts.Render("~/bundles/MyJs")
+
     @* Dropdown *@
-    <script src="~/Content/adminassets/assets/vendors/JotForm/jquery.min.js"></script>
+    @*<script src="~/Content/adminassets/assets/vendors/JotForm/jquery.min.js"></script>*@
     @*<script src="~/Content/adminassets/assets/js/jquery.min.js"></script>
         <script src="~/Content/adminassets/assets/vendors/owl-carousel/owl.carousel.js"></script*@
-    <script src="~/Content/adminassets/assets/js/admin.js"></script>
+    @*<script src="~/Content/adminassets/assets/js/admin.js"></script>*@
     @* Card *@
-    <script src="~/Content/adminassets/assets/vendors/counter/counterup.min.js"></script>
-    <script src="~/Content/adminassets/assets/vendors/counter/waypoints-min.js"></script>
-    <script src="~/Content/adminassets/assets/js/functions.js"></script>
+    @*<script src="~/Content/adminassets/assets/vendors/counter/counterup.min.js"></script>*@
+    @*<script src="~/Content/adminassets/assets/vendors/counter/waypoints-min.js"></script>*@
+    @*<script src="~/Content/adminassets/assets/js/functions.js"></script>*@
     @* POP-UP *@
-    <script src="~/Content/adminassets/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+    @*<script src="~/Content/adminassets/assets/vendors/bootstrap/js/bootstrap.min.js"></script>*@
     @* Chart  *@
-    <script src="~/Content/adminassets/assets/vendors/chart/chart.min.js"></script>
+    @*<script src="~/Content/adminassets/assets/vendors/chart/chart.min.js"></script>*@
 
     @* pdf csv print *@
     <script src="~/Content/assetstable/Printtable.js"></script>
@@ -467,9 +472,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
 
     @* My Profile Modal Scripts *@
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Content/adminassets/js/profile.js"></script>
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Content/adminassets/js/profile.js"></script>*@
 
 
 

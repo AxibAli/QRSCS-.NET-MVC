@@ -43,10 +43,18 @@ namespace QRSCS.Manager
                 stdtbl.Disability = grn.Disability;
                 stdtbl.Presenting_Complain = grn.Presenting_Complain;
                 stdtbl.User_ID = grn.User_ID;
+                stdtbl.IsActive = true;
                 db.New_Admission.Add(stdtbl);
                 db.SaveChanges();
 
                 grno = stdtbl.GR_NO;
+
+                Student_Current_Class std = new Student_Current_Class();
+                std.GR_NO = grno;
+                std.Class = grn.Class;
+                db.Student_Current_Class.Add(std);
+                db.SaveChanges();
+
             }
             return grno;
         }

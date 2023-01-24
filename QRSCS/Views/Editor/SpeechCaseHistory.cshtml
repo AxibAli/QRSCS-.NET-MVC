@@ -11,7 +11,7 @@
 <script defer src="~/Content/adminassets/js/vendor/maskedinput.min.js?v=3.3.27613" type="text/javascript"></script>
 <script defer src="~/Content/adminassets/js/vendor/jquery.maskedinput.min.js?v=3.3.27613" type="text/javascript"></script>
 
-@*<script src="~/Content/javascripts/SpeechCaseHistory.js"></script>*@
+
 <script type="text/javascript">
     JotForm.newDefaultTheme = true;
     JotForm.extendsNewTheme = false;
@@ -105,7 +105,7 @@
                     </span>
                 </div>
             </li>
-              <li id="cid_1" class="form-input-wide" data-type="control_head">
+            <li id="cid_1" class="form-input-wide" data-type="control_head">
                 <div class="form-header-group  header-large">
                     <div class="header-text httal htvam">
                         <h1 id="header_1" class="form-header" data-component="header">
@@ -124,11 +124,11 @@
                 <div id="cid_5" class="form-input-wide jf-required" data-layout="full">
                     <div data-wrapper-react="true">
                         <span class="form-sub-label-container" style="vertical-align:top" data-input-type="first">
-                            <input type="text" id="first_5" name="q5_generalInformation5[first]" class="form-textbox validate[required], Alphabetic, minCharLimit" data-defaultvalue="" autoComplete="section-input_5 given-name" maxLength="30" data-minlength="" size="10" value="" data-component="first" aria-labelledby="label_5 sublabel_5_first" readonly="readonly"  />
+                            <input type="text" id="first_5" name="q5_generalInformation5[first]" class="form-textbox validate[required], Alphabetic, minCharLimit" data-defaultvalue="" autoComplete="section-input_5 given-name" maxLength="30" data-minlength="" size="10" value="" data-component="first" aria-labelledby="label_5 sublabel_5_first" required="" />
                             <label class="form-sub-label" for="first_5" id="sublabel_5_first" style="min-height:13px" aria-hidden="false"> Child's Name </label>
                         </span>
                         <span class="form-sub-label-container" style="vertical-align:top" data-input-type="last">
-                            <input type="text" id="last_5" name="q5_generalInformation5[last]" class="form-textbox validate[required], Numeric, minNumLimit" data-defaultvalue="" autoComplete="section-input_5 family-name" size="15" maxLength="2" data-minlength="" value="" data-component="last" aria-labelledby="label_5 sublabel_5_last" readonly="readonly" />
+                            <input type="text" id="last_5" name="q5_generalInformation5[last]" class="form-textbox validate[required], Numeric, minNumLimit" data-defaultvalue="" autoComplete="section-input_5 family-name" size="15" maxLength="2" data-minlength="" value="" data-component="last" aria-labelledby="label_5 sublabel_5_last" required="" />
                             <label class="form-sub-label" for="last_5" id="sublabel_5_last" style="min-height:13px" aria-hidden="false"> Father Name </label>
                         </span>
                     </div>
@@ -136,7 +136,7 @@
             </li>
             <li class="form-line form-line-column form-col-3 jf-required" data-type="control_birthdate" id="id_39">
                 <label class="form-label form-label-top" id="label_39" for="input_39">
-                    Today's Date 
+                    Today's Date
                     <span class="form-required">
                         *
                     </span>
@@ -146,7 +146,7 @@
                     @Html.ValidationMessageFor(x => x.GeneralInformation.Today_Date, null, new { style = "color:red" })
 
                 </div>
-            </li>  
+            </li>
             <li class="form-line form-line-column form-col-2 jf-required" data-type="control_textbox" id="id_15">
                 <label class="form-label form-label-top form-label-auto" id="label_15" for="input_15">
                     What is the child's Primary Language?
@@ -164,10 +164,10 @@
             </li>
             <li class="form-line form-line-column form-col-2 jf-required" data-type="control_textbox" id="id_17">
                 <label class="form-label form-label-top form-label-auto" id="label_17" for="input_17">
-                    What is the parent's Primary Language? 
+                    What is the parent's Primary Language?
                     @*<span class="form-required">
-                        *
-                    </span>*@
+                            *
+                        </span>*@
                 </label>
                 <div id="cid_17" class="form-input-wide jf-required" data-layout="half">
                     @Html.TextBoxFor(x => x.GeneralInformation.Parent_Primary_Language, null, new { @Class = "form-textbox validate[required, Alphabetic, minCharLimit]", maxLength = "20", dataminlength = "", placeholder = "", type = "text", id = "first_56", name = "q56_name[first]", size = "10", datacomponent = "first", arialabelledby = "label_56 sublabel_56_first" })
@@ -241,8 +241,9 @@
                     </span>
                 </label>
                 <div id="cid_22" class="form-input-wide jf-required" data-layout="full">
-                    @*@Html.TextAreaFor(x => x.SpeechAndLanguage.Speech_Text, new { id = "input_22", @class = "form-textarea validate[AlphaNumeric]", name = "q22_pleaseSubscribe", style = "width:630px;height:160px", datacomponent = "textarea", required = "", arialabelledby = "label_22" })*@
-                   
+                    @Html.TextAreaFor(x => x.SpeechAndLanguage.Speech_Text, new { id = "input_22", @class = "form-textarea validate[required, AlphaNumeric]", name = "q22_pleaseSubscribe", style = "width:630px;height:160px", datacomponent = "textarea", required = "", arialabelledby = "label_22" })
+                    @Html.ValidationMessageFor(x => x.SpeechAndLanguage.Speech_Text, null, new { style = "color:red" })
+
 
                     @*<textarea id="input_22" class="form-textarea validate[required, AlphaNumeric]" name="q22_pleaseSubscribe" style="width:630px;height:160px" data-component="textarea" required="" aria-labelledby="label_22"></textarea>*@
                 </div>
@@ -562,16 +563,16 @@
                                 <label id="label_29_row_5"> Conversation </label>
                             </th>
                             <td class="form-matrix-values">
-                               @Html.TextBoxFor(x => x.ExpressiveLangauage.Conversation_Ex_Text, null, new { type = "text", id = "input_29_5_0", @class = "form-textbox validate[required, requireEveryRow]", name = "q29_myChild29[5]", value = "", arialabelledby = "label_29_col_0 label_29_row_5" })
-                               @Html.ValidationMessageFor(x => x.ExpressiveLangauage.Conversation_Ex_Text, null, new { style = "color:red" })
+                                @Html.TextBoxFor(x => x.ExpressiveLangauage.Conversation_Ex_Text, null, new { type = "text", id = "input_29_5_0", @class = "form-textbox validate[required, requireEveryRow]", name = "q29_myChild29[5]", value = "", arialabelledby = "label_29_col_0 label_29_row_5" })
+                                @Html.ValidationMessageFor(x => x.ExpressiveLangauage.Conversation_Ex_Text, null, new { style = "color:red" })
 
 
                                 @*<input type="radio" id="input_29_5_0" class="form-radio validate[required, requireEveryRow]" name="q29_myChild29[5]" value="Yes" aria-labelledby="label_29_col_0 label_29_row_5" />
-                                <label for="input_29_5_0" class="matrix-choice-label matrix-radio-label">  </label>
-                            </td>
-                            <td class="form-matrix-values">
-                                <input type="radio" id="input_29_5_1" class="form-radio validate[required, requireEveryRow]" name="q29_myChild29[5]" value="No" aria-labelledby="label_29_col_1 label_29_row_5" />
-                                <label for="input_29_5_1" class="matrix-choice-label matrix-radio-label">  </label>*@
+                                        <label for="input_29_5_0" class="matrix-choice-label matrix-radio-label">  </label>
+                                    </td>
+                                    <td class="form-matrix-values">
+                                        <input type="radio" id="input_29_5_1" class="form-radio validate[required, requireEveryRow]" name="q29_myChild29[5]" value="No" aria-labelledby="label_29_col_1 label_29_row_5" />
+                                        <label for="input_29_5_1" class="matrix-choice-label matrix-radio-label">  </label>*@
                             </td>
                         </tr>
                     </table>
@@ -946,4 +947,26 @@
         </ul>
     </div>
 }
-<div class="ttr-overlay"></div>
+<div class="ttr-overlay"></div><script>
+
+    $("#input_73").on('change', function () {
+        var userid = $(this).val();
+        if (userid != '') {
+            $.post('@Url.Action("GetUserByID","Editor")', { GR_NO: userid })
+            .done(function (response, status, jqxhr) {
+
+                if (response != '') {
+                    var postdata = { input_73: userid }
+                    $("#first_56").val(response.Student_First_Name);
+                    $("#last_56").val(response.Student_Last_Name);
+                    $("input[name=q15_gender][value=" + response.Gender + "]").prop("checked", true);
+                    $("#input_72").val(response.Father_Name);
+                    $("#input_63").val(response.Disability);
+
+                }
+
+            })
+            .fail(function (jqxhr, status, error) { alert('error') });
+        }
+    });
+</script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
