@@ -685,7 +685,7 @@
     }
     function func_create_csv(id) {
 
-        $.post("/Editor/CSV_FILE_FOR_STA/?uid=" + $('#BM_Class1').text(),
+        $.post("/Editor/CSV_FILE_FOR_STA/?uid=" + $('#biMonthlyModel_GR_NO').val(),
             {
                 GR_NO: id
             },
@@ -700,7 +700,7 @@
         );
     }
     function desplay_result(id) {
-        $.post("/Editor/csv_to_json/?uid=" + $('#BM_Class1').text(),
+        $.post("/Editor/csv_to_json/?uid=" + $('#biMonthlyModel_GR_NO').val(),
 
             function (data) {
                 var dataPoints = [];
@@ -725,7 +725,7 @@
                     }]
                 };
                 data = JSON.parse(data);
-
+                debugger;
                 for (var i = 0; i < data.length; i++) {
                     var x = data[i].Date;
                     x = x.split("T");
@@ -902,7 +902,7 @@
     }
 
     function func_start_pred() {
-        $.post("/Editor/exec/?uid=" + $('#BM_Class1').text(),
+        $.post("/Editor/exec/?uid=" + $('#biMonthlyModel_GR_NO').val(),
 
             function (data, status) {
                 alert("Processing Done!");

@@ -27,19 +27,19 @@ namespace QRSCS.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (ImageFile == null)
-                {
-                    TempData["Message"] = "Upload Teacher Picture !";
-                    return View();
-                }
-                else
-                {
-                    string Filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-                    string Extension = Path.GetExtension(ImageFile.FileName);
-                    Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
-                    teacher.Teacher_Picture = "~/ProjectData/" + Filename;
-                    Filename = Path.Combine(Server.MapPath("~/ProjectData/"), Filename);
-                    ImageFile.SaveAs(Filename);
+                //if (ImageFile == null)
+                //{
+                //    TempData["Message"] = "Upload Teacher Picture !";
+                //    return View();
+                //}
+                //else
+                //{
+                    //string Filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                    //string Extension = Path.GetExtension(ImageFile.FileName);
+                    //Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
+                    teacher.Teacher_Picture = "~/ProjectData/3dd6567f64dd48883893dbbbf43b3341215531832.JPG";
+                    //Filename = Path.Combine(Server.MapPath("~/ProjectData/"), Filename);
+                    //ImageFile.SaveAs(Filename);
 
                     CreateTeacherManager obj = new CreateTeacherManager();
                     teacher.User_ID = Convert.ToInt32(Session["User_ID"]);
@@ -55,7 +55,7 @@ namespace QRSCS.Controllers
                     {
                         TempData["Message"] = "Teacher Not Created !";
                     }
-                }
+                //}
             }
             else
             {

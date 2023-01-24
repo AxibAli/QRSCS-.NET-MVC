@@ -42,7 +42,7 @@ namespace QRSCS.Manager
             table.Physical_Disability = grno.physiotherapyModel.Physical_Disability;
             table.Others = grno.physiotherapyModel.Others;
             table.Siblings = grno.physiotherapyModel.Siblings;
-            table.Marriage_Type = grno.physiotherapyModel.Marriage_Type;
+            table.Marriage_Type =grno.physiotherapyModel.Marriage_Type;
             table.Blood_Group = grno.physiotherapyModel.Blood_Group;
             table.General_Health = grno.physiotherapyModel.General_Health;
             table.Present_Complain = grno.physiotherapyModel.Present_Complain;

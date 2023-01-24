@@ -7,346 +7,6 @@
 
 
 <!-- Teacher Create Modal-->
-<div class="modal fade" id="TeacherCreateModal" tabindex="-1" aria-hidden="true" style="padding:0px !important">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalTitle">Create Teacher</h5>
-                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-
-                @using (Html.BeginForm("CreateTeacher", "Teacher", FormMethod.Post, new { @class = "", enctype = "multipart/form-data" }))
-                {
-                    <div class="">
-
-                        <div class="col-sm-4 m-auto ">
-                            <div class="form-group row">
-                                <div class="circle">
-                                    <!-- User Profile Image -->
-                                    <img id="pics" class="profile-pic" src="" style="width : 100%; height:100%; ">
-
-                                    <!-- Default Image -->
-                                    <!-- <i class="fa fa-user fa-5x"></i> -->
-                                </div>
-                                <div class="p-image">
-                                    <i class="fa fa-camera upload-button"></i>
-                                    <input class="file-upload" type="file" name="ImageFile" accept="image/*" id="file" />
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Name</label>
-                            <div class="col-sm-9">
-                                @*<input class="form-control" type="text" value="">*@
-                                @Html.TextBoxFor(x => x.Teacher_Name, null, new
-                                {
-                                    @class = "form-control",
-                                    type = "text",
-                                    value = "",
-                                    placeholder = "Enter Teacher Name ",
-                                    id = "Teacher_N"
-                           })
-                                @Html.ValidationMessageFor(x => x.Teacher_Name, null, new { style = "color:red" })
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Gender</label>
-                            <div class="col-sm-9">
-                                @Html.DropDownListFor(x => x.Gender, new List<SelectListItem>
-               { new SelectListItem() { Text = "Please Select" },
-                 new SelectListItem() { Text = "Male" },
-                 new SelectListItem() { Text = "Female" }
-               }, new { @class = "form-control", id = "Gen" })
-                                @Html.ValidationMessageFor(x => x.Gender, null, new { style = "color:red" })
-                                @*<select class="form-control" id="col-sm-2 col-form-label">
-                                        <option></option>
-                                        <option value="volvo">Male</option>
-                                        <option value="saab">Female</option>
-                                    </select>*@
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">NIC #</label>
-                            <div class="col-sm-9">
-                                @*<input class="form-control" type="text" value="">*@
-                                @Html.TextBoxFor(x => x.NIC, null, new { @Class = "form-control", placeholder = "NIC #", id = "NIC" })
-                                @Html.ValidationMessageFor(x => x.NIC, null, new { style = "color:red" })
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Contact #</label>
-                            <div class="col-sm-9">
-                                @*<input class="form-control" type="text" value="">*@
-                                @Html.TextBoxFor(x => x.Contact, null, new { @Class = "form-control", placeholder = "Contact #", id = "Contact", maxlength = "13" })
-
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Date of Birth</label>
-                            <div class="col-sm-9">
-                                @*<input class="form-control" type="Date" value="">*@
-                                @Html.EditorFor(x => x.Date_of_Birth, new { htmlAttributes = new { @class = "form-control", @type = "date", id = "DOB" } })
-                                @Html.ValidationMessageFor(x => x.Date_of_Birth, null, new { style = "color:red" })
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Email</label>
-                            <div class="col-sm-9">
-                                @*<input class="form-control" type="text" value="">*@
-                                @Html.TextBoxFor(x => x.Email, null, new { @Class = "form-control", placeholder = "Email", id = "Email" })
-                                @Html.ValidationMessageFor(x => x.Email, null, new { style = "color:red" })
-                            </div>
-                        </div>
-
-                        <div class="seperator"></div>
-
-                        <div class="text-center">
-
-                            <h4>Address</h4>
-
-
-
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address</label>
-                            <div class="col-sm-9">
-                                @*<input class="form-control" type="text" value="">*@
-                                @Html.TextBoxFor(x => x.Address, null, new { @Class = "form-control", placeholder = "Address", id = "Address" })
-                                @Html.ValidationMessageFor(x => x.Address, null, new { style = "color:red" })
-
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">City</label>
-                            <div class="col-sm-9">
-                                @*<input class="form-control" type="text" value="">*@
-                                @Html.TextBoxFor(x => x.City, null, new { @Class = "form-control", placeholder = "City", id = "City" })
-                                @Html.ValidationMessageFor(x => x.City, null, new { style = "color:red" })
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">State</label>
-                            <div class="col-sm-9">
-                                @*<input class="form-control" type="text" value="">*@
-                                @Html.DropDownListFor(x => x.State, new List<SelectListItem>
-              { new SelectListItem() { Text = "Please Select" },
-                new SelectListItem() { Text = "Sindh" },
-                 new SelectListItem() { Text = "Punjab" },
-                  new SelectListItem() { Text = "Balochistan" },
-                   new SelectListItem() { Text = "Khyber Pakhtunkhwa" },
-                    new SelectListItem() { Text = "Gilgit Baltistan" },
-              }, new { @Class = "form-control", id = "State" })
-                                @Html.ValidationMessageFor(x => x.State, null, new { style = "color:red" })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-
-                    @*</form>*@
-                    <div class="row">
-                        <div class="col-sm-3">
-                        </div>
-                        <div class="col-sm-9">
-                            <button type="submit" class="btn">Create Teacher</button>
-                            <!-- <button type="reset" class="btn-secondry">Cancel</button> -->
-                        </div>
-                    </div>
-                }
-
-
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-<!-- Teacher Modify Modal-->
-<div class="modal fade" id="TeacherModifyModal" tabindex="-1" aria-hidden="true" style="padding:0px !important">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="ModalTitle">Update Teacher</h5>
-                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="">
-
-                    <div class="col-sm-4 m-auto ">
-                        <div class="form-group row">
-                            <div class="circle">
-                                <!-- User Profile Image -->
-                                <img id="pics1" class="profile-pic" src="" style="width : 100%; height:100%; ">
-
-                                <!-- Default Image -->
-                                <!-- <i class="fa fa-user fa-5x"></i> -->
-                            </div>
-                            <div class="p-image">
-                                <i class="fa fa-camera upload-button"></i>
-                                <input class="file-upload" type="file" name="ImageFile" accept="image/*" id="files" />
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Name</label>
-                        <div class="col-sm-9">
-                            @*<input class="form-control" type="text" value="">*@
-                            @Html.TextBoxFor(x => x.Teacher_Name, null, new
-                            {
-                                @class = "form-control",
-                                type = "text",
-                                value = "",
-                                placeholder = "Enter Teacher Name ",
-                                id = "Teacher_N1"
-                       })
-                            @Html.ValidationMessageFor(x => x.Teacher_Name, null, new { style = "color:red" })
-
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Gender</label>
-                        <div class="col-sm-9">
-                            @Html.DropDownListFor(x => x.Gender, new List<SelectListItem>
-           { new SelectListItem() { Text = "Please Select" },
-             new SelectListItem() { Text = "Male" },
-             new SelectListItem() { Text = "Female" }
-           }, new { @class = "form-control", id = "Gen1" })
-                            @Html.ValidationMessageFor(x => x.Gender, null, new { style = "color:red" })
-                            @*<select class="form-control" id="col-sm-2 col-form-label">
-                                    <option></option>
-                                    <option value="volvo">Male</option>
-                                    <option value="saab">Female</option>
-                                </select>*@
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">NIC #</label>
-                        <div class="col-sm-9">
-                            @*<input class="form-control" type="text" value="">*@
-                            @Html.TextBoxFor(x => x.NIC, null, new { @Class = "form-control", placeholder = "NIC #", id = "NIC1" })
-                            @Html.ValidationMessageFor(x => x.NIC, null, new { style = "color:red" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Contact #</label>
-                        <div class="col-sm-9">
-                           
-                            @*<input class="form-control" type="text" value="">*@
-                            @Html.TextBoxFor(x => x.Contact, null, new { @Class = "form-control", placeholder = "Contact #", id = "Contact1", maxlength = "13" })
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Date of Birth</label>
-                        <div class="col-sm-9">
-                            @*<input class="form-control" type="Date" value="">*@
-                            @Html.EditorFor(x => x.Date_of_Birth, new { htmlAttributes = new { @class = "form-control", @type = "date", id = "DOB1" } })
-                            @Html.ValidationMessageFor(x => x.Date_of_Birth, null, new { style = "color:red" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Email</label>
-                        <div class="col-sm-9">
-                            @*<input class="form-control" type="text" value="">*@
-                            @Html.TextBoxFor(x => x.Email, null, new { @Class = "form-control", placeholder = "Email", id = "Email1" })
-                            @Html.ValidationMessageFor(x => x.Email, null, new { style = "color:red" })
-                        </div>
-                    </div>
-
-                    <div class="seperator"></div>
-
-                    <div class="text-center">
-
-                        <h4>Address</h4>
-
-
-
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">Address</label>
-                        <div class="col-sm-9">
-                            @*<input class="form-control" type="text" value="">*@
-                            @Html.TextBoxFor(x => x.Address, null, new { @Class = "form-control", placeholder = "Address", id = "Address1" })
-                            @Html.ValidationMessageFor(x => x.Address, null, new { style = "color:red" })
-
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">City</label>
-                        <div class="col-sm-9">
-                            @*<input class="form-control" type="text" value="">*@
-                            @Html.TextBoxFor(x => x.City, null, new { @Class = "form-control", placeholder = "City", id = "City1" })
-                            @Html.ValidationMessageFor(x => x.City, null, new { style = "color:red" })
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label">State</label>
-                        <div class="col-sm-9">
-                            @*<input class="form-control" type="text" value="">*@
-                            @Html.DropDownListFor(x => x.State, new List<SelectListItem>
-          { new SelectListItem() { Text = "Please Select" },
-            new SelectListItem() { Text = "Sindh" },
-             new SelectListItem() { Text = "Punjab" },
-              new SelectListItem() { Text = "Balochistan" },
-               new SelectListItem() { Text = "Khyber Pakhtunkhwa" },
-                new SelectListItem() { Text = "Gilgit Baltistan" },
-          }, new { @Class = "form-control", id = "State1" })
-                            @Html.ValidationMessageFor(x => x.State, null, new { style = "color:red" })
-                        </div>
-                    </div>
-                </div>
-                <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-
-                @*</form>*@
-                <div class="row">
-                    <div class="col-sm-3">
-                    </div>
-                    <div class="col-sm-9">
-                        <button type="submit" id="Updateteacher" class="btn">Update Teacher</button>
-                        <!-- <button type="reset" class="btn-secondry">Cancel</button> -->
-                    </div>
-                </div>
-
-
-
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <!--Main container start -->
 
 <div class="container-fluid">
@@ -363,7 +23,170 @@
         <div class="col-lg-12 m-b30">
             <div class="widget-box">
                 <div class="wc-title">
-                    <button class="btn" id="teacherbtn">Create Teacher</button>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalTitle">Create Teacher</h5>
+                            <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+
+                            @using (Html.BeginForm("CreateTeacher", "Teacher", FormMethod.Post, new { @class = "", enctype = "multipart/form-data" }))
+                            {
+                                <div class="">
+
+                                    <!--<div class="col-sm-4 m-auto ">
+                                        <div class="form-group row">
+                                            <div class="circle">-->
+                                                <!-- User Profile Image -->
+                                                <!--<img id="pics" class="profile-pic" src="" style="width : 100%; height:100%; ">-->
+
+                                                <!-- Default Image -->
+                                                <!-- <i class="fa fa-user fa-5x"></i> -->
+                                            <!--</div>
+                                            <div class="p-image">
+                                                <i class="fa fa-camera upload-button"></i>
+                                                <input class="file-upload" type="file" name="ImageFile" accept="image/*" id="file" />
+                                            </div>
+
+                                        </div>
+
+                                    </div>-->
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Name</label>
+                                        <div class="col-sm-9">
+                                            @*<input class="form-control" type="text" value="">*@
+                                            @Html.TextBoxFor(x => x.Teacher_Name, null, new
+                                            {
+                                                @class = "form-control",
+                                                type = "text",
+                                                value = "",
+                                                placeholder = "Enter Teacher Name ",
+                                                id = "Teacher_N"
+                                       })
+                                            @Html.ValidationMessageFor(x => x.Teacher_Name, null, new { style = "color:red" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Gender</label>
+                                        <div class="col-sm-9">
+                                            @Html.DropDownListFor(x => x.Gender, new List<SelectListItem>
+                           { new SelectListItem() { Text = "Please Select" },
+                             new SelectListItem() { Text = "Male" },
+                             new SelectListItem() { Text = "Female" }
+                           }, new { @class = "form-control", id = "Gen" })
+                                            @Html.ValidationMessageFor(x => x.Gender, null, new { style = "color:red" })
+                                            @*<select class="form-control" id="col-sm-2 col-form-label">
+                                                    <option></option>
+                                                    <option value="volvo">Male</option>
+                                                    <option value="saab">Female</option>
+                                                </select>*@
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">NIC #</label>
+                                        <div class="col-sm-9">
+                                            @*<input class="form-control" type="text" value="">*@
+                                            @Html.TextBoxFor(x => x.NIC, null, new { @Class = "form-control", placeholder = "NIC #", id = "NIC" })
+                                            @Html.ValidationMessageFor(x => x.NIC, null, new { style = "color:red" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Contact #</label>
+                                        <div class="col-sm-9">
+                                            @*<input class="form-control" type="text" value="">*@
+                                            @Html.TextBoxFor(x => x.Contact, null, new { @Class = "form-control", placeholder = "Contact #", id = "Contact", maxlength = "13" })
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Date of Birth</label>
+                                        <div class="col-sm-9">
+                                            @*<input class="form-control" type="Date" value="">*@
+                                            @Html.EditorFor(x => x.Date_of_Birth, new { htmlAttributes = new { @class = "form-control", @type = "date", id = "DOB" } })
+                                            @Html.ValidationMessageFor(x => x.Date_of_Birth, null, new { style = "color:red" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Email</label>
+                                        <div class="col-sm-9">
+                                            @*<input class="form-control" type="text" value="">*@
+                                            @Html.TextBoxFor(x => x.Email, null, new { @Class = "form-control", placeholder = "Email", id = "Email" })
+                                            @Html.ValidationMessageFor(x => x.Email, null, new { style = "color:red" })
+                                        </div>
+                                    </div>
+
+                                    <div class="seperator"></div>
+
+                                    <div class="text-center">
+
+                                        <h4>Address</h4>
+
+
+
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Address</label>
+                                        <div class="col-sm-9">
+                                            @*<input class="form-control" type="text" value="">*@
+                                            @Html.TextBoxFor(x => x.Address, null, new { @Class = "form-control", placeholder = "Address", id = "Address" })
+                                            @Html.ValidationMessageFor(x => x.Address, null, new { style = "color:red" })
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">City</label>
+                                        <div class="col-sm-9">
+                                            @*<input class="form-control" type="text" value="">*@
+                                            @Html.TextBoxFor(x => x.City, null, new { @Class = "form-control", placeholder = "City", id = "City" })
+                                            @Html.ValidationMessageFor(x => x.City, null, new { style = "color:red" })
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">State</label>
+                                        <div class="col-sm-9">
+                                            @*<input class="form-control" type="text" value="">*@
+                                            @Html.DropDownListFor(x => x.State, new List<SelectListItem>
+                          { new SelectListItem() { Text = "Please Select" },
+                            new SelectListItem() { Text = "Sindh" },
+                             new SelectListItem() { Text = "Punjab" },
+                              new SelectListItem() { Text = "Balochistan" },
+                               new SelectListItem() { Text = "Khyber Pakhtunkhwa" },
+                                new SelectListItem() { Text = "Gilgit Baltistan" },
+                          }, new { @Class = "form-control", id = "State" })
+                                            @Html.ValidationMessageFor(x => x.State, null, new { style = "color:red" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
+
+                                @*</form>*@
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <button type="submit" class="btn">Create Teacher</button>
+                                        <!-- <button type="reset" class="btn-secondry">Cancel</button> -->
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -393,269 +216,13 @@
                         <!-- Your Profile Views Chart END-->
                     </div>
 
-
-
-
-                    @*<form class="edit-profile m-b30">
-                                            @using (Html.BeginForm("CreateTeacher", "Teacher", FormMethod.Post, new { @class = "edit-profile m-b30", enctype = "multipart/form-data" }))
-                                                      {
-                                          <div class="">
-                                              <div class="form-group row">
-                                                  <div class="col-sm-10  ml-auto">
-                                                      <div class="width-box">
-                                                          <div class="wc-title">
-                                                              <h3>Teacher Details:</h3>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                              <div class="col-sm-2 m-auto ">
-                                                  <div class="form-group row">
-                                                      <div class="circle">
-                                                          <!-- User Profile Image -->
-                                                          <img class="profile-pic">
-
-                                                          <!-- Default Image -->
-                                                          <!-- <i class="fa fa-user fa-5x"></i> -->
-                                                      </div>
-                                                      <div class="p-image">
-                                                          <i class="fa fa-camera upload-button"></i>
-                                                          <input class="file-upload" type="file" name="ImageFile" accept="image/*" id="file" />
-                                                      </div>
-
-                                                  </div>
-                                              </div>
-
-                                              <div class="form-group row">
-                                                  <label class="col-sm-2 col-form-label">Teacher Name</label>
-                                                  <div class="col-sm-7">
-                                                      @*<input class="form-control" type="text" value="">
-                                          @Html.TextBoxFor(x => x.Teacher_Name, null, new { @class = "form-control", type = "text", value = "", placeholder = "Enter Teacher Name " })
-                                          @Html.ValidationMessageFor(x => x.Teacher_Name, null, new { style = "color:red" })
-
-                                      </div>
-                                  </div>
-
-                                  <div class="form-group row">
-                                      <label class="col-sm-2 col-form-label">Gender</label>
-                                      <div class="col-sm-7">
-                                          @Html.DropDownListFor(x => x.Gender, new List<SelectListItem>
-                         { new SelectListItem() { Text = "Please Select" },
-                           new SelectListItem() { Text = "Male" },
-                           new SelectListItem() { Text = "Female" }
-                         }, new { @class = "form-control", id = "col-sm-2 col-form-label" })
-                                          @Html.ValidationMessageFor(x => x.Gender, null, new { style = "color:red" })
-                                          @*<select class="form-control" id="col-sm-2 col-form-label">
-                                              <option></option>
-                                              <option value="volvo">Male</option>
-                                              <option value="saab">Female</option>
-                                          </select>
-                                      </div>
-                                  </div>
-
-
-                                  <div class="form-group row">
-                                      <label class="col-sm-2 col-form-label">NIC #</label>
-                                      <div class="col-sm-7">
-                                          @*<input class="form-control" type="text" value="">
-                                          @Html.TextBoxFor(x => x.NIC, null, new { @Class = "form-control", placeholder = "NIC #" })
-                                          @Html.ValidationMessageFor(x => x.NIC, null, new { style = "color:red" })
-                                      </div>
-                                  </div>
-
-                                  <div class="form-group row">
-                                      <label class="col-sm-2 col-form-label">Contact #</label>
-                                      <div class="col-sm-7">
-                                          @*<input class="form-control" type="text" value="">
-                                          @Html.TextBoxFor(x => x.Contact, null, new { @Class = "form-control", placeholder = "Contact #" })
-                                          @Html.ValidationMessageFor(x => x.Contact, null, new { style = "color:red" })
-                                      </div>
-                                  </div>
-
-
-                                  <div class="form-group row">
-                                      <label class="col-sm-2 col-form-label">Date of Birth</label>
-                                      <div class="col-sm-7">
-                                          @*<input class="form-control" type="Date" value="">
-                                          @Html.EditorFor(x => x.Date_of_Birth, new { htmlAttributes = new { @class = "form-control", @type = "date", } })
-                                          @Html.ValidationMessageFor(x => x.Date_of_Birth, null, new { style = "color:red" })
-                                      </div>
-                                  </div>
-
-                                  <div class="form-group row">
-                                      <label class="col-sm-2 col-form-label">Email</label>
-                                      <div class="col-sm-7">
-                                          @*<input class="form-control" type="text" value="">
-                                          @Html.TextBoxFor(x => x.Email, null, new { @Class = "form-control", placeholder = "Email" })
-                                          @Html.ValidationMessageFor(x => x.Email, null, new { style = "color:red" })
-                                      </div>
-                                  </div>
-
-                                  <div class="seperator"></div>
-
-                                  <div class="form-group row">
-                                      <div class="col-sm-10 ml-auto">
-                                          <h3>Address:</h3>
-                                      </div>
-                                  </div>
-                                  <div class="form-group row">
-                                      <label class="col-sm-2 col-form-label">Address</label>
-                                      <div class="col-sm-7">
-                                          @*<input class="form-control" type="text" value="">
-                                          @Html.TextBoxFor(x => x.Address, null, new { @Class = "form-control", placeholder = "Address" })
-                                          @Html.ValidationMessageFor(x => x.Address, null, new { style = "color:red" })
-
-                                      </div>
-                                  </div>
-                                  <div class="form-group row">
-                                      <label class="col-sm-2 col-form-label">City</label>
-                                      <div class="col-sm-7">
-                                          @*<input class="form-control" type="text" value="">
-                                          @Html.TextBoxFor(x => x.City, null, new { @Class = "form-control", placeholder = "City" })
-                                          @Html.ValidationMessageFor(x => x.City, null, new { style = "color:red" })
-                                      </div>
-                                  </div>
-                                  <div class="form-group row">
-                                      <label class="col-sm-2 col-form-label">State</label>
-                                      <div class="col-sm-7">
-                                          @*<input class="form-control" type="text" value="">
-                                          @Html.DropDownListFor(x => x.State, new List<SelectListItem>
-                        { new SelectListItem() { Text = "Please Select" },
-                          new SelectListItem() { Text = "Sindh" },
-                           new SelectListItem() { Text = "Punjab" },
-                            new SelectListItem() { Text = "Balochistan" },
-                             new SelectListItem() { Text = "Khyber Pakhtunkhwa" },
-                              new SelectListItem() { Text = "Gilgit Baltistan" },
-                        }, new { @Class = "form-control" })
-                                          @Html.ValidationMessageFor(x => x.State, null, new { style = "color:red" })
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-
-                              @*</form>
-                              <div class="row">
-                                  <div class="col-sm-2">
-                                  </div>
-                                  <div class="col-sm-7">
-                                      <button type="submit" class="btn">Create Teacher</button>
-                                      <!-- <button type="reset" class="btn-secondry">Cancel</button> -->
-                                  </div>
-                              </div>
-                              }*@
                 </div>
             </div>
-
-
-            <div class="row">
-                <div class="col-lg-12 m-b30">
-                    <div class="widget-box">
-                        <div class="wc-title">
-                            <h4>Assign Teacher</h4>
-                        </div>
-                        <div class="widget-inner">
-                            <form class="edit-profile m-b30">
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Teacher Id</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" type="number" value="">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <button type="reset" class="btn">Search</button>
-                                            <!-- <button type="reset" class="btn-secondry">Cancel</button> -->
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Teacher Name</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" type="text" value="">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Gender</label>
-                                    <div class="col-sm-7">
-                                        <select class="form-control" id="col-sm-2 col-form-label">
-                                            <option></option>
-                                            <option value="volvo">Male</option>
-                                            <option value="saab">Female</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">NIC #</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" type="text" value="">
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Contact #</label>
-                                    <div class="col-sm-7">
-                                        <input class="form-control" type="text" value="">
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Class</label>
-                                    <div class="col-sm-7">
-                                        <select class="form-control" id="col-sm-2 col-form-label">
-                                            <option></option>
-                                            <option value="volvo">1</option>
-                                            <option value="saab">2</option>
-                                            <option value="saab">3</option>
-                                            <option value="saab">4</option>
-                                            <option value="saab">5</option>
-                                            <option value="saab">6</option>
-                                            <option value="saab">7</option>
-                                            <option value="saab">8</option>
-                                            <option value="saab">9</option>
-                                            <option value="saab">10</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">Section</label>
-                                    <div class="col-sm-7">
-                                        <select class="form-control" id="col-sm-2 col-form-label">
-                                            <option></option>
-                                            <option value="volvo">A</option>
-                                            <option value="saab">B</option>
-                                            <option value="saab">C</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="seperator"></div>
-
-
-                                <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-
-                            </form>
-                            <div class="row">
-                                <div class="col-sm-2">
-                                </div>
-                                <div class="col-sm-7">
-                                    <button type="reset" class="btn">Assign Teacher</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="ttr-overlay"></div>
     </div>
 </div>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 
@@ -768,7 +335,7 @@
 
     $(document).ready(function () {
 
-        
+
         $("#teacherbtn").click(function () {
             var url = "/Admin/UpdateUserProfile?User_ID=" + $("#prof").val();
             $("#TeacherCreateModal").modal("show");

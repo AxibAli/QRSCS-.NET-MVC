@@ -200,6 +200,13 @@
                                         <div class="custom-control custom-checkbox ">
                                             @Html.CheckBoxFor(x => x.physiotherapyModel.Physical_Disability, new { @class = "custom-control-input", id = "Physical Disability" })
                                             <label class="custom-control-label" for="Physical Disability">Physical Disability</label>
+                                        </div><br />
+                                        <label class="form-label form-label-top form-label-auto" id="label_114" for="input_114">
+                                            <p1>Others</p1> 
+                                        </label>
+                                        <div id="cid_27" class="form-input-wide jf-required" data-layout="half">
+                                            @Html.TextBoxFor(x => x.physiotherapyModel.Others, null, new { id = "input_27", name = "q27_typeA", @Class = "form-textbox validate[required, Alphabetic, minCharLimit]", maxLength = "30", placeholder = "", type = "text", size = "10" })
+                                            @Html.ValidationMessageFor(x => x.physiotherapyModel.Others, null, new { style = "color:red" })
                                         </div>
                                     </div>
                                     <ul class="form-section page-section">
@@ -221,6 +228,10 @@
                                             <label class="form-label form-label-top form-label-auto" id="label_114" for="input_114">
                                                 <p1>1- Cousin Marriage / Outsider</p1> <br />
                                             </label>
+                                            <div id="cid_27" class="form-input-wide jf-required" data-layout="half">
+                                                @Html.TextBoxFor(x => x.physiotherapyModel.Marriage_Type, null, new { id = "input_27", name = "q27_typeA", @Class = "form-textbox validate[required, Alphabetic, minCharLimit]", maxLength = "30", placeholder = "", type = "text", size = "10" })
+                                                @Html.ValidationMessageFor(x => x.physiotherapyModel.Marriage_Type, null, new { style = "color:red" })
+                                            </div>
                                         </li>
                                         <li class="form-line form-line-column form-col-1 jf-required" data-type="control_textbox" id="id_27">
                                             <label class="form-label form-label-top form-label-auto" id="label_27" for="input_27">
@@ -293,7 +304,7 @@
                                                             <label id="label_114_row_0"> Length of pregnancy </label>
                                                         </th>
                                                         <td class="form-matrix-values">
-                                                            @Html.TextBoxFor(x => x.historyPregnancy.Pregnancy_Type, null, new { id = "input_114_0_0", name = "q114_postNatal[0][]", @Class = "form-textbox validate[AlphaNumeric, minCharLimit,requireOneAnswer]", maxLength = "10", type = "text", size = "10", })
+                                                            @Html.TextBoxFor(x => x.historyPregnancy.Pregnancy_Length, null, new { id = "input_114_0_0", name = "q114_postNatal[0][]", @Class = "form-textbox validate[AlphaNumeric, minCharLimit,requireOneAnswer]", maxLength = "10", type = "text", size = "10", })
                                                             @Html.ValidationMessageFor(x => x.historyPregnancy.Pregnancy_Length, null, new { style = "color:red" })
                                                         </td>
 
@@ -725,71 +736,87 @@
                                 </fieldset>
 
                                 @*HISTORY*@
-                                <fieldset id="fourth">
-                                    <ul class="form-section page-section">
-                                        <li id="cid_43" class="form-input-wide" data-type="control_head">
-                                            <div class="form-header-group  header-large">
-                                                <div class="header-text httac htvam">
-                                                    <h1 id="header_43" class="form-header" data-component="header">
-                                                        TREATMENT PLAN
-                                                    </h1>
-                                                </div>
+                            <fieldset id="fourth">
+                                <ul class="form-section page-section">
+                                    <li id="cid_43" class="form-input-wide" data-type="control_head">
+                                        <div class="form-header-group  header-large">
+                                            <div class="header-text httac htvam">
+                                                <h1 id="header_43" class="form-header" data-component="header">
+                                                    TREATMENT PLAN
+                                                </h1>
                                             </div>
-                                        </li>
-                                        <li id="cid_138" class="form-input-wide" data-type="control_head">
-                                            <div class="form-header-group  header-default">
-                                                <div class="header-text httac htvam">
-                                                    <h2 id="header_138" class="form-header" data-component="header">
-                                                        Long Term Goal
-                                                    </h2>
-                                                </div>
+                                        </div>
+                                    </li>
+                                    <li id="cid_138" class="form-input-wide" data-type="control_head">
+                                        <div class="form-header-group  header-default">
+                                            <div class="header-text httac htvam">
+                                                <h2 id="header_138" class="form-header" data-component="header">
+                                                    Long Term Goal
+                                                </h2>
                                             </div>
-                                        </li>
-                                    </ul>
+                                        </div>
+                                    </li>
+                                </ul>
 
-                                    <div id="cid_139" class="form-input-wide" data-layout="full">
-                                        @Html.TextAreaFor(x => x.treatmentPlan.LongTerm_Goal, new { id = "input_139", @class = "form-textarea", name = "q139_input139", style = "width:630px;height:160px", datacomponent = "textarea", placeholder = "", required = "", arialabelledby = "label_139" })
-                                        @Html.ValidationMessageFor(x => x.treatmentPlan.LongTerm_Goal, null, new { style = "color:red" })
+                                <div id="cid_139" class="form-input-wide" data-layout="full">
+                                    @Html.TextAreaFor(x => x.treatmentPlan.LongTerm_Goal, new { id = "input_139", @class = "form-textarea", name = "q139_input139", style = "width:630px;height:160px", datacomponent = "textarea", placeholder = "", required = "", arialabelledby = "label_139" })
+                                    @Html.ValidationMessageFor(x => x.treatmentPlan.LongTerm_Goal, null, new { style = "color:red" })
+                                </div>
+
+                                <ul>
+                                    <li id="cid_138" class="form-input-wide" data-type="control_head">
+                                        <div class="form-header-group  header-default">
+                                            <div class="header-text httac htvam">
+                                                <h2 id="header_138" class="form-header" data-component="header">
+                                                    Short Term Goal
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div id="cid_139" class="form-input-wide" data-layout="full">
+                                    @Html.TextAreaFor(x => x.treatmentPlan.ShortTerm_Goal, new { id = "input_139", @class = "form-textarea", name = "q139_input139", style = "width:630px;height:160px", datacomponent = "textarea", placeholder = "", required = "", arialabelledby = "label_139" })
+                                    @Html.ValidationMessageFor(x => x.treatmentPlan.ShortTerm_Goal, null, new { style = "color:red" })
+                                </div>
+                                <ul>
+                                    <li id="cid_138" class="form-input-wide" data-type="control_head">
+                                        <div class="form-header-group  header-default">
+                                            <div class="header-text httac htvam">
+                                                <h2 id="header_138" class="form-header" data-component="header">
+                                                    Recommendations
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                                <div id="cid_139" class="form-input-wide" data-layout="full">
+                                    @Html.TextAreaFor(x => x.treatmentPlan.Recommendations, new { id = "input_139", @class = "form-textarea", name = "q139_input139", style = "width:630px;height:160px", datacomponent = "textarea", placeholder = "", required = "", arialabelledby = "label_139" })
+                                    @Html.ValidationMessageFor(x => x.treatmentPlan.Recommendations, null, new { style = "color:red" })
+                                </div>
+                                <div class="form-line jf-required" data-type="control_matrix" id="id_114">
+                                    <h3 id="header_43" class="form-header" data-component="header">
+                                        Test Done
+                                    </h3>
+                                    <label class="form-label form-label-top form-label-auto" id="label_114" for="input_114">
+                                        <p1>Goniometer</p1> <br />
+                                    </label>
+                                    <div id="cid_27" class="form-input-wide jf-required" data-layout="half">
+                                        @Html.TextBoxFor(x => x.testDone.Goniometer, null, new { id = "input_27", name = "q27_typeA", @Class = "form-textbox validate[required, Alphabetic, minCharLimit]", maxLength = "30", placeholder = "", type = "text", size = "10" })
+                                        @Html.ValidationMessageFor(x => x.testDone.Goniometer, null, new { style = "color:red" })
                                     </div>
-
-                                    <ul>
-                                        <li id="cid_138" class="form-input-wide" data-type="control_head">
-                                            <div class="form-header-group  header-default">
-                                                <div class="header-text httac htvam">
-                                                    <h2 id="header_138" class="form-header" data-component="header">
-                                                        Short Term Goal
-                                                    </h2>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div id="cid_139" class="form-input-wide" data-layout="full">
-                                        @Html.TextAreaFor(x => x.treatmentPlan.ShortTerm_Goal, new { id = "input_139", @class = "form-textarea", name = "q139_input139", style = "width:630px;height:160px", datacomponent = "textarea", placeholder = "", required = "", arialabelledby = "label_139" })
-                                        @Html.ValidationMessageFor(x => x.treatmentPlan.ShortTerm_Goal, null, new { style = "color:red" })
+                                    <label class="form-label form-label-top form-label-auto" id="label_114" for="input_114">
+                                        <p1>Muscle Strength</p1> <br />
+                                    </label>
+                                    <div id="cid_27" class="form-input-wide jf-required" data-layout="half">
+                                        @Html.TextBoxFor(x => x.testDone.Muscle_Strength, null, new { id = "input_27", name = "q27_typeA", @Class = "form-textbox validate[required, Alphabetic, minCharLimit]", maxLength = "30", placeholder = "", type = "text", size = "10" })
+                                        @Html.ValidationMessageFor(x => x.testDone.Muscle_Strength, null, new { style = "color:red" })
                                     </div>
-                                    <ul>
-                                        <li id="cid_138" class="form-input-wide" data-type="control_head">
-                                            <div class="form-header-group  header-default">
-                                                <div class="header-text httac htvam">
-                                                    <h2 id="header_138" class="form-header" data-component="header">
-                                                        Recommendations
-                                                    </h2>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                </div>
+                                <input id="pre_btn3" onclick="prev_step3()" type="button" value="Previous" class="prevbut">
+                                <input id="submit" onclick="btn_submitch()" name="next" type="submit" value="Submit" style="float: right; right: 0;">
 
-                                    <div id="cid_139" class="form-input-wide" data-layout="full">
-
-                                        @Html.TextAreaFor(x => x.treatmentPlan.Recommendations, new { id = "input_139", @class = "form-textarea", name = "q139_input139", style = "width:630px;height:160px", datacomponent = "textarea", placeholder = "", required = "", arialabelledby = "label_139" })
-                                        @Html.ValidationMessageFor(x => x.treatmentPlan.Recommendations, null, new { style = "color:red" })
-
-
-                                    </div>
-                                    <input id="pre_btn3" onclick="prev_step3()" type="button" value="Previous" class="prevbut">
-                                    <input id="submit" onclick="btn_submitch()" name="next" type="submit" value="Submit" style="float: right; right: 0;">
-
-                                </fieldset>
+                            </fieldset>
 
                             </div>
                         </div>

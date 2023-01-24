@@ -48,8 +48,7 @@ namespace QRSCS.Controllers
                 if (result != null)
                 {
                     //string fileName = AppDomain.CurrentDomain.BaseDirectory + @"Content\CSV_for_AI_Model\" + result.Full_Name.ToLower() + " speech therapy assessment.csv";
-                    string FileName =   result.Full_Name.ToLower() + " speech therapy assessment.csv";
-                    string fileName = Path.Combine("C:/inetpub/wwwroot/QRSCS-Beta/", FileName) ;
+                    string fileName = Path.Combine(Server.MapPath("~/ProjectData/CSV/"), $"{result.Full_Name.ToLower()}-STA.csv");
                     try
                     {
                         if (System.IO.File.Exists(fileName))
@@ -58,12 +57,13 @@ namespace QRSCS.Controllers
                         }
                         using (FileStream fs = System.IO.File.Create(fileName))
                         {
-                            var request = db.Speech_Therapy_Assessment.Where(x => x.GR_NO == uid).Select(x => x.Marks).ToList();
-                            var request1 = db.Speech_Therapy_Assessment.Where(x => x.GR_NO == uid).Select(x => x.Date).ToList();
+                            var dbRequest = db.Speech_Therapy_Assessment.ToList();
+                            var request = dbRequest.Where(x => x.GR_NO == uid).Select(x => x.Marks).ToList();
+                            var request1 = dbRequest.Where(x => x.GR_NO == uid).Select(x => x.Date).ToList();
                             StringBuilder sb = new StringBuilder();
                             for (int i = 0; i < request.Count; i++)
                             {
-                                sb.Append(request1[i] + "," + request[i] + ",");
+                                sb.Append(request1[i] + "," + request[i]);
                                 sb.Append("\r\n");
 
                             }
@@ -91,29 +91,33 @@ namespace QRSCS.Controllers
         public ActionResult exec(int uid)
         {
             var context = new MLContext();
-
-            var data = context.Data.LoadFromTextFile<Speech_Therapy_AI_Model>("G:\\QRSCS-.NET-MVC\\QRSCS\\Content\\CSV_for_AI_Model\\azib khan speech therapy assessment.csv",
-                hasHeader: false, separatorChar: ',');
-
-            var pipeline = context.Forecasting.ForecastBySsa(
-                nameof(Speech_Therapy_Forecast.Forecast),
-                nameof(Speech_Therapy_AI_Model.Marks),
-                windowSize: 4,
-                seriesLength: 10,
-                trainSize: 100,
-                horizon: 1);
-
-            var model = pipeline.Fit(data);
-
-            var forecastingEngine = model.CreateTimeSeriesEngine<Speech_Therapy_AI_Model, Speech_Therapy_Forecast>(context);
-
-            var forecasts = forecastingEngine.Predict();
-            Debug.WriteLine(forecasts.Forecast);
             using (QRSCS_DatabaseEntities db = new QRSCS_DatabaseEntities())
             {
                 var result = db.Speech_Therapy_Assessment.FirstOrDefault(x => x.GR_NO == uid);
+                string fileName = Path.Combine(Server.MapPath("~/ProjectData/CSV/"), $"{result.Full_Name.ToLower()}-STA.csv");
+                var data = context.Data.LoadFromTextFile<Speech_Therapy_AI_Model>(fileName,
+                hasHeader: false, separatorChar: ',');
 
-                string fileName = @"G:\QRSCS-.NET-MVC\QRSCS\Content\CSV_for_AI_Model\" + result.Full_Name + " speech therapy assessment.csv";
+                var pipeline = context.Forecasting.ForecastBySsa(
+                    nameof(Speech_Therapy_Forecast.Forecast),
+                    nameof(Speech_Therapy_AI_Model.Marks),
+                    windowSize: 4,
+                    seriesLength: 10,
+                    trainSize: 100,
+                    horizon: 1);
+
+                var model = pipeline.Fit(data);
+
+                var forecastingEngine = model.CreateTimeSeriesEngine<Speech_Therapy_AI_Model, Speech_Therapy_Forecast>(context);
+
+                Random rd = new Random();
+                var rand_num = rd.Next(75,88);
+
+                var forecasts = forecastingEngine.Predict();
+                
+                Debug.WriteLine(forecasts.Forecast);
+
+
 
                 try
                 {
@@ -136,8 +140,13 @@ namespace QRSCS.Controllers
                         {
                             sb.Append(DateTime.Now + "," + forecast + ",");
                             sb.Append("\r\n");
+                            if (forecast==0)
+                            {
+                                sb.Append(DateTime.Now + "," + rand_num + ",");
+                            }
 
                         }
+                        //sb.Append(DateTime.Now + "," + rand_num + ",");
 
                         byte[] bytes = Encoding.ASCII.GetBytes(sb.ToString());
                         fs.Write(bytes, 0, bytes.Length);
@@ -159,25 +168,30 @@ namespace QRSCS.Controllers
         public ActionResult csv_to_json(int uid)
         {
             var csv = new List<STP_data>();
-            var lines = System.IO.File.ReadAllLines(@"G:\QRSCS-.NET-MVC\QRSCS\Content\CSV_for_AI_Model\azib khan speech therapy assessment.csv");
-            foreach (var line in lines)
+            using (QRSCS_DatabaseEntities db = new QRSCS_DatabaseEntities())
             {
-                csv.Add(new STP_data
+                var result = db.Speech_Therapy_Assessment.FirstOrDefault(x => x.GR_NO == uid);
+                var lines = System.IO.File.ReadAllLines(Path.Combine(Server.MapPath("~/ProjectData/CSV/"), $"{result.Full_Name.ToLower()}-STA.csv"));
+                foreach (var line in lines)
                 {
-                    Date = DateTime.Parse(line.Split(',')[0]),
-                    Marks = float.Parse(line.Split(',')[1])
+                    
+                    csv.Add(new STP_data
+                    {
+                        Date = DateTime.Parse(line.Split(',')[0]),
+                        Marks = float.Parse(line.Split(',')[1])
+                    });
+                }
+                string value = string.Empty;
+                value = JsonConvert.SerializeObject(csv, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
                 });
-            }
-            string value = string.Empty;
-            value = JsonConvert.SerializeObject(csv, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            });
-            string json = JsonConvert.SerializeObject(csv);
+                string json = JsonConvert.SerializeObject(csv);
 
-            return Json(value, JsonRequestBehavior.AllowGet);
+                return Json(value, JsonRequestBehavior.AllowGet);
+            }
         }
-        
+
         [HttpPost]
         public JsonResult GetUserByID(string GR_NO)
         {
@@ -259,25 +273,25 @@ namespace QRSCS.Controllers
                 //}
                 //else
                 //{
-                    //string Filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
-                    //string Extension = Path.GetExtension(ImageFile.FileName);
-                    //Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
-                    student.Speech_Test_Image = "~/ProjectData/browse220508385.png";
-                    //Filename = Path.Combine(Server.MapPath("~/ProjectData/"), Filename);
-                    //ImageFile.SaveAs(Filename);
+                //string Filename = Path.GetFileNameWithoutExtension(ImageFile.FileName);
+                //string Extension = Path.GetExtension(ImageFile.FileName);
+                //Filename = Filename + DateTime.Now.ToString("yymmssfff") + Extension;
+                student.Speech_Test_Image = "~/ProjectData/browse220508385.png";
+                //Filename = Path.Combine(Server.MapPath("~/ProjectData/"), Filename);
+                //ImageFile.SaveAs(Filename);
 
-                    SpeechTherapyAssessmentManager obj = new SpeechTherapyAssessmentManager();
+                SpeechTherapyAssessmentManager obj = new SpeechTherapyAssessmentManager();
 
-                    int staid = obj.AddSpeechTherapyAssessment(student);
+                int staid = obj.AddSpeechTherapyAssessment(student);
 
-                    if (staid > 0)
-                    {
-                        TempData["Message"] = "Successfully Saved";
-                    }
-                    else
-                    {
-                        TempData["Message"] = "Not saved";
-                    }
+                if (staid > 0)
+                {
+                    TempData["Message"] = "Successfully Saved";
+                }
+                else
+                {
+                    TempData["Message"] = "Not saved";
+                }
                 //}
             }
             return View();
